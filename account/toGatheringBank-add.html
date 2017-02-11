@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>新增汇款账号</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			var data = $("#myForm").form("getData");
+			console.log(data);
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+<body>
+
+<div class="pd10">
+    <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:100px;"><em class="cred">*</em> 汇款类型：</th>
+                    <td><input id="remittanceType1" type="radio" checked="" value="1" name="remittanceType">
+                        <label for="remittanceType1">银行汇款</label>
+                        <input id="remittanceType2" type="radio" value="2" name="remittanceType" class="ml10">
+                        <label for="remittanceType2">网上转账</label></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 开户银行：</th>
+                    <td><input type="text" name="khh"  class="ipt easyui-validatebox" data-options="required:true,prompt:'请填写开户银行',missingMessage:'开户银行不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 公司账户：</th>
+                    <td><input type="text"  name="zh" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'公司账户不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 公司账号：</th>
+                    <td><input type="text"  name="zhanghao" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'公司账号不能为空！'" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

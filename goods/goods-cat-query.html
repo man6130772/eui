@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>货品分类列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var myform;
+function parsePage(){
+	
+	$('#toolbar').toolbar({
+		items: [{
+					text : '新增',
+					iconCls : 'icon-add',
+					handler : function() {
+						add();
+					}
+				}, '-', {
+					text : '删除',
+					iconCls:'icon-del',
+					handler : function() {
+						var node = tbgrid.datagrid('getSelections');
+						var ids=[];
+						$.each(node,function(index,val){
+							ids.push(val.id);
+						});
+						del(ids);
+					}
+				},'-',{
+					text : '导出',
+					iconCls:'icon-export',
+					handler : function() {
+						exportBrand();
+					}
+				}] 
+	});
+	
+	toolSearch({
+		items:[{"text":"类别编码","name":" "},{"text":"类别名称","name":" "},{"text":"类别特征码","name":" "}],
+		collapsible:false,
+		callback:function(key,name){
+				if(key==""){
+					showInfo('请输入关键字');
+					return;
+				}
+			showInfo(key);
+		}
+	});	
+	
+	tbgrid = $('#tbList').datagrid({
+			data:{total:2,rows:[{'col1':'001123','col2':'凉拖','col3':'小','col4':'	00112','col5':'--','col6':'启用','col7':'SYS','col8':'2013-10-23 11:30:22','col9':'SYS','col10':'2013-10-23 11:30:22','col11':'--'}]},
+			singleSelect:false,
+			frozenColumns : [[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+			}]],
+		    columns:[[
+					{
+					title:'类别编码 ',
+					field:'col1',
+					width:80,
+					sortable:true
+				    },
+					{
+					title:'类别名称 ',
+					field:'col2',
+					width:80,
+					align:'left'
+					},{
+					title:'类别级别 ',
+					field:'col3',
+					width:80
+					},{
+					title:'上级类别 ',
+					field:'col4',
+					width:80
+					},{
+					title:'类别特征码 ',
+					field:'col5',
+					width:60
+					},{
+					title:'类别状态 ',
+					field:'col6',
+					width:60
+					},{
+					title:'建档人 ',
+					field:'col7',
+					width:60
+					},{
+					title:'建档时间  ',
+					field:'col8',
+					width:100
+					},{
+					title:'修改人  ',
+					field:'col9',
+					width:60
+					},{
+					title:'修改时间   ',
+					field:'col10',
+					width:100
+					},{
+					title:'备注   ',
+					field:'col11',
+					width:120
+					}
+		]],
+		onSelect: function(rowIndex, rowData) {
+					var _id = rowData.id;
+					
+					$('#cateNoDetail').val(rowData.col1);
+					$('#cateNameDetail').val(rowData.col2);
+					$('#cateLevelidDetail').combobox('setValue',rowData.col3);
+					$('#headCateNoDetail').val(rowData.col4);
+					$('#sysNoDetail').combobox('setValue',rowData.col5);
+					$('#status').combobox('setValue',rowData.col6);
+					
+					$('#subLayout').layout('show', 'south');
+					if(!$('#subLayout').layout('isVisible', 'south')){
+						$('#subLayout').layout('expand', 'south');
+					}
+			},
+		onDblClickRow:function(rowIndex,rowData){
+			$('#cateNo').val(rowData.col1);
+			$('#cateName').val(rowData.col2);
+			$('#headCateNo').val(rowData.col4);
+			ygDialog({
+				title:'修改类别',
+				target:$('#myFormPanel'),
+				width:600,
+				height:280,
+				buttons:[{
+					text:'保存',
+					handler:function(dialog){
+						save(dialog);
+					}
+				},{
+					text:'取消',
+					handler:function(dialog){
+						dialog.close();
+					}
+				}]
+			});
+		}
+
+	});
+	
+	$('#catToolBar').toolbar();
+	
+	toolSearch({
+		appendTo:$('#catToolBar'),
+		collapsible:false,
+		width:160,
+		pos:'left',
+		items:[{
+			text:'类别名称',
+			name:'-'
+		},{
+			text:'类别编码',
+			name:'-'
+		}],
+		callback:function(key,name){
+			if(key==""){
+				showInfo('请输入关键字');
+				return;
+			}
+		showInfo(key);
+		}
+	});
+	
+$('#catTree').tree({
+	lines: true,
+	method:'get',
+	url: 'queryCategoryTree.html',
+	onClick: function(node) {
+	if (!$(this).tree("isLeaf", node.target)) {
+			//父节点
+			$(this).tree('toggle', node.target);
+			return;
+	}
+	var title = node.text,
+	iconCls = node.iconCls,
+	url = node.attributes.url,
+	isiframe = true;
+	addTab({
+			title: title,
+			icon: iconCls,
+			href: url,
+			iframed: isiframe,
+			closabled: true
+	});
+	}
+});
+	
+}
+
+function save(dialog){
+	myform=$('#myForm');
+	myform.form({
+	url:'form3_proc.php',
+	onSubmit:function(){
+		return $(this).form('validate');
+	},
+	success:function(data){
+		showSuc('操作成功！');
+		var data = myform.form("getData");
+		console.log(data);
+		dialog.close();
+	}
+	});
+	myform.submit();	
+}
+
+
+
+</script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'center',border:false" style="padding:10px;">
+    <div class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'west',width:200,minWidth:200,minSplit:true" >
+            <div id="catToolBar" style="height:25px;">
+            </div>
+            <div class="pd10" id="catTree">
+            </div>
+        </div>
+        <div data-options="region:'center'">
+            <div id="subLayout" class="easyui-layout" data-options="fit:true,border:false">
+                <div data-options="region:'north',border:false" class="toolbar-region">
+                    <div id="toolbar">
+                    </div>
+                </div>
+                <div data-options="region:'center',border:false">
+                    <table id="tbList">
+                    </table>
+                </div>
+                <div data-options="region:'south',border:false,height:100,maxHeight:100,minHeight:100,minSplit:true" class="pt15">
+                    <table class="pertb" style="width:900px;">
+                        <col  width="120" />
+                        <col />
+                        <tbody>
+                            <tr>
+                                <th>类别编码：</th>
+                                <td><input readonly data-options="validType:['vnChinese[\'类别编码不能包含中文\']','vLength[0,10,\'最多只能输入10个字符\']']" id="cateNoDetail" name="cateNo"  class="easyui-validatebox ipt" /></td>
+                                <th>类别名称：</th>
+                                <td><input readonly data-options="validType:['vLength[0,50,\'最多只能输入50个字符\']']" id="cateNameDetail" name="cateName" class="easyui-validatebox ipt" /></td>
+                                <th>类别级别：</th>
+                                <td><select id="cateLevelidDetail" class="easyui-combobox" data-options="width:160">
+                                    </select></td>
+                            </tr>
+                            <tr>
+                                <th>上级类别：</th>
+                                <td><input readonly id="headCateNoDetail" name="headCateNoStr"  class="easyui-validatebox ipt" /></td>
+                                <th>所属品牌库：</th>
+                                <td><select id="sysNoDetail" class="easyui-combobox"  data-options="width:160">
+                                    </select></td>
+                                <th>类别状态：</th>
+                                <td><select id="status" name="status" class="easyui-combobox"  data-options="width:160,disabled:true">
+                                    </select></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm" method="post" novalidate>
+            <table class="form-tb">
+            		<col width="100" />
+                <col />
+                <col width="100" />
+                <col />
+                <tbody>
+                    <tr>
+                        <th><em class="cred">*</em> 类别编码：</th>
+                        <td><input id="cateNo" class="easyui-validatebox ipt disabled" data-options="required:true,validType:['rangelength[1,16]']" required name="cateNo"  readonly="readonly"></td>
+                        <th><em class="cred">*</em> 类别名称：</th>
+                        <td><input id="cateName" class="easyui-validatebox ipt" data-options="required:true,validType:['rangelength[1,50]']" name="cateName"></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 类别级别：</th>
+                        <td><select id="leibie" name="leibie" class="easyui-combobox easyui-validatebox" data-options="width:160,required:true,missingMessage:'请选择类别级别！'">
+                                <option value="1" selected>类别1111</option>
+                                <option value="2">类别2222</option>
+                            </select></td>
+                        <th><em class="cred">*</em> 上级类别：</th>
+                        <td><input id="headCateNo" class="easyui-validatebox ipt disabled" name="headCateNo"  readonly="readonly"></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 类别状态：</th>
+                        <td><select id="leibie" name="leibie" class="easyui-combobox easyui-validatebox" data-options="width:160,required:true,missingMessage:'请选择类别状态！'">
+                                <option value="1" selected>1→启用</option>
+                                <option value="0">0→关闭</option>
+                            </select></td>
+                        <th><em class="cred">*</em> 类别特征码：</th>
+                        <td><input id="cateCode" class="easyui-validatebox ipt" data-options="validType:['rangelength[0,10]']" name="cateCode"></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">备注：</th>
+                        <td colspan="3"><textarea id="remarks" maxlength="255" name="remarks" class="ipt" style="height:50px;width:250px;"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+/* search box */
+.search-div { padding: 10px 5px 12px; border-bottom: 1px solid #dddddd; overflow: auto; }
+.search-div .ipt { width: 120px; }
+.search-div p { margin-top: 5px; height: 26px; zoom: 1; overflow: hidden; }
+.search-div p:after { content: ''; clear: both; display: block; overflow: hidden; }
+.search-div label { float: left; display: inline-block; }
+.search-div em { width: 80px; text-align: right; display: inline-block; float: left; line-height: 25px; }
+.detail-tb { border-collapse: collapse; width: 100%; }
+.detail-tb th, .detail-tb td { border: 1px solid #ddd; }
+.detail-tb th { background: #eee; height: 20px; }
+.search-tb, .detail-tb { border-collapse: collapse; }
+.search-tb th, .detail-tb th { text-align: right; font-weight: normal; height: 30px; }
+.search-tb td, .detail-tb td { padding-left: 5px; height: 30px; }
+.detail-tb th, .detail-tb td { height: 22px; }
+.selecttxt { width: 137px; }
+.search-down-arr, .search-up-arr, .search-down-arr:hover, 
+.search-up-arr:hover { background: url('images/search-tool-arr.png') no-repeat; width: 22px; position: absolute; right: -25px; height: 22px; overflow: hidden; }
+.search-down-arr { background-position: 0 0; }
+.search-down-arr:hover { background-position: 0 -43px }
+.search-up-arr { background-position: 0 -17px; }
+.search-up-arr:hover { background-position: 0 -65px }
+.search-btn { width: 80px; }

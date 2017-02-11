@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <title>change log view</title>
+    <style>
+    .datagrid-cell .img-box {
+        border: 2px solid #DDD;
+        display: none;
+    }
+    .datagrid-cell .img-box img{
+		max-width: 600px;
+	}
+    
+    .datagrid-row:hover .datagrid-cell .img-box {
+        position: fixed;
+        right: 10px;
+		bottom: 0px;
+        display: block;
+        z-index: 9999;
+        margin-top: 15px;
+    }
+
+    .datagrid-row .datagrid-cell a{margin-right: 20px;}
+    </style>
+</head>
+
+<body class="easyui-layout easyui-list-demo" data-options="fit:true,border:false">
+    <div region="center" style="background:#eee;">
+        <table id="pdg"></table>
+    </div>
+    <script src="../boot.js"></script>
+    <script type="text/javascript">
+    window.onload = function() {
+
+        $('#pdg').datagrid({
+            fitColumns: true,
+            rownumbers: true,
+            method: 'get',
+            url: 'changelog.json',
+            columns: [
+                [{
+                    field: 'path',
+                    title: '项目目录',
+                    width: 100,
+                    formatter: function(value, item, index) {
+                        if (item.url) {
+                            return '<a href="' + item.url + '" target="_blank">' + (value || '无法识别') + '</a>';
+                        }
+                        return value;
+                    }
+                }, {
+                    field: 'issue',
+                    title: '问题',
+                    width: 100
+                }, {
+                    field: 'author',
+                    title: '作者',
+                    width: 100
+                }, {
+                    field: 'image',
+                    title: '图片',
+                    width: 100,
+                    formatter: function(value, item, index) {
+                        if (!value) {
+                            return value;
+                        }
+
+                        var html=[];
+                        var array=[];
+                        if(typeof value =='string' ){
+                            array=[value];
+                        }else if(value instanceof Array){
+                            array=value;
+                        }
+                        for(var i=0,len=array.length;i<len;i++){
+                            var src = 'http://172.17.210.182/issueImages/' + array[i];
+
+                            html.push('<a href="' , src ,'" target="_blank">查看',(i+1),'</a>',
+                                '<div class="img-box">',
+                                '<img src="' + src + '" />',
+                                '</div>');
+                        }
+                        return html.join('');
+                    }
+                }, {
+                    field: 'date',
+                    title: '日期',
+                    width: 100
+                }]
+            ]
+        });
+
+
+    };
+    </script>
+</body>
+
+</html>

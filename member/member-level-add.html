@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加会员等级</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+<body>
+
+<div class="pd10">
+    <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:120px;">等级名称：</th>
+                    <td><input type="text" name="code" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'等级名称不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th>默认等级级别：</th>
+                    <td><input id="defaultLevel_no" type="radio" checked="true" value="0" name="defaultLevel"> 否 &nbsp;&nbsp;<input id="defaultLevel_yes" type="radio" disabled="disabled" value="1" name="defaultLevel"> 是
+                        <span class="cred ml10"> 默认等级已被设定</span></td>
+                </tr>
+                <tr>
+                    <th class="vtop">等级说明：</th>
+                    <td class="pt5"><textarea  name="remark" class="ipt txt-remark"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

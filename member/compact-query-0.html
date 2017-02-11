@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	$('#tbList').datagrid({
+		data:{"total":1,"rows":[{'id':1,'col1':'20132332','col2':'甲方','col3':'--','col4':'--','col5':'--','col6':'1000','col7':'--','col8':'已生效'}]},
+		columns:[[{
+			title:'合同编号',
+			field:'col1',
+			width:120,
+			sortable:true
+		},{
+			title:'甲方',
+			field:'col2',
+			width:120
+		},{
+			title:'负责人',
+			field:'col3',
+			width:100
+		},{
+			title:'电话',
+			field:'col4',
+			width:100
+		},{
+			title:'签约时间',
+			field:'col5',
+			width:120
+		},{
+			title:'保证金',
+			field:'col6',
+			width:100,
+			align:'right'
+		},{
+			title:'渠道信息',
+			field:'col7',
+			width:150
+		},{
+			title:'合同状态',
+			field:'col8',
+			width:100
+		},{
+			title:'操作',
+			field:'opt',
+			width:100,
+			formatter:function(value,rec,index){
+				var str='<a href="javascript:;">续签</a>';
+				return str;
+			}
+		}
+		]]
+	});
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div  data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+</body>
+</html>

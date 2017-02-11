@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>合同列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	$('#toolbar').toolbar({
+		items:[{
+			text: '新增',
+			iconCls: 'icon-add'
+		},{
+			text: '删除',
+			iconCls: 'icon-del'
+		},{
+			text: '修改',
+			iconCls: 'icon-edit'
+		}]
+	});
+	
+	toolSearch({
+			items:[{"text":"合同编号","name":"key1"},{"text":"甲方","name":"key2"}],
+			collapsible:false,
+			callback:function(key,name){
+					if(key==""){
+						showInfo('请输入关键字');
+						return;
+					}
+				showInfo(key);
+			}
+	});
+	
+	$('#myTabs').createTabs({
+		tabs:[{
+			title:'全部',
+			href:'compact-query-0.html'
+		},
+		{
+			title:'未审核',
+			href:'compact-query-0.html',
+			lazyload:true
+		},{
+			title:'已同意',
+			href:'compact-query-0.html',
+			lazyload:true
+		},
+		{
+			title:'已拒绝',
+			href:'compact-query-0.html',
+			lazyload:true
+		},
+		{
+			title:'已到期',
+			href:'compact-query-0.html',
+			lazyload:true
+		}]
+	});
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+	<div id="toolbar"></div>
+</div>
+<div data-options="region:'center',border:false" class="pd10">
+	<div id="myTabs"></div>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

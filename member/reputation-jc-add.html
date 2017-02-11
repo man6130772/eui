@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>新增奖惩</title>
+</head>
+<body>
+<div class="pd10">
+    <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:120px;"><em class="cred">*</em> 会员帐户：</th>
+                    <td><input id="onlinePayNumber" type="text" readonly  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'会员帐户不能为空！'" /> <a class="easyui-linkbutton" data-options="iconCls:'app-2',plain:true" id="selMemeber">选择会员</a></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 现有积分：</th>
+                    <td><input  id="incomeAmount" type="text" readonly class="ipt w100" value="5600" /> 分</td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 积分操作：</th>
+                    <td><input type="radio" name="rad" id="rad1" />
+                        <label for="rad1">加分</label>
+                        <input type="radio" name="rad" id="rad2" class="ml10" />
+                        <label for="rad2">减分</label></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 积分异动数字：</th>
+                    <td><input id="distributorsName" type="text"    class="ipt easyui-validatebox" validType="numeric" data-options="required:true,missingMessage:'积分异动数字不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 操作原因：</th>
+                    <td><input id="operaterDate" type="text"    class="ipt easyui-validatebox" data-options="required:true,missingMessage:'操作原因不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th class="vtop">备注：</th>
+                    <td><textarea class="ipt txt-remark"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script>
+$('#selMemeber').click(function(){
+		dgSelector({
+			title:'选择会员',
+			href:'../account/getDistributorOrderList.html',
+			width:1000,
+			height:550,
+			fuc:function(data){
+				if(data){
+					$('#onlinePayNumber').val(data.col2);
+					$('#incomeAmount').val(data.col4);
+					$('#expensesAmount').val(data.col5);
+					$('#distributorsName').val(data.col3);
+					$('#operaterDate').val(data.col6);
+				}
+			}
+		});
+	});
+</script>
+</body>
+</html>

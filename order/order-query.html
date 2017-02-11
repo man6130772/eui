@@ -1,0 +1,231 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>订货订单列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid=null;
+var editRowIndex=0;
+
+function parsePage(){
+
+$('#toolbar').toolbar({
+	items:[{
+		iconCls:'icon-ok',
+		text:'审核'
+	},'-',
+	{
+		iconCls:'icon-lock',
+		text:'锁定'
+	},'-',
+	{
+		iconCls:'icon-del',
+		text:'删除',
+		handler:function(){
+					var node = tbgrid.datagrid('getSelections');
+					var ids=[];
+					$.each(node,function(index,val){
+						ids.push(val.id);
+					});
+					del(ids);
+		}
+	}]
+});
+	
+//建议搜索工具栏
+toolSearch({
+	items:[{'text':'订单编号','name':''},{'text':'原始订单编号','name':''},{'text':'快递单号','name':''},{'text':'客户账户','name':''},{'text':'收货人','name':''},{'text':'联系电话','name':''},{'text':'收货地址','name':''},{'text':'客户备注','name':''},{'text':'客服备注','name':''},{'text':'货品条码','name':''},{'text':'款色编码','name':''},{'text':'货品名称','name':''}]
+});
+
+$('select').combobox({
+	data:[{
+		 'id':'1',
+		 'text':'下拉框'
+	}],
+	width:190,
+	textField:'text',
+	textValue:'id',
+	prompt:'请选择...'
+});
+
+$('#startTimeOrder,#endTimeOrder,#startTimePay,#endTimePay,#startTimeCheck,#endTimeCheck,#startTimeDelivery,#endTimeDelivery').datebox({
+	
+});
+
+//datagrid
+tbgrid = $('#tbList').datagrid({
+   	data:{"total":1,"rows":[{"id":1,"col1":"891220","col2":"2011-8-24 12:00:00","col3":"admin","col4":"a123456","col5":"50","col6":"颜色，材料","col7":"5000","col8":"100","col9":"--","col10":0}]},
+    singleSelect: false,
+  //checkOnSelect: false,
+  //selectOnCheck: false,
+    columns: [[
+		{
+			title:'id',
+			filed:'id',
+			checkbox:true
+		},{
+        title: '订货单号',
+        field: 'col1',
+        width: 100,
+        sortable: true
+    },
+    {
+        title: '下单时间',
+        field: 'col2',
+        width: 100,
+        sortable: true
+    },
+    {
+        title: '分销商账户',
+        field: 'col3',
+        width: 100,
+				sortable: true
+    },
+    {
+        title: '货品货号',
+        field: 'col4',
+        width: 100,
+				sortable: true
+    },
+    {
+        title: '订货数量',
+        field: 'col5',
+        width: 100
+    },
+    {
+        title: '定制信息',
+        field: 'col6',
+        width: 80,
+        sortable: true
+    },
+    {
+        title: '支付金额',
+        field: 'col7',
+        width: 80,
+				align:'right'
+    },
+    {
+        title: '退款金额',
+        field: 'col8',
+        width: 100,
+				align:'right'
+    },
+    {
+        title: '备注',
+        field: 'col9',
+        width: 80
+    },
+		{
+        title: '订单状态',
+        field: 'col10',
+        width: 60,
+				formatter:function(value,rec,index){
+					return value==0?'未审核':'已审核';
+				}
+    },
+		{
+        title: '操作',
+        field: 'opt',
+        width: 80,
+				formatter:function(value,rec,index){
+					var str='<a href="javascript:;" class="jsCheck">审核</a> | <a href="javascript:;" class="jsLock">锁定</a> | <a href="javascript:;" class="jsDel">删除</a>';
+					return str;
+				}
+    }]],
+		onLoadSuccess:function(){
+			 $('.jsDel').click(function(){
+				 var _idx=$('.jsDel').index(this);
+				 var id=tbgrid.datagrid('getRows')[_idx].id;
+				 del(id);
+				 return false;
+			 });
+		}
+
+});	
+
+}
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(r){
+		tbgrid.datagrid('deleteRow',0);
+		showSuc('删除成功！'+id);
+		tbgrid.datagrid('reload');
+	});
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<!--toolbar-->
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div data-options="region:'center',border:false">
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--search-->
+        <div data-options="region:'north',border:false,closed:true" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb">
+                        <col width="80" />
+                        <col width="220" />
+                        <col width="80" />
+                        <col width="220" />
+                        <col width="80" />
+                        <col width="220" />
+                        <col width="80" />
+                        <tbody>
+                            <tr>
+                                <th>下单日期：</th>
+                                <td><input type="text" name="" value="" id="startTimeOrder" class="short-ipt" /> - <input type="text" name="" value="" id="endTimeOrder" class="short-ipt" /></td>
+                                <th>支付日期：</th>
+                                <td><input type="text" name="" value="" id="startTimePay" class="short-ipt" /> - <input type="text" name="" value="" id="endTimePay" class="short-ipt" /></td>
+                                <th>审核日期：</th>
+                                <td><input type="text" name="" value="" id="startTimeCheck" class="short-ipt" /> - <input type="text" name="" value="" id="endTimeCheck" class="short-ipt" /></td>
+                                <th>发货日期：</th>
+                                <td><input type="text" name="" value="" id="startTimeDelivery" class="short-ipt" /> - <input type="text" name="" value="" id="endTimeDelivery" class="short-ipt" /></td>
+                            </tr>
+                            <tr>
+                                <th>店铺名称：</th>
+                                <td><select id="">
+                                    </select></td>
+                                <th>订单状态：</th>
+                                <td><select id="">
+                                    </select></td>
+                                <th>订单类型：</th>
+                                <td><select id="">
+                                    </select></td>
+                                <th>发货仓库：</th>
+                                <td><select id="">
+                                    </select></td>
+                            </tr>
+                            <tr>
+                                <th>结算方式：</th>
+                                <td><select id="">
+                                    </select></td>
+                                <th>配送方式：</th>
+                                <td><select id="">
+                                    </select></td>
+                                <th>运费到付：</th>
+                                <td><input type="checkbox" name="" value="" /></td>
+                                <td colspan="2" class="rght"><a class="easyui-linkbutton" id="searchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

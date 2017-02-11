@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>供应商列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script src="../assets/js/modules/purchase/supplier-query.js"></script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+  <div id="toolbar">
+  </div>
+</div>
+<div id="main" data-options="region:'center',border:false">
+  <div class="easyui-layout" data-options="fit:true" id="subLayout">
+    <!--搜索-->
+    <div data-options="region:'north',border:false" >
+      <div class="search-div" style="height:36px;">
+        <form name="searchForm" id="searchForm" action="" method="post" >
+          <table class="search-tb">
+            <col width="75" />
+            <col width="120" />
+            <col width="75" />
+            <col width="120" />
+            <col width="75" />
+            <col width="170" />
+            <tbody>
+              <tr>
+                <th>名称：</th>
+                <td><input class="ipt" type="text" name="" value="" /></td>
+                <th>编码：</th>
+                <td><input class="ipt" type="text" name="" value="" /></td>
+                <th>状态：</th>
+                <td><select id="supplierStatus" name="">
+                  </select></td>
+                <td><a class="easyui-linkbutton" id="SearchBtn">搜索</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+    <!--列表-->
+    <div data-options="region:'center',border:false">
+      <table id="tbList">
+      </table>
+    </div>
+  </div>
+</div>
+<!--隐藏与显示搜索-->
+<div id="searchDiv" class="simple-search-box">
+  <a id="searchArr" class="search-up-arr" href="javascript:;" hidefocus="true" onclick="popSearch(this);"></a>
+</div>
+</body>
+</html>

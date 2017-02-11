@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>囤货申请列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+$('#toolbar').toolbar({
+	items:[{
+		text:'删除',
+		iconCls:'icon-del'
+	},'-',
+	{
+		text:'审核',
+		iconCls:'icon-check',
+		handler:function(){
+			check();
+		}
+	},'-',
+	{
+		text:'锁定',
+		iconCls:'icon-lock',
+		handler:function(){
+			lock();
+		}
+	}]
+});
+
+
+tbgrid = $('#tbList').datagrid({
+				data:{"total":2,"rows":[{'id':'1','col1':'admin','col2':'张三','col3':'12345','col4':'他他女鞋','col5':'10','col6':'5000','col7':'2011-8-5 12：00：00','col8':'2011-8-5 12：00：00','col9':0},{'id':'3','col1':'admin','col2':'张三','col3':'12345','col4':'他他女鞋','col5':'10','col6':'5000','col7':'2011-8-5 12：00：00','col8':'2011-8-5 12：00：00','col9':1}]},
+				singleSelect:false,
+				frozenColumns:[[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+				}]],
+		    columns:[[
+					{
+					title:'分销商帐户',
+					field:'col1',
+					width:100,
+					sortable:true
+				    },
+					{
+					title:'分销商姓名',
+					field:'col2',
+					width:200
+					},{
+					title:'囤货货号',
+					field:'col3',
+					width:60
+					},{
+					title:'囤货商品名称',
+					field:'col4',
+					width:80
+					},{
+					title:'囤货数量',
+					field:'col5',
+					width:60
+					},{
+					title:'保证金',
+					field:'col6',
+					width:60
+					},{
+					title:'申请时间',
+					field:'col7',
+					width:100
+					},{
+					title:'审核时间',
+					field:'col8',
+					width:100
+					},{
+					title:'状态',
+					field:'col9',
+					width:100,
+					formatter:function(value,rec,index){
+						return value==1?'待审核':'已通过';
+					}
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:200,
+				formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsGoods">审核</a> | <a href="javascript:;" class="jsTiaoJia">拒绝</a> | <a href="javascript:;" class="jsEdit">库存调拨</a>';
+						return str;
+					}
+			}
+		]]
+	});
+
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>分销商名称：</th>
+                                <td><input class="ipt" /></td>
+                                <th>囤货时间：</th>
+                                <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+</body>
+</html>

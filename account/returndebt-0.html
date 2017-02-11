@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	var toolbar=$('#toolbar').toolbar({
+		items:[{
+			text:'批量审核',
+			iconCls:'icon-check'
+		}]
+	});
+	
+	
+	var tbgrid=$('#tbList').datagrid({
+		data:{"total":1,"rows":[]},
+				singleSelect:true,
+				frozenColumns:[[{
+					title:'',
+					field:'id',
+					checkbox:true
+				}]],
+		    columns:[[
+					{
+					title:'退款申请时间 ',
+					field:'col1',
+					width:150,
+					sortable:true
+				    },
+					{
+					title:'订单号',
+					field:'col2',
+					width:100
+					},{
+					title:'支付方式',
+					field:'col3',
+					width:100,
+					align:'right'
+					},{
+					title:'退款方式',
+					field:'col4',
+					width:100,
+					align:'right'
+					},{
+					title:'退款类型',
+					field:'col5',
+					width:100
+					},{
+					title:'退款地址',
+					field:'col6',
+					width:100
+					},{
+					title:'退货商品金额 ',
+					field:'col7',
+					width:80,
+					align:'right'
+					},{
+					title:'退邮费 ',
+					field:'col8',
+					width:80,
+					align:'right'
+					},{
+					title:'其它扣/补款 ',
+					field:'col9',
+					width:80,
+					align:'right'
+					},{
+					title:'实退金额 ',
+					field:'col10',
+					width:80,
+					align:'right'
+					},{
+					title:'退款时间 ',
+					field:'col11',
+					width:80
+					},{
+						title:'操作',
+						field:'opt',
+						width:100,
+						formatter:function(){
+							var str=' ';
+							return str;
+						}
+					}
+		]]
+	});
+	
+	
+}
+
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'north',border:false">
+            <!--搜索start-->
+            <div data-options="region:'north',border:false" >
+                <div class="search-div">
+                    <form name="searchForm" id="searchForm" action="" method="post" >
+                        <table class="search-tb" >
+                            <col width="100" />
+                            <col/>
+                            <col width="100" />
+                            <col/>
+                            <col width="80" />
+                            <col/>
+                            <col width="100" />
+                            <col/>
+                            <col width="80" />
+                            <col/>
+                            <tbody>
+                                <tr>
+                                    <th>订单号：</th>
+                                    <td><input class="ipt" style="width:179px;" /></td>
+                                    <th>退款申请单号：</th>
+                                    <td><input class="ipt" style="width:179px;" /></td>
+                                    <th>客户名称：</th>
+                                    <td><input class="ipt" /></td>
+                                </tr>
+                                <tr>
+                                    <th>退款申请日期：</th>
+                                    <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /></td>
+                                    <th>退款日期：</th>
+                                    <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> </td>
+                                    <td colspan="2"><a class="easyui-linkbutton fr" id="SearchBtn">搜索</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <!--搜索end-->
+        </div>
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

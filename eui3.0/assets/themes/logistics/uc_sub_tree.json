@@ -1,0 +1,66 @@
+{
+	"areasystemid": 1,
+	"subSystems":[
+		{
+			"createUser": "",
+			"id": 1,
+			"lastUpdateTime": 1427771712000,
+			"lastUpdateUser": "user",
+			"remark": "test",
+			"systemCode": 2,
+			"systemLevel": 3,
+			"systemState": 1,
+			"systemType": 2,
+			"systemUrl": "/sso_login?parentsystemid=10",
+			"text": "物流系统"
+		},{
+			"createUser": "",
+			"id": 2,
+			"lastUpdateTime": 1427771712000,
+			"lastUpdateUser": "user",
+			"remark": "test",
+			"systemCode": 2,
+			"systemLevel": 3,
+			"systemState": 1,
+			"systemType": 2,
+			"systemUrl": "/sso_login?parentsystemid=4",
+			"text": "物流平台"
+		},{
+			"createUser": "",
+			"id": 3,
+			"lastUpdateTime": 1427771712000,
+			"lastUpdateUser": "user",
+			"remark": "test",
+			"systemCode": 2,
+			"systemLevel": 3,
+			"systemState": 1,
+			"systemType": 2,
+			"systemUrl": "/sso_login?parentsystemid=6",
+			"text": "城市配送"
+		},{
+			"createUser": "",
+			"id": 4,
+			"lastUpdateTime": 1427771712000,
+			"lastUpdateUser": "user",
+			"remark": "test",
+			"systemCode": 2,
+			"systemLevel": 3,
+			"systemState": 1,
+			"systemType": 2,
+			"systemUrl": "/admin/login",
+			"text": "用户中心"
+		},{
+			"createUser": "",
+			"id": 5,
+			"lastUpdateTime": 1427771712000,
+			"lastUpdateUser": "user",
+			"remark": "test",
+			"systemCode": 2,
+			"systemLevel": 3,
+			"systemState": 1,
+			"systemType": 2,
+			"systemUrl": "/sso_login?parentsystemid=12",
+			"text": "调度中心"
+		}
+	]
+}

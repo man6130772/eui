@@ -1,0 +1,8 @@
+=================== 3.0.1 =====================
+* 修复combotree加了showParentText属性隐藏域没有ID值的bug
+* 修复combotree加了showParentText属性报错的bug
+* 修复combotree里searchBox组件不能下滑的bug
+
+=================== 3.0.0 =====================
+* 修复右下角消息框messager居中显示且拉长的bug
+* 修复easyui垂直布局里向上的箭头不显示的问题

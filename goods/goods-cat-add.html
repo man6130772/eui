@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加货品分类</title>
+<script type="text/javascript" src="../boot.js"></script>
+</head>
+<body>
+<div id="loading"></div>
+<div class="pd10">
+    <table class="form-tb">
+        <tbody>
+            <tr>
+                <th style="width:80px;">系统编码：</th>
+                <td><input type="text" name="code" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'系统编码不能为空！'" /></td>
+            </tr>
+            <tr>
+                <th>分类名称：</th>
+                <td><input type="text" name="name"  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'分类名称不能为空！'" /></td>
+            </tr>
+            <tr>
+                <th>上级分类：</th>
+                <td>
+                <select class="easyui-combobox" id="pcat" data-options="panelHeight:'auto'">
+                </select> <span class="cgray">(顶级分类请选择无)</span>
+                </td>
+            </tr>
+             <tr>
+                <th>排序：</th>
+                <td><input type="text" name="order" class="ipt" value="1" /></td>
+            </tr>
+            <tr>
+                <th style="vertical-align:top;">分类说明：</th>
+                <td class="pt5"><textarea  name="remark" class="ipt txt-remark"></textarea></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+using(['parser','layout','combobox'], function(){
+	$(function(){
+		$.parser.parse();
+		parsePage();
+	});
+});
+
+function parsePage(){
+var pcat=[{
+	"id":"",
+	"text":"----无----",
+	"selected":true
+},
+{
+	"id":1,
+	"text":"韩版女装"
+},{
+	"id":2,
+	"text":"包包"
+},{
+	"id":3,
+	"text":"时尚女鞋"
+}]
+
+
+$('#pcat').combobox({
+	data: pcat,
+	width:160,
+	valueField:'id',  
+	textField:'text'
+});
+
+}
+</script>
+</body>
+</html>

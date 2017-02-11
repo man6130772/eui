@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>客服机器人</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var myform=null;
+function parsePage(){
+
+$('#toolbar').toolbar({
+	items: [{
+				text : '保存',
+				iconCls:'icon-save',
+				handler : function() {
+					save();
+				}
+			}] 
+});
+
+}
+
+function save(){
+	myform=$('#myForm');
+	myform.form({
+	url:'form3_proc.php',
+	onSubmit:function(){
+		return $(this).form('validate');
+	},
+	success:function(data){
+		showSuc('操作成功！');
+		var data = myform.form("getData");
+		console.log(data);
+	}
+	});
+	myform.submit();	
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar" >
+    </div>
+</div>
+<div data-options="region:'center',border:false">
+    <div class="easyui-panel" data-options="title:'添加客服机器人',fieldset:true,cls:'mg10 mt20'">
+        <form id="myForm" method="post">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;">客服QQ：</th>
+                        <td><input name="qq" type="text"  class="ipt easyui-validatebox" validType="qq" data-options="required:true,missingMessage:'客服QQ不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th>客服MSN：</th>
+                        <td><input name="msn" type="text"  class="ipt" /></td>
+                    </tr>
+                    <tr>
+                        <th>客服旺旺：</th>
+                        <td><input name="wangwang" type="text"  class="ipt" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

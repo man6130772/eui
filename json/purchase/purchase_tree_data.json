@@ -1,0 +1,53 @@
+﻿[{
+	"id":1,
+	"text":"供应商",
+	"iconCls":"icon-doc-base",
+	"children":[{
+		"id":101,
+		"text":"供应商列表",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"purchase/supplier-query.html"
+		}
+	},{
+		"id":102,
+		"text":"添加供应商",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"purchase/supplier-add.html"
+		}
+	}]
+},{
+	"id":2,
+	"text":"新建采购",
+	"iconCls":"tree-file",
+	"attributes":{
+			"url":"purchase/create-purchase.html"
+	}
+},{
+	"id":3,
+	"text":"采购审核",
+	"iconCls":"tree-file",
+	"attributes":{
+			"url":"purchase/purchase-audit.html"
+	}
+},{
+	"id":4,
+	"text":"采购查询",
+	"iconCls":"icon-doc-base",
+	"children":[{
+		"id":401,
+		"text":"采购订单",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"purchase/purchase-order.html"
+		}
+	},{
+		"id":402,
+		"text":"未完成采购跟进",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"purchase/incomplete-follow.html"
+		}
+	}]
+}]

@@ -1,0 +1,213 @@
+.tree {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.tree li {
+  white-space: nowrap;
+}
+.tree li ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.tree-node {
+  /**
+  * Author: wu.han
+  * Date: 2015/10/16
+  */
+  height: 22px;
+  /* Modify End */
+  white-space: nowrap;
+  cursor: pointer;
+}
+.tree-hit {
+  cursor: pointer;
+}
+.tree-expanded,
+.tree-collapsed,
+.tree-folder,
+.tree-file,
+.tree-checkbox,
+.tree-indent {
+  display: inline-block;
+  /**
+  * Author: wu.han
+  * Date: 2015/10/16
+  */
+  width: 20px;
+  height: 22px;
+  /* Modify End */
+  vertical-align: top;
+  overflow: hidden;
+}
+/**
+* Author: wu.han
+* Date: 2015/10/16
+*/
+.tree-expanded {
+  background: url('images/tree_icons.png') no-repeat -13px 0px;
+}
+.tree-expanded-hover {
+  background: url('images/tree_icons.png') no-repeat -53px 0px;
+}
+.tree-collapsed {
+  background: url('images/tree_icons.png') no-repeat 7px 0px;
+}
+.tree-collapsed-hover {
+  background: url('images/tree_icons.png') no-repeat -33px 0px;
+}
+.tree-lines .tree-expanded {
+    background: url('images/tree_icons.png') no-repeat -188px 0;
+}
+.tree-lines .tree-collapsed {
+    background: url('images/tree_icons.png') no-repeat -166px 0;
+}
+.tree-lines .tree-root-first .tree-expanded {
+  background: url('images/tree_icons.png') no-repeat -144px 0;
+}
+.tree-lines .tree-collapsed,
+.tree-lines .tree-root-first .tree-collapsed {
+  background: url('images/tree_icons.png') no-repeat -122px 0;
+}
+.tree-lines .tree-node-last .tree-expanded,
+.tree-lines .tree-root-one .tree-expanded {
+  background: url('images/tree_icons.png') no-repeat -100px 0;
+}
+.tree-lines .tree-node-last .tree-collapsed,
+.tree-lines .tree-root-one .tree-collapsed {
+  background: url('images/tree_icons.png') no-repeat -78px 0;
+}
+.tree-line {
+  background: url('images/tree_icons.png') no-repeat -236px 0;
+}
+.tree-join {
+  background: url('images/tree_icons.png') no-repeat -252px 0;
+}
+.tree-joinbottom {
+  background: url('images/tree_icons.png') no-repeat -213px 0;
+}
+.tree-folder {
+  background: url('images/tree_icons.png') no-repeat -276px 0;
+}
+.tree-folder-open {
+  background: url('images/tree_icons.png') no-repeat -294px 0;
+}
+.tree-file {
+  background: url('images/tree_icons.png') no-repeat -314px 0;
+}
+.tree-loading {
+  background: url('images/loading.gif') no-repeat center center;
+}
+.tree-checkbox0 {
+  background: url('images/tree_icons.png') no-repeat -276px -20px;
+}
+.tree-checkbox1 {
+  background: url('images/tree_icons.png') no-repeat -294px -20px;
+}
+.tree-checkbox2 {
+  background: url('images/tree_icons.png') no-repeat -312px -20px;
+}
+.tree-title {
+  font-size: 13px;
+  display: inline-block;
+  text-decoration: none;
+  vertical-align: top;
+  white-space: nowrap;
+  padding: 0 2px;
+  height: 22px;
+  line-height: 22px;
+  font-family: "Microsoft Yahei";
+}
+/* Modify End */
+.tree-node-proxy {
+  font-size: 12px;
+  line-height: 20px;
+  padding: 0 2px 0 20px;
+  border-width: 1px;
+  border-style: solid;
+  z-index: 9900000;
+}
+.tree-dnd-icon {
+  display: inline-block;
+  position: absolute;
+  width: 16px;
+  /**
+  * Author: wu.han
+  * Date: 2015/10/16
+  */
+  height: 22px;
+  /* Modify End */
+  left: 2px;
+  top: 50%;
+  margin-top: -9px;
+}
+/**
+* Author: wu.han
+* Date: 2015/10/16
+*/
+.tree-dnd-yes {
+  background: url('images/tree_icons.png') no-repeat -340px -2px;
+}
+.tree-dnd-no {
+  background: url('images/tree_icons.png') no-repeat -340px -22px;
+}
+/* Modify End */
+.tree-node-top {
+  border-top: 1px dotted red;
+}
+.tree-node-bottom {
+  border-bottom: 1px dotted red;
+}
+.tree-node-append .tree-title {
+  border: 1px dotted red;
+}
+.tree-editor {
+  border: 1px solid #ccc;
+  font-size: 12px;
+  height: 14px !important;
+  height: 22px;
+  /* Modify End */
+  line-height: 14px;
+  padding: 1px 2px;
+  width: 80px;
+  position: absolute;
+  top: 0;
+}
+.tree-node-proxy {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #D3D3D3;
+}
+.tree-node-hover {
+  background: #e2e2e2;
+  color: #000000;
+}
+.tree-node-selected {
+  /**
+  * Author: wu.han
+  * Date: 2015/11/10
+  */
+  background: #E2E5EE;
+  /*color: #fff;*/
+  /* Modify End */
+}
+.tree-node-hidden {
+  display: none;
+}
+
+/**
+* fix checkbox icon position
+* Author: wu.han
+* Date: 2015/10/16
+*/
+.menu .tree-checkbox0 {
+    background-position: -278px -23px;
+}
+.menu .tree-checkbox1 {
+    background-position: -296px -23px;
+}
+.menu .tree-checkbox2 {
+    background-position: -314px -23px;
+}
+/* Modify End */

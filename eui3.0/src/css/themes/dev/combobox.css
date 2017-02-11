@@ -1,0 +1,38 @@
+.combobox-item,
+.combobox-group {
+  font-size: 12px;
+  padding: 3px;
+  padding-right: 0px;
+}
+.combobox-item-disabled {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.combobox-gitem {
+  padding-left: 10px;
+}
+.combobox-group {
+  font-weight: bold;
+}
+.combobox-item-hover {
+  background-color: #e2e2e2;
+  color: #000000;
+}
+.combobox-item-selected {
+  /**
+   * Author: wu.han
+   * Date: 2015/11/09
+   */
+  background-color: #4A6D68;
+  /* Modify End */
+  color: #fff;
+}
+/**
+ * Author: wu.han
+ * Date: 2015/10/15
+ */
+.combo,
+.combo-panel {
+    max-height: 260px;
+}
+/* Modify End */

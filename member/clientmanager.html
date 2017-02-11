@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>客户经理列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	
+	$('#toolbar').toolbar({items:[{
+		text:'添加客户经理',
+		iconCls:'icon-add',
+		handler:function(){
+			add();
+		}
+	}]});
+	
+	toolSearch({
+			items:[{"text":"客户账户","name":"key1"},{"text":"真实姓名","name":"key2"},{"text":"联系电话","name":"key3"}],
+			collapsible:false,
+			callback:function(key,name){
+					if(key==""){
+						showInfo('请输入关键字');
+						return;
+					}
+				showInfo(key);
+			}
+	});
+	
+	$('#tbList').datagrid({
+		data:{"total":1,"rows":[{'id':1,'col1':'admin','col2':'张三','col3':'85789664','col4':'--','col5':'13800138000','col6':'admin@163.com','col7':'--','col8':'--','col9':'--','col10':'经销商12'}]},
+		columns:[[{
+			title:'客户经理账户',
+			field:'col1',
+			width:120,
+			sortable:true
+		},{
+			title:'真实姓名',
+			field:'col2',
+			width:120
+		},{
+			title:'固定电话',
+			field:'col3',
+			width:100
+		},{
+			title:'传真号码',
+			field:'col4',
+			width:100
+		},{
+			title:'手机号',
+			field:'col5',
+			width:120
+		},{
+			title:'电子邮箱',
+			field:'col6',
+			width:100,
+			align:'right'
+		},{
+			title:'QQ',
+			field:'col7',
+			width:150
+		},{
+			title:'MSN',
+			field:'col8',
+			width:100
+		},{
+			title:'旺旺',
+			field:'col9',
+			width:100
+		},{
+			title:'操作备注',
+			field:'col10',
+			width:100
+		}
+		]]
+	});
+}
+
+function add(){
+	ygDialog({
+	 title:'新增客户经理',
+	 href:'clientmanager-add.html',
+	 width:500,
+	 height:480,
+	 buttons:[{
+		text:'确认',
+		handler:function(dialog){
+			save(dialog);
+		}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+	<div id="toolbar"></div>
+</div>
+<div data-options="region:'center',border:false">
+	<table id="tbList"></table>
+</div>
+</body>
+</html>

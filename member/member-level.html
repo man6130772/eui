@@ -1,0 +1,197 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>会员等级</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+
+function parsePage(){
+
+tbgrid = $('#tbList').datagrid({
+			data:{"total":3,"rows":[{'id':'1','col1':'VIP4','col2':1,'col3':'VIP4'},{'id':'2','col1':'VIP1','col2':1,'col3':'普通分销商'},{'id':'3','col1':'VIP3','col2':0,'col3':'皇冠分销商'}]},
+			singleSelect:false,
+			frozenColumns : [[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+			}]],
+		    columns:[[
+					{
+					title:'等级名称',
+					field:'col1',
+					width:120,
+					sortable:true
+				  },
+					{
+					title:'默认等级',
+					field:'col2',
+					width:100
+					},{
+					title:'等级说明',
+					field:'col3',
+					width:100
+					},{
+					title:'操作',
+					field:'opt',
+					width:100,
+					formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsEdit">编辑</a> | <a href="javascript:;" class="jsDel">删除</a>';
+						return str;
+					}
+					}
+		]],
+		toolbar:[{
+			text:'添加等级',
+			iconCls:'icon-add',
+			handler:function(){
+				add();
+			}
+		},'-',
+		{
+			text:'删除',
+			iconCls:'icon-del',
+			handler:function(){
+					var node = tbgrid.datagrid('getSelections');
+					var ids=[];
+					$.each(node,function(index,val){
+						ids.push(val.id);
+					});
+					del(ids);
+			}
+		}],
+		onLoadSuccess:function(){
+			$('.jsEdit').click(function(){
+				tbgrid.datagrid('unselectAll');
+				tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+				var rows = tbgrid.datagrid('getSelected');
+				edit(rows);
+				return false;
+			});
+			
+			$('.jsDel').click(function(){
+				var _idx=$('.jsDel').index(this);
+				var id=tbgrid.datagrid('getRows')[_idx].id;
+				del(id);
+				return false;
+			});
+			
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(r){
+		tbgrid.datagrid('deleteRow',0);
+		showSuc('删除成功！'+id);
+		$('#tbList').datagrid('reload');
+	});
+}
+
+
+function add(){
+	myform=$('#myForm');
+	myform.form("clear"); //清空表单
+	ygDialog({
+		title:'添加会员等级',
+		target:$('#myFormPanel'),
+		width:450,
+		height:250,
+		buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+			text:'取消',
+			handler:function(dialog){
+				dialog.close();
+			}
+		}]
+
+	});
+}
+
+function edit(rows){
+	myform=$('#myForm');
+	$('input[name=code]').val(rows.col1);
+	$('textarea[name=remark]').val(rows.col3);
+	ygDialog({
+		title:'编辑会员等级',
+		target:$('#myFormPanel'),
+		width:450,
+		height:250,
+		buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+			text:'取消',
+			handler:function(dialog){
+				dialog.close();
+			}
+		}]
+
+	});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+
+<div  data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+
+
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:120px;">等级名称：</th>
+                    <td><input type="text" name="code" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'等级名称不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th>默认等级级别：</th>
+                    <td><input id="defaultLevel_no" type="radio" checked="true" value="0" name="defaultLevel"> 否 &nbsp;&nbsp;<input id="defaultLevel_yes" type="radio" disabled="disabled" value="1" name="defaultLevel"> 是
+                        <span class="cred ml10"> 默认等级已被设定</span></td>
+                </tr>
+                <tr>
+                    <th class="vtop">等级说明：</th>
+                    <td class="pt5"><textarea  name="remark" class="ipt txt-remark"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    </div>
+</div>
+
+</body>
+</html>

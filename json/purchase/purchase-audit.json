@@ -1,0 +1,6 @@
+{"total":4,"rows":[
+	{"id":1,"number":"pc20130524143620","time":"2013-5-24 15:44:20","supplierName":"深圳市八旗服装有限公司","wareHouse":"上海仓库","purchaseType":"自购固定价结算","amount":"80","actualAmount":"56,758,32","audit":"是","invalid":"是","end":"是"},
+	{"id":2,"number":"pc20130524143620","time":"2013-6-24 15:44:20","supplierName":"深圳优购科技有限公司","wareHouse":"深圳仓库","purchaseType":"自购固定价结算","amount":"120","actualAmount":"800,758,32","audit":"否","invalid":"是","end":"是"},
+	{"id":3,"number":"pc20130524143620","time":"2013-7-24 15:44:20","supplierName":"百丽集团","wareHouse":"北京仓库","purchaseType":"自购固定价结算","amount":"3000","actualAmount":"10,758,32","audit":"是","invalid":"否","end":"是"},
+	{"id":4,"number":"pc20130524143620","time":"2013-8-24 15:44:20","supplierName":"深圳市八旗服装有限公司","wareHouse":"上海仓库","purchaseType":"自购固定价结算","amount":"100","actualAmount":"1,758,32","audit":"是","invalid":"是","end":"否"}
+]}

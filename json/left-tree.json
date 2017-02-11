@@ -1,0 +1,583 @@
+[
+    {
+        "menuid": "root-1", 
+        "icon": "icon-doc-base", 
+        "menuname": "商品管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "商品列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "goods/goods-query.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "缺货记录", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "goods/goods-quehuo.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "商品类别", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "goods/goods-cat-query.html"
+                        }
+                    }
+                ]
+    }, {
+        "menuid": "root-20", 
+        "icon": "icon-doc-base", 
+        "menuname": "产品线管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "产品线列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "goods/commodity-line.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "分销商品库", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "goods/listDistributeCommodity.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "商品价格日志查询", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "goods/listPriceMonitorCommodity.html"
+                        }
+                    }
+										
+                ]
+    }, 
+    {
+        "menuid": "root-2", 
+        "icon": "icon-order-query", 
+        "menuname": "会员管理", 
+        "menus": [
+            {
+                "id": 1, 
+                "text": "会员管理", 
+                "iconCls": "icon-doc-base", 
+                "children": [
+                    {
+                        "id": 101, 
+                        "text": "会员列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/member-query.html"
+                        }
+                    }, 
+										{
+                        "id": 101, 
+                        "text": "分销业务类型", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/member-biztype.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "会员等级", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/member-level.html"
+                        }
+                    }
+                ]
+            }, 
+						{
+                "id": 4, 
+                "text": "合同管理", 
+                "iconCls": "icon-doc-base", 
+                "children": [
+                    {
+                        "id": 401, 
+                        "text": "合同列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/compact-query.html"
+                        }
+                    }
+                ]
+            },
+						{
+                "id": 4, 
+                "text": "信誉管理", 
+                "iconCls": "icon-doc-base", 
+                "children": [
+                    {
+                        "id": 401, 
+                        "text": "信誉列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/reputation.html"
+                        }
+                    }, 
+                    {
+                        "id": 402, 
+                        "text": "奖惩列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/reputation-jc.html"
+                        }
+                    }
+                ]
+            },
+						{
+                "id": 4, 
+                "text": "客户经理管理", 
+                "iconCls": "icon-doc-base", 
+                "children": [
+                    {
+                        "id": 401, 
+                        "text": "客户经理列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "member/clientmanager.html"
+                        }
+                    }
+                ]
+            }
+        ]
+    }, 
+    {
+        "menuid": "root-3", 
+        "icon": "icon-order-query", 
+        "menuname": "营销管理", 
+        "menus": [
+            {
+                "id": 1, 
+                "text": "活动管理", 
+                "iconCls": "icon-doc-base", 
+                "children": [
+                    {
+                        "id": 101, 
+                        "text": "活动列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "active/active-query.html"
+                        }
+                    }
+                ]
+            }, 
+            {
+                "id": 1, 
+                "text": "专题管理", 
+                "iconCls": "icon-doc-base", 
+                "children": [
+                    {
+                        "id": 101, 
+                        "text": "专题列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/create-order.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "专题跟踪", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/import-order.html"
+                        }
+                    }
+                ]
+            }, 
+            {
+                "id": 2, 
+                "text": "优惠券", 
+                "iconCls": "icon-doc-layout", 
+                "children": [
+                    {
+                        "id": 202, 
+                        "text": "优惠券列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/issue-order.html"
+                        }
+                    }, 
+                    {
+                        "id": 204, 
+                        "text": "优惠券跟踪", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/warn-order.html"
+                        }
+                    }
+                ]
+            },{
+                "id": 2, 
+                "text": "搭配套餐", 
+                "iconCls": "icon-doc-layout", 
+                "children": [
+                    {
+                        "id": 202, 
+                        "text": "套餐列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/issue-order.html"
+                        }
+                    }, 
+                    {
+                        "id": 204, 
+                        "text": "套餐跟踪", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/warn-order.html"
+                        }
+                    }
+                ]
+            },{
+                "id": 2, 
+                "text": "积分管理", 
+                "iconCls": "icon-doc-layout", 
+                "children": [
+                    {
+                        "id": 202, 
+                        "text": "积分变更明细", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/issue-order.html"
+                        }
+                    }, 
+                    {
+                        "id": 203, 
+                        "text": "优惠券兑换管理", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/handle-order.html"
+                        }
+                    }, 
+                    {
+                        "id": 204, 
+                        "text": "添加兑换规则", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/warn-order.html"
+                        }
+                    }
+                ]
+            },{
+                "id": 2, 
+                "text": "分销商推荐奖励", 
+                "iconCls": "icon-doc-layout", 
+                "children": [
+                    {
+                        "id": 202, 
+                        "text": "规则列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/issue-order.html"
+                        }
+                    }, 
+                    {
+                        "id": 203, 
+                        "text": "奖励列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/handle-order.html"
+                        }
+                    }
+                ]
+            },{
+                "id": 2, 
+                "text": "批发营销", 
+                "iconCls": "icon-doc-layout", 
+                "children": [
+                    {
+                        "id": 202, 
+                        "text": "规则列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/issue-order.html"
+                        }
+                    }
+                ]
+            },{
+                "id": 2, 
+                "text": "业绩返点", 
+                "iconCls": "icon-doc-layout", 
+                "children": [
+                    {
+                        "id": 202, 
+                        "text": "返点列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "active/rebate.html"
+                        }
+                    },
+										{
+                        "id": 202, 
+                        "text": "生成返点", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "active/rebate-produce.html"
+                        }
+                    }
+                ]
+            }
+        ]
+    },{
+        "menuid": "root-21", 
+        "icon": "icon-doc-base", 
+        "menuname": "预存款管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "收款账号维护", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/toGatheringBank.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "预存款查询", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/toDistributionAccount.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "预存款充值审核", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/pendingAudit.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "预存款扣款调整申请", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/exceptionorderapplication.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "预存款扣款调整审批", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/exceptionorderaduit.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "保证金冻结管理", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/toDistributionFreeze.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "售后退款", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "account/returndebt.html"
+                        }
+                    }
+                ]
+    },  {
+        "menuid": "root-4", 
+        "icon": "icon-doc-base", 
+        "menuname": "囤货管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "囤货申请列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "stockpile/stockpile-application.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "囤货详情列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "stockpile/stockpile-detail.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "囤货日志", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "stockpile/stockpile-log.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "囤货保证金设置", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "stockpile/stockpile-setting.html"
+                        }
+                    }
+                ]
+    }, {
+        "menuid": "root-5", 
+        "icon": "icon-doc-base", 
+        "menuname": "订货管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "订货货品列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/order-productlist.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "订货单列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/order-query.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "订货单日志", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/order-log.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "定金设置", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "order/order-setting.html"
+                        }
+                    }
+                ]
+    }, {
+        "menuid": "root-6", 
+        "icon": "icon-doc-base", 
+        "menuname": "培训管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "培训计划列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "train/train.html"
+                        }
+                    }, 			
+										{
+                        "id": 102, 
+                        "text": "课程列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "train/train-couse.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "讲师列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "train/train-teachermanage.html"
+                        }
+                    }
+                ]
+    }, {
+        "menuid": "root-7", 
+        "icon": "icon-doc-base", 
+        "menuname": "资讯管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "文章列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "article/article.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "文章类别", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "article/article-class.html"
+                        }
+                    }
+                ]
+    }, {
+        "menuid": "root-8", 
+        "icon": "icon-doc-base", 
+        "menuname": "客服管理", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "咨询管理", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "service/ask.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "知识库", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "service/ask.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "客服机器人", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "service/robots.html"
+                        }
+                    }
+                ]
+    }, {
+        "menuid": "root-9", 
+        "icon": "icon-doc-base", 
+        "menuname": "店铺监测", 
+        "menus":  [
+                    {
+                        "id": 101, 
+                        "text": "日志类别", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "monitor/logtype.html"
+                        }
+                    }, 
+                    {
+                        "id": 102, 
+                        "text": "日志列表", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "monitor/log.html"
+                        }
+                    },
+										{
+                        "id": 102, 
+                        "text": "假店假货登记", 
+                        "iconCls": "tree-file", 
+                        "attributes": {
+                            "url": "monitor/fakereg.html"
+                        }
+                    }
+                ]
+    }
+]

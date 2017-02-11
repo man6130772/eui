@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>活动跟踪</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+	tbgrid = $('#tbList').datagrid({
+				data:{"total":1,"rows":[{'id':'1','col1':'236123','col2':'327','col3':'50','col4':'lj001','col5':'男','col6':' 	金牌会员','col7':'2011-08-08 12:00:00','col8':1}]},
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'订单号',
+					field:'col1',
+					width:100
+					},{
+					title:'消费金额',
+					field:'col2',
+					width:100
+					},{
+					title:'优惠金额',
+					field:'col3',
+					width:150
+					},{
+					title:'会员',
+					field:'col4',
+					width:60
+					},{
+					title:'性别',
+					field:'col5',
+					width:60
+					},{
+					title:'等级',
+					field:'col6',
+					width:60
+					},{
+					title:'使用时间',
+					field:'col7',
+					width:60
+					},{
+					title:'状态',
+					field:'col8',
+					width:60,
+					formatter:function(value,rec,index){
+						var str="待审核";
+						switch(value){
+							case 1:
+							str="正在进行";
+							break;
+							case 2:
+							str="已终止";
+							break;
+						}
+						return str;
+					}
+					}
+		]],
+		onLoadSuccess:function(){		
+			$('.jsMonitor').click(function(){
+				ygDialog({
+					title:'活动跟踪',
+					url:'active-monitoring.html',
+				});
+				return false;
+			});
+		}
+
+	});
+	
+	
+}
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" style="height:120px;">
+    <div class="search-div">
+        <form name="searchForm" id="searchForm" action="" method="post" >
+            <table class="search-tb" >
+                <col width="80" />
+                <col/>
+                <col width="100" />
+                <col/>
+                <col width="80" />
+                <col/>
+                <tbody>
+                    <tr>
+                        <th>订单号：</th>
+                        <td><input type="text" class="ipt" /></td>
+                        <th>会员名/邮箱：</th>
+                        <td><select class="easyui-combobox">
+                            </select></td>
+                        <th>使用时间：</th>
+                        <td ><input class="ipt easyui-datebox" data-options="dateFmt:'yyyy-mm-dd HH:mm:ss'" style="width:140px;" /> - <input class="ipt easyui-datebox" data-options="dateFmt:'yyyy-mm-dd HH:mm:ss'" style="width:140px;" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+        
+        <div class="easyui-panel pl20" data-options="title:'活动统计',fieldset:true,collapsible:false,cls:'mt20'">
+        	
+    <span>参与人数：<strong class="cred">524</strong> 人</span>
+    <span class="ml10">订单数量：<strong class="cred">524</strong> 单</span>
+    <span class="ml10">销售数量：<strong class="cred">650</strong> 件</span>
+    <span class="ml10">销售金额：<strong class="cred">52000</strong> 元</span>
+
+        </div>
+        
+    </div>
+</div>
+<div data-options="region:'center',border:false">
+<table id="tbList"></table>
+</div>
+</body>
+</html>

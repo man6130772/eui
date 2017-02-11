@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>新增异常订单</title>
+</head>
+<body>
+<div class="pd10">
+    <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:120px;"><em class="cred">*</em> 订单号：</th>
+                    <td><input id="onlinePayNumber" type="text" readonly  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'订单号不能为空！'" />
+                    <a class="easyui-linkbutton" data-options="iconCls:'app-2',plain:true" id="selOrder">选择订单</a></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 收入金额：</th>
+                    <td><input  id="incomeAmount" type="text" readonly class="ipt easyui-validatebox" data-options="required:true,missingMessage:'收入金额不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 支出金额：</th>
+                    <td><input id="expensesAmount" type="text" readonly  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'支出金额不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 分销商用户名：</th>
+                    <td><input id="distributorsName" type="text" readonly  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'分销商用户名不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 下单日期：</th>
+                    <td><input id="operaterDate" type="text" readonly  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'下单日期不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 退款金额：</th>
+                    <td><input id="returnAmount" type="text"  class="ipt easyui-validatebox"  validType="currency" data-options="required:true,missingMessage:'退款金额不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th class="vtop">申请说明：</th>
+                    <td><textarea class="ipt txt-remark"></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script>
+$('#selOrder').click(function(){
+		dgSelector({
+			title:'选择订单',
+			href:'../account/getDistributorOrderList.html',
+			width:1000,
+			height:550,
+			fn:function(data){
+				if(data){
+					$('#onlinePayNumber').val(data.col2);
+					$('#incomeAmount').val(data.col4);
+					$('#expensesAmount').val(data.col5);
+					$('#distributorsName').val(data.col3);
+					$('#operaterDate').val(data.col6);
+				}
+			}
+		});
+	});
+</script>
+</body>
+</html>

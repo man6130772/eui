@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>囤货日志列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid=null;
+
+function parsePage(){
+
+$('#toolbar').toolbar({
+	items:[{
+		text:'删除',
+		iconCls:'icon-del',
+		handler:function(){
+				var node = tbgrid.datagrid('getSelections');
+					var ids=[];
+					$.each(node,function(index,val){
+						ids.push(val.id);
+					});
+					del(ids);
+			}
+		}]
+});
+tbgrid = $('#tbList').datagrid({
+				data:{"total":1,"rows":[{'id':'1','col1':'审核订单','col2':'2011-8-24 12:00:00','col3':'admin','col4':'--'}]},
+				singleSelect:false,
+				frozenColumns:[[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+				}]],
+		    columns:[[
+					{
+					title:'操作行为',
+					field:'col1',
+					width:150,
+					sortable:true
+				    },
+					{
+					title:'操作时间',
+					field:'col2',
+					width:150
+					},{
+					title:'操作人',
+					field:'col3',
+					width:100
+					},{
+					title:'备注',
+					field:'col4',
+					width:150
+					},
+					{
+					title : '操作',
+					field:'opt',
+					width:100,
+					formatter:function(value,rec,index){
+							var str='<a href="javascript:;" class="jsDel">删除</a>';
+							return str;
+						}
+			}
+		]],
+		onLoadSuccess:function(){
+			 $('.jsDel').click(function(){
+				 var _idx=$('.jsDel').index(this);
+				 var id=tbgrid.datagrid('getRows')[_idx].id;
+				 del(id);
+				 return false;
+			 });
+		}
+	});
+
+}
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(r){
+		tbgrid.datagrid('deleteRow',0);
+		showSuc('删除成功！'+id);
+		tbgrid.datagrid('reload');
+	});
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" >
+		<div id="toolbar">
+    </div>
+    <div class="search-div">
+        <form name="searchForm" id="searchForm" action="" method="post" >
+            <table class="search-tb" >
+                <col width="80" />
+                <col/>
+                <col width="80" />
+                <col/>
+                <tbody>
+                    <tr>
+                        <th>操作人：</th>
+                        <td><input class="ipt" /></td>
+                        <th>操作时间：</th>
+                        <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<!--搜索end--> 
+<!--列表-->
+<div data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+</body>
+</html>

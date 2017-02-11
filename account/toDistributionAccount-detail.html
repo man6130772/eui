@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>分销商账户明细表</title>
+</head>
+
+<body >
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',border:false" class="toolbar-region">
+        <div id="toolbarDetail">
+        </div>
+    </div>
+    <div  data-options="region:'center',border:false">
+        <table id="tbListDetail">
+        </table>
+    </div>
+</div>
+<script>
+var tbgrid;
+$('#toolbarDetail').toolbar({
+	items:[{
+		text:'导出账户明细',
+		iconCls:'icon-export',
+		handler:function(){
+			 
+		}
+	}]
+});
+
+tbgrid=$('#tbListDetail').datagrid({
+	data:{"total":2,"rows":[{'id':1,'col1':'预付款支付','col2':'下单支付','col3':'0.00','col4':'404.19','col5':'0.00','col6':'0.00','col7':'990,554.50 	','col8':'990,554.50 	','col9':'--','col10':'--','col11':'731012160014_1','col12':'分销商酷锐','col13':'2013-10-12 16:33:45','col14':'--'}]},
+	columns:[[{
+		title:'摘要',
+		field:'col1',
+		width:80,
+		sortable:true
+	},{
+		title:'摘要类型',
+		field:'col2',
+		width:80
+	},{
+		title:'收入金额',
+		field:'col3',
+		width:60,
+		align:'right'
+	},{
+		title:'支出金额',
+		field:'col4',
+		width:60,
+		align:'right'
+	},{
+		title:'冻结金额',
+		field:'col5',
+		width:60,
+		align:'right'
+	},{
+		title:'解冻金额',
+		field:'col6',
+		width:60,
+		align:'right'
+	},{
+		title:'预存款余额',
+		field:'col7',
+		width:60,
+		align:'right'
+	},{
+		title:'可用余额',
+		field:'col8',
+		width:60,
+		align:'right'
+	},{
+		title:'收款方式',
+		field:'col9',
+		width:80
+	},{
+		title:'收款账号',
+		field:'col10',
+		width:80
+	},{
+		title:'交易单号',
+		field:'col11',
+		width:80
+	},{
+		title:'操作人',
+		field:'col12',
+		width:60
+	},{
+		title:'操作时间',
+		field:'col13',
+		width:100
+	},{
+		title:'备注',
+		field:'col14',
+		width:80
+	}
+	]]
+	
+});
+
+</script>
+</body>
+</html>

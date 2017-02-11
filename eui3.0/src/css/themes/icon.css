@@ -1,0 +1,191 @@
+/* icon */
+.icon-blank { background: url('icons/blank.gif') scroll no-repeat center center; }
+.icon-mini-add { background: url('icons/mini-add.png') scroll no-repeat center center; }
+.icon-mini-edit { background: url('icons/mini-edit.png') scroll no-repeat center center; }
+.icon-mini-refresh { background: url('icons/mini-refresh.png') scroll no-repeat center center; }
+.icon-standard-hmenu-asc { background: url('icons/hmenu-asc.gif') scroll no-repeat center center; }
+.icon-standard-hmenu-desc { background: url('icons/hmenu-desc.gif') scroll no-repeat center center; }
+.icon-standard-application-view-detail, .icon-standard-application-view-tile { background: url('icons/application-view-tile.png') scroll no-repeat center center; }
+.icon-standard-application-view-columns { background: url('icons/application-view-columns.png') scroll no-repeat center center; }
+.icon-standard-application-view-list { background: url('icons/application-view-list.png') scroll no-repeat center center; }
+
+/* icon green */
+.icon-add-dtl:before,
+.icon-add-row:before,
+.icon-add:before,
+.icon-aduit:before,
+.icon-back:before,
+.icon-build-some:before,
+.icon-cancel:before,
+.icon-cash:before,
+.icon-chart:before,
+.icon-close:before,
+.icon-collapse:before,
+.icon-copy:before,
+.icon-cut:before,
+.icon-del-dtl:before,
+.icon-del-row:before,
+.icon-del:before,
+.icon-down-1:before,
+.icon-down:before,
+.icon-download:before,
+.icon-edit:before,
+.icon-empty:before,
+.icon-expand:before,
+.icon-export:before,
+.icon-flag-blue:before,
+.icon-flag-green:before,
+.icon-flag-orange:before,
+.icon-flag-pink:before,
+.icon-flag-purple:before,
+.icon-flag-red:before,
+.icon-flag-yellow:before,
+.icon-goods-in:before,
+.icon-goods-out:before,
+.icon-home:before,
+.icon-import:before,
+.icon-in:before,
+.icon-info:before,
+.icon-lock:before,
+.icon-loss:before,
+.icon-mini-tis:before,
+.icon-next:before,
+.icon-ok:before,
+.icon-out:before,
+.icon-place-bottom:before,
+.icon-place-top:before,
+.icon-prev:before,
+.icon-print:before,
+.icon-redo:before,
+.icon-refresh:before,
+.icon-refund:before,
+.icon-refuse:before,
+.icon-remark:before,
+.icon-remove:before,
+.icon-return:before,
+.icon-returnable:before,
+.icon-saleable:before,
+.icon-save-dtl:before,
+.icon-save:before,
+.icon-saveTo:before,
+.icon-search:before,
+.icon-see:before,
+.icon-start:before,
+.icon-stop:before,
+.icon-sum:before,
+.icon-tips:before,
+.icon-ts-1:before,
+.icon-undo:before,
+.icon-unlock:before,
+.icon-up-1:before,
+.icon-up:before,
+.icon-upload:before,
+.icon-upload1:before,
+.icon-window-max:before,
+.icon-window-min:before,
+.icon-xq:before {
+	display: inline-block;
+	margin-right: 4px;
+	background-image: url('icons/icons-green.png');
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	content: " ";
+}
+.icon-add-dtl:before { background-position: 0 0; height: 16px; width: 16px; }
+.icon-add-row:before { background-position: -16px 0; height: 16px; width: 16px; }
+.icon-add:before { background-position: -32px 0; height: 16px; width: 16px; }
+.icon-aduit:before { background-position: -48px 0; height: 18px; width: 16px; }
+.icon-back:before { background-position: -64px 0; height: 16px; width: 16px; }
+.icon-build-some:before { background-position: -80px 0; height: 12px; width: 16px; }
+.icon-cancel:before { background-position: -96px 0; height: 16px; width: 16px; }
+.icon-cash:before { background-position: -112px 0; height: 18px; width: 16px; }
+.icon-chart:before { background-position: -128px 0; height: 16px; width: 16px; }
+.icon-close:before { background-position: -144px 0; height: 16px; width: 16px; }
+.icon-collapse:before { background-position: -160px 0; height: 16px; width: 16px; }
+.icon-copy:before { background-position: -176px 0; height: 16px; width: 14px; }
+.icon-cut:before { background-position: -190px 0; height: 16px; width: 16px; }
+.icon-del-dtl:before { background-position: -206px 0; height: 16px; width: 16px; }
+.icon-del-row:before { background-position: -222px 0; height: 16px; width: 16px; }
+.icon-del:before { background-position: -238px 0; height: 16px; width: 16px; }
+.icon-down-1:before { background-position: -254px 0; height: 16px; width: 16px; }
+.icon-down:before { background-position: -270px 0; height: 16px; width: 16px; }
+.icon-download:before { background-position: -286px 0; height: 16px; width: 16px; }
+.icon-edit:before { background-position: -302px 0; height: 16px; width: 16px; }
+.icon-empty:before { background-position: -318px 0; height: 16px; width: 16px; }
+.icon-expand:before { background-position: -334px 0; height: 16px; width: 16px; }
+.icon-export:before { background-position: -350px 0; height: 16px; width: 16px; }
+.icon-flag-blue:before { background-position: -366px 0; height: 16px; width: 16px; }
+.icon-flag-green:before { background-position: -382px 0; height: 16px; width: 16px; }
+.icon-flag-orange:before { background-position: -398px 0; height: 16px; width: 16px; }
+.icon-flag-pink:before { background-position: -414px 0; height: 16px; width: 16px; }
+.icon-flag-purple:before { background-position: -430px 0; height: 16px; width: 16px; }
+.icon-flag-red:before { background-position: -446px 0; height: 16px; width: 16px; }
+.icon-flag-yellow:before { background-position: -462px 0; height: 16px; width: 16px; }
+.icon-goods-in:before { background-position: -478px 0; height: 17px; width: 17px; }
+.icon-goods-out:before { background-position: -495px 0; height: 16px; width: 17px; }
+.icon-home:before { background-position: -512px 0; height: 16px; width: 16px; }
+.icon-import:before { background-position: -528px 0; height: 16px; width: 16px; }
+.icon-in:before { background-position: -544px 0; height: 16px; width: 16px; }
+.icon-info:before { background-position: -560px 0; height: 16px; width: 16px; }
+.icon-lock:before { background-position: -576px 0; height: 19px; width: 16px; }
+.icon-loss:before { background-position: -592px 0; height: 16px; width: 16px; }
+.icon-mini-tis:before { background-position: -608px 0; height: 16px; width: 16px; }
+.icon-next:before { background-position: -624px 0; height: 16px; width: 16px; }
+.icon-ok:before { background-position: -640px 0; height: 16px; width: 16px; }
+.icon-out:before { background-position: -656px 0; height: 16px; width: 16px; }
+.icon-place-bottom:before { background-position: -672px 0; height: 16px; width: 16px; }
+.icon-place-top:before { background-position: -688px 0; height: 16px; width: 16px; }
+.icon-prev:before { background-position: -704px 0; height: 16px; width: 16px; }
+.icon-print:before { background-position: -720px 0; height: 16px; width: 16px; }
+.icon-redo:before { background-position: -736px 0; height: 19px; width: 20px; }
+.icon-refresh:before { background-position: -756px 0; height: 16px; width: 16px; }
+.icon-refund:before { background-position: -772px 0; height: 16px; width: 14px; }
+.icon-refuse:before { background-position: -786px 0; height: 16px; width: 16px; }
+.icon-remark:before { background-position: -802px 0; height: 16px; width: 16px; }
+.icon-remove:before { background-position: -818px 0; height: 16px; width: 16px; }
+.icon-return:before { background-position: -834px 0; height: 16px; width: 16px; }
+.icon-returnable:before { background-position: -850px 0; height: 16px; width: 16px; }
+.icon-saleable:before { background-position: -866px 0; height: 16px; width: 16px; }
+.icon-save-dtl:before { background-position: -882px 0; height: 18px; width: 16px; }
+.icon-save:before { background-position: -898px 0; height: 16px; width: 16px; }
+.icon-saveTo:before { background-position: -914px 0; height: 16px; width: 16px; }
+.icon-search:before { background-position: -930px 0; height: 16px; width: 16px; }
+.icon-see:before { background-position: -946px 0; height: 12px; width: 17px; }
+.icon-start:before { background-position: -963px 0; height: 16px; width: 16px; }
+.icon-stop:before { background-position: -979px 0; height: 16px; width: 16px; }
+.icon-sum:before { background-position: -995px 0; height: 16px; width: 16px; }
+.icon-tips:before { background-position: -1011px 0; height: 16px; width: 16px; }
+.icon-ts-1:before { background-position: -1027px 0; height: 16px; width: 16px; }
+.icon-undo:before { background-position: -1043px 0; height: 19px; width: 16px; }
+.icon-unlock:before { background-position: -1059px 0; height: 19px; width: 16px; }
+.icon-up-1:before { background-position: -1075px 0; height: 16px; width: 16px; }
+.icon-up:before { background-position: -1091px 0; height: 16px; width: 16px; }
+.icon-upload:before { background-position: -1107px 0; height: 16px; width: 16px; }
+.icon-upload1:before { background-position: -1123px 0; height: 16px; width: 16px; }
+.icon-window-max:before { background-position: -1139px 0; height: 16px; width: 16px; }
+.icon-window-min:before { background-position: -1155px 0; height: 16px; width: 16px; }
+.icon-xq:before { background-position: -1171px 0; height: 16px; width: 16px; }
+
+/* icon white */
+.tabs li.tabs-selected .icon-home:before,
+.c-btn i.icon-import:before,
+button.l-btn .icon-remove:before,
+button.l-btn .icon-save:before,
+button.l-btn .icon-saveTo:before,
+.c-btn .icon-search:before, button.l-btn .icon-search:before,
+button.l-btn .icon-see:before {
+	display: inline-block;
+	margin-right: 4px;
+	background-image: url('icons/icons-white.png');
+	background-repeat: no-repeat;
+	vertical-align: middle;
+	content: " ";
+}
+.tabs li.tabs-selected .icon-home:before { background-position: 0 0; height: 16px; width: 16px; vertical-align: top; }
+.tabs-icon.icon-home:before { vertical-align: top; }
+.c-btn i.icon-import:before { background-position: -16px 0; height: 16px; width: 16px; }
+button.l-btn .icon-remove:before { background-position: -32px 0; height: 16px; width: 16px; }
+button.l-btn .icon-save:before { background-position: -48px 0; height: 16px; width: 16px; }
+button.l-btn .icon-saveTo:before { background-position: -64px 0; height: 16px; width: 16px; }
+.c-btn .icon-search:before, button.l-btn .icon-search:before { background-position: -80px 0; height: 16px; width: 16px; }
+button.l-btn .icon-see:before { background-position: -96px 0; height: 13px; width: 18px; }

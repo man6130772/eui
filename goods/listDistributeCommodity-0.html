@@ -1,0 +1,212 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加产品线商品</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+	
+$('#toolbar').toolbar({
+});
+
+toolSearch();
+
+$('select').combobox({
+	prompt:'请选择...',
+data:[{value:'0',text:'下拉框'}],
+	valueField:'value',
+	textField:'text'
+});
+
+tbgrid = $('#tbList').datagrid({
+				data:{"total":1,"rows":[{'id':'1','col1':'../assets/images/tmp/tmp-1.jpg','col2':'TATA201308120','col3':'99899725','col4':'2013他她香港直发测试商品A','col5':'中空凉鞋','col6':'他她','col7':'--','col8':'13年夏季','col9':'997','col10':'3.00','col11':'1','col12':1,'col13':'2013-8-22'}]},
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'商品图片',
+					field:'col1',
+					width:100,
+					formatter:function(value,rec,index){
+						return '<img src='+value+' width="60" height="60" />';
+					}
+					},
+					{
+					title:'款色编码',
+					field:'col2',
+					width:100
+					},{
+					title:'商品编码',
+					field:'col3',
+					width:100
+					},{
+					title:'商品名称',
+					field:'col4',
+					width:150
+					},{
+					title:'分类名称',
+					field:'col5',
+					width:60
+					},{
+					title:'品牌名称',
+					field:'col6',
+					width:60
+					},{
+					title:'上市月',
+					field:'col7',
+					width:60
+					},{
+					title:'销售季',
+					field:'col8',
+					width:100
+					},{
+					title:'可售库存',
+					field:'col9',
+					width:60
+					},{
+					title:'市场价',
+					field:'col10',
+					width:60,
+					align:'right'
+					},{
+					title:'供货价',
+					field:'col11',
+					width:80,
+					formatter:function(){
+						return '<a href="javascript:;" class="cblue jsView">查看</a>';
+					}
+					},{
+					title:'上下架状态',
+					field:'col12',
+					width:100,
+					formatter: function(value,rec,index){
+						return value==1?'上架':'下架';
+					}
+					},{
+					title:'上架日期',
+					field:'col13',
+					width:100
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:60,
+				formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsAttr">所属产品线</a>';
+						return str;
+					}
+			}
+		]],
+		onLoadSuccess:function(){		
+			$('.jsView').click(function(){
+				parent.addBlankTab({
+					title:'查看会员',
+					href:'member/member-detail.html',
+					refreshed:true
+				});
+				return false;
+			});
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){
+		showSuc('删除成功！'+id);
+		tbgrid('deleteRow',0);
+		tbgrid('reload');
+	});
+}
+
+
+function add(){
+	parent.addBlankTab({
+		title:'添加产品线',
+		href:'goods/commdity-line-add.html'
+		});
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>商品分类：</th>
+                                <td>
+                                <select style="width:80px;"></select>&nbsp;&nbsp;
+                                <select style="width:80px;"></select>&nbsp;&nbsp;
+                                <select style="width:80px;"></select>
+                                </td>
+                                <th>品牌名称：</th>
+                                <td><select></select></td>
+                                <th>销售季：</th>
+                                <td><select></select></td>
+                                <th>上市月：</th>
+                                <td><select></select></td>
+                            </tr>
+                            <tr>
+                                <th>上下架状态：</th>
+                                <td><select></select></td>
+                                <th>添加状态：</th>
+                                <td><select></select></td>
+                                <th>商品编码：</th>
+                                <td><input class="ipt" /></td>
+                                <th>款色编码：</th>
+                                <td><input class="ipt" /></td>
+                            </tr>
+                            <tr>
+                                <th>创建时间：</th>
+                                <td ><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /></td>
+                                <th>上架时间：</th>
+                                <td colspan="2"><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /></td>
+                                <td colspan="3"><a class="easyui-linkbutton fr" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+</body>
+</html>

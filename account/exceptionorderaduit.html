@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>预存款扣款调整审批</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	
+	$('#toolbar').toolbar({
+		items:[{
+			text:'导出账户明细',
+			iconCls:'icon-export',
+			handler:function(){
+				exportExcel();
+			}
+		}]
+	});
+	
+	toolSearch({
+		collapsible:false,
+		items:[{'text':'订单号','name':'key1'},{'text':'分销商','name':'key2'},{'text':'下单时间>=','name':'key2'}]
+	});
+	
+	$('#myTabs').createTabs(
+	{
+		tabs:[{
+		title:'等待审核',
+		href:'exceptionorderaduit-0.html'
+	},{
+		title:'审核通过',
+		href:'http://www.baidu.com',
+		lazyload:true
+	},{
+		title:'审核不通过',
+		href:'http://www.baidu.com',
+		lazyload:true
+	},{
+		title:'全部',
+		href:'http://www.baidu.com',
+		lazyload:true
+	}],
+	selected:1
+	});
+	
+}
+
+
+
+function exportExcel(){
+	showProcess(true,'正在导出，请稍后...');
+	var bar=top.$.messager.progress('bar');
+	setTimeout(function(){
+		var value = bar.progressbar('getValue');	
+		showProcess(false);
+		showSuc('操作成功！');
+	},2000);
+	
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false" class="pd10">
+    <div id="myTabs">
+    </div>
+</div>
+</body>
+</html>

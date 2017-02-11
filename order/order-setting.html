@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>定金设置</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	$('#toolbar').toolbar({
+		items:[{
+			text:'保存',
+			iconCls:'icon-save',
+			handler:function(){
+				save();
+			}
+		}]
+	});
+	
+	$('input[name=rad]').change(function(){
+		var _this=$(this);
+		if(_this.val()=="0"){
+			$('#hkSpan').show();
+		}else{
+			$('#hkSpan').hide();
+		}
+	});
+	
+}
+
+function save(){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div data-options="region:'center',border:false">
+    <div class="pd10">
+        <div class="easyui-panel" data-options="title:'定金设置',fieldset:true,fitWidth:true,cls:'mt20'">
+            <form id="myForm">
+                <table class="form-tb">
+                    <tbody>
+                        <tr>
+                            <th style="width:120px;">定金设置：</th>
+                            <td class="cred"> 订单总金额*50% </td>
+                        </tr>
+                        <tr>
+                            <th><em class="cred">*</em>订金类型：</th>
+                            <td><input type="radio" name="rad" id="rad1" value="0" checked />
+                                <label for="rad1">按比例</label>
+                                <input type="radio" name="rad" id="rad2" class="ml10"  value="1" />
+                                <label for="rad2">固定金额</label></td>
+                        </tr>
+                        <tr>
+                            <th><em class="cred">*</em>订金比例：</th>
+                            <td><span id="hkSpan">订货货款 ×</span>
+                                <input type="text" class="ipt w100 easyui-validatebox" data-options="required:true,missingMessage:'订金比例不能为空！'" /></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>信誉列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+tbgrid = $('#tbList').datagrid({
+				data:{"total":1,"rows":[{'id':'1','col1':0,'col2':'--','col3':'--'},{'id':'2','col1':'1-10','col2':'一星','col3':'--'},{'id':'1','col1':'11-20','col2':'二星','col3':'--'}]},
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'分值',
+					field:'col1',
+					width:150,
+					sortable:true
+				    },
+					{
+					title:'信誉名称',
+					field:'col2',
+					width:200
+					},{
+					title:'信誉等级',
+					field:'col3',
+					width:150
+					}
+		]]
+
+	});
+
+}
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>咨询管理</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid=null;
+var myform=null;
+function parsePage(){
+
+$('#toolbar').toolbar({
+	items: [{
+				text : '删除',
+				iconCls:'icon-del',
+				handler : function() {
+					var node = tbgrid.datagrid('getChecked');
+					var ids=[];
+					$.each(node,function(index,val){
+						ids.push(val.id);
+					});
+					del(ids);
+				}
+			}] 
+});
+
+
+
+tbgrid = $('#tbList').datagrid({
+			data:{"total":1,"rows":[{'id':1,'col1':'分销商碰到问题是否寻求帮助？','col2':'加盟问题','col3':1,'col4':'2011-8-4 12:00:00','col5':'张三','col6':1,'col7':1,'col8':'10'}]},
+			singleSelect:false,
+			frozenColumns : [[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+			}]],
+		    columns:[[
+					{
+					title:'问题',
+					field:'col1',
+					width:200,
+					align:'left',
+					sortable:true
+				    },
+					{
+					title:'问题类别',
+					field:'col2',
+					width:60
+					},{
+					title:'是否回复',
+					field:'col3',
+					width:60,
+					formatter:function(value,rec,index){
+						return value==0?'未回复':'已回复';
+					}
+					},{
+					title:'回复时间',
+					field:'col4',
+					width:80
+					},{
+					title:'回复人',
+					field:'col5',
+					width:60
+					},{
+					title:'是否放入知识库',
+					field:'col6',
+					width:60,
+					formatter:function(value,rec,index){
+						return value==0?'否':'是';
+					}
+					},{
+					title:'是否追问',
+					field:'col7',
+					width:60,
+					formatter:function(value,rec,index){
+						return value==0?'否':'是';
+					}
+					},{
+					title:'评分',
+					field:'col8',
+					width:80
+					},{
+					title:'操作',
+					field:'opt',
+					width:100,
+					formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsReply" >回复</a> | <a data-id='+rec.id+' href="javascript:;" class="jsDel">删除</a>';
+						return str;
+					}
+					}
+		]],
+		onLoadSuccess:function(){
+			//回复
+			$('.jsReply').click(function(){
+				tbgrid.datagrid('unselectAll');
+				tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+				var rows = tbgrid.datagrid('getSelected');
+				replay(rows);
+				return false;
+			});
+			
+			//删除
+			$('.jsDel').click(function(){
+				tbgrid.datagrid('unselectAll');
+				tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+				var id=$(this).attr('data-id');
+				del(id);
+				return false;
+			});
+		
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){					 
+				showSuc('删除成功！'+id);
+				tbgrid.datagrid('deleteRow',0);
+				$('#tbList').datagrid('reload');
+				  
+	});
+}
+
+
+function replay(rows){
+	myform=$('#myForm');
+	myform.form('clear');
+	ygDialog({
+		title:'回复咨询',
+		target:$('#myFormPanel'),
+		width:680,
+		height:400,
+		 buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});	
+}
+
+function save(dialog){
+	$('#content').val($('#content').editor('getValue'));
+	myform.form({
+	url:'form3_proc.php',
+	onSubmit:function(){
+		return $(this).form('validate');
+	},
+	success:function(data){
+		showSuc('操作成功！');
+		var data = myform.form("getData");
+		console.log(data);
+		dialog.close();
+	}
+	});
+	myform.submit();	
+}
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>问题类别：</th>
+                                <td><select class="easyui-combobox" data-options="width:160">
+                                        <option value="1">问题类别1111</option>
+                                        <option value="2">问题类别2222</option>
+                                    </select></td>
+                                <th>是否回复：</th>
+                                <td><select class="easyui-combobox" data-options="width:160">
+                                        <option value="1">是</option>
+                                        <option value="0">否</option>
+                                    </select></td>
+                                <th>问题标题：</th>
+                                <td><input class="ipt" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+
+<!--表单-->
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm" method="post" novalidate>
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:80px;" class="vtop"><em class="cred">*</em> 回复内容：</th>
+                        <td><textarea id="content" name="content" class="easyui-editor "  style=" width:480px;height:250px;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 放入知识库：</th>
+                        <td><input type="radio" name="rad" id="rad1" checked  value="1"/>
+                            <label for="rad1">否</label>
+                            <input type="radio" name="rad" id="rad2"  value="0" class="ml10" />
+                            <label for="rad2">是</label></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<!--表单结束-->
+
+</body>
+</html>

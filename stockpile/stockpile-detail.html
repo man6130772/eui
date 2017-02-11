@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>囤货详情列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+	
+	$('#toolbar').toolbar({
+	});
+	
+	toolSearch({
+		items:[{"text":"分销商账户","name":"key1"},{"text":"分销商姓名","name":"key2"},{"text":"囤货货号","name":"key3"}],
+		callback:function(key,name){
+				if(key==""){
+					showInfo('请输入关键字');
+					return;
+				}
+			showInfo(key);
+		}
+	});	
+	
+
+tbgrid = $('#tbList').datagrid({
+				data:{"total":2,"rows":[{'id':'1','col1':'admin','col2':'张三','col3':'一级','col4':'10'},{'id':'1','col1':'admin','col2':'张三','col3':'一级','col4':'10'}]},
+				singleSelect:true,
+				
+				frozenColumns:[[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+				}]],
+		    columns:[[
+					{
+					title:'分销商帐户',
+					field:'col1',
+					width:150,
+					sortable:true
+				    },
+					{
+					title:'分销商姓名',
+					field:'col2',
+					width:150
+					},{
+					title:'分销商等级',
+					field:'col3',
+					width:100
+					},{
+					title:'囤货总数',
+					field:'col4',
+					width:100
+					},
+					{
+					title : '操作',
+					field:'opt',
+					width:150,
+					formatter:function(value,rec,index){
+							var str='<a href="javascript:;" class="jsDetail">囤货明细</a>';
+							return str;
+						}
+			}
+		]],
+		onLoadSuccess:function(){
+			 $('.jsDetail').click(function(){
+				 ygDialog({
+					 title:'囤货明细',
+					 href:'stockpile-detail-view.html',
+					 width:850
+				 });
+				 return false;
+			 });
+		}
+	});
+
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false,closed:true" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>分销商名称：</th>
+                                <td><input class="ipt" /></td>
+                                <th>囤货时间：</th>
+                                <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+</body>
+</html>

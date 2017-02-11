@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>收款账号维护</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+	$('#toolbar').toolbar({
+		items:[{
+			text:'新增',
+			iconCls:'icon-add',
+			handler:function(){
+				 add();
+			}
+		}]
+	});
+
+tbgrid=$('#tbList').datagrid({
+	data:{"total":2,"rows":[{'id':1,'col1':'银行汇款 ','col2':'中国农业银行深圳支行','id':2,'col3':'ABC057700000001','col4':'Belle'}]},
+	singleSelect:true,
+	columns:[[{
+		title:'汇款类型',
+		field:'col1',
+		width:80,
+		sortable:true
+	},{
+		title:'开户银行',
+		field:'col2',
+		width:80
+	},{
+		title:'公司账户',
+		field:'col3',
+		width:80
+	},{
+		title:'公司账号',
+		field:'col4',
+		width:80
+	},{
+		title:'',
+		field:'opt',
+		width:80,
+		formatter:function(){
+			return ' <a href="javascript:;" class="jsEdit">编辑</a> |  <a href="javascript:;" class="jsDel">删除</a>';
+		}
+	}]],
+	onLoadSuccess:function(){
+		
+		$('.jsEdit').click(function(){
+			tbgrid.datagrid('unselectAll');
+			tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+			var rows = tbgrid.datagrid('getSelected');
+			edit(rows);
+			return false;
+		});
+		
+		$('.jsDel').click(function(){
+			var _idx=$('.jsDel').index(this);
+			var id=tbgrid.datagrid('getRows')[_idx].id;
+			del(id);
+			return false;
+		});
+		
+	}
+	
+});
+	
+}
+
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){
+		showSuc('操作成功'+id);
+		tbgrid.datagrid('deleteRow',0);
+		tbgrid.datagrid('reload');
+	});
+}
+
+
+function edit(rows){
+	myform=$('#myForm');
+	$('input[name=khh]').val(rows.col1);
+	$('input[name=zh]').val(rows.col2);
+	$('input[name=zhanghao]').val(rows.col3);
+	
+	ygDialog({
+		title:'编辑收款账号',
+		target:$('#myFormPanel'),
+		width:450,
+	 	height:250,
+		 buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});	
+	
+}
+
+
+function add(){
+	myform=$('#myForm');
+	myform.form("clear"); //清空表单
+	ygDialog({
+	 title:'新增收款账号',
+	 target:$('#myFormPanel'),
+	 width:450,
+	 height:250,
+	 buttons:[{
+		text:'确认',
+		handler:function(dialog){
+			save(dialog);
+		}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			var data = $("#myForm").form("getData");
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout" >
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+
+
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:100px;"><em class="cred">*</em> 汇款类型：</th>
+                    <td><input id="remittanceType1" type="radio" checked="" value="1" name="remittanceType">
+                        <label for="remittanceType1">银行汇款</label>
+                        <input id="remittanceType2" type="radio" value="2" name="remittanceType" class="ml10">
+                        <label for="remittanceType2">网上转账</label></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 开户银行：</th>
+                    <td><input type="text" name="khh"  class="ipt easyui-validatebox" data-options="required:true,prompt:'请填写开户银行',missingMessage:'开户银行不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 公司账户：</th>
+                    <td><input type="text"  name="zh" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'公司账户不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em> 公司账号：</th>
+                    <td><input type="text"  name="zhanghao" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'公司账号不能为空！'" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    </div>
+</div>
+</body>
+</html>

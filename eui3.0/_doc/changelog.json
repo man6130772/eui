@@ -1,0 +1,700 @@
+{
+    "project": "common-resource-3.0.0",
+    "total": 73,
+    "rows": [{
+        "date": "2016-04-21 16:32:00",
+        "author": "wu.han",
+        "issue": "右下角消息提示框显示在页面当中且变形拉长",
+        "image": ["20160421163201.png","20160421163202.png","20160421163203.png"],
+        "changes": [{
+            "file": "src/js/_global/global.utils.system.js",
+            "function": ["showSuc"],
+            "description": "使用之前新增的notify方法替代show方法"
+        }, {
+            "file": "src/js/src/jquery.messager.js",
+            "function": ["notify"],
+            "description": "修改timeout,showType,position这3个属性继承options传参的值"
+        }]
+    }, {
+        "date": "2016-04-21 16:30:21",
+        "author": "wu.hao",
+        "issue": "布局的箭头出不来",
+        "image": ["20160421161701.png"],
+        "changes": [{
+            "file": "src/js/src/jquery.panel.js",
+            "function": ["_addHeader"],
+            "description": "解决布局中不显示向下的收缩按钮"
+        }]
+    }, {
+        "date": "2016-04-15 17:16:59",
+        "author": "chen.cheng",
+        "issue": "tree组件子节点加载不出数据",
+        "image": ["20160415172759.png"],
+        "changes": [{
+            "file": "src/js/src/jquery.tree.js",
+            "function": ["expandNode"],
+            "description": "回复3月29日对tree.js里expandNode的判断处理，估计之前bug的原因是后端对ajax传参判断有误返回同样数据造成死循环，判断处理会导致子节点无法做ajax请求故撤销"
+        }]
+    }, {
+        "date": "2016-03-29 17:10:43",
+        "author": "chen.cheng",
+        "issue": "combotree组件出现死循环bug",
+        "image": ["20160329173818.png"],
+        "changes": [{
+            "file": "src/js/src/jquery.tree.js",
+            "function": ["expandNode"],
+            "description": "对于设置state为closed但是children为空的节点做了错误的判断处理，使该节点不断请求数据，目前处理方法是增加判断条件使children不存在的节点不执行ajax操作"
+        }]
+    }, {
+        "date": "2016-3-8 10:13:58",
+        "author": "chen.cheng",
+        "issue": "修改combotree搜索功能属性expand的默认值",
+        "image": ["20160329173909.png"],
+        "changes": [{
+            "file": "src/js/extend/jquery.combotree.extend.js",
+            "function": ["initSearchBox"],
+            "description": "改为默认为null，node折叠效果根据state的赋值"
+        }]
+    }, {
+        "date": "2016-3-23 11:48:37",
+        "author": "chen.cheng",
+        "issue": "设置宽高后再填充数据会丢失正常宽高",
+        "image": ["20160323153407.png"],
+        "url": "http://dev.tms-city.belle.net.cn:3080/tmsBillTransportMain/list?moduleId=10063",
+        "path": "物流tms系统首页>tms干线管理>干线托运单发送",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["$.fn.datagrid"],
+            "description": "改为载入数据后再设置宽高"
+        }]
+    }, {
+        "date": "2016-3-22 14:35:51",
+        "author": "chen.cheng",
+        "issue": "datagrid的rows展开子级datagrid数据无法显示",
+        "image": ["20160323153010.png"],
+        "url": "http://dev.tms-city.belle.net.cn:3080/tmsBillTransportMain/list?moduleId=10063",
+        "path": "物流tms系统首页>tms干线管理>干线托运单发送",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["$.fn.datagrid"],
+            "description": "准对有些data不规范，数据是存在的，但是没有写进rows里面，做了兼容处理"
+        }]
+    }, {
+        "date": "2016-3-21 12:15:24",
+        "author": "chen.cheng",
+        "issue": "新增物流通用头部菜单组件jquery.subsystem.js",
+        "path": "bugs>logistics>common>通用头部菜单接口说明.docx",
+        "changes": [{
+            "file": "src/js/extend/jquery.subsystem.js",
+            "description": "见api说明"
+        }]
+    }, {
+        "date": "2016-3-16 15:12:41",
+        "author": "chen.cheng",
+        "issue": "error-message返回的是网页提示存在重复加载数据的问题",
+        "image": ["20160316151112.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/rptCityEfficiency/list",
+        "path": "物流lmp系统首页>报表管理>城市配送效率报表",
+        "changes": [{
+            "file": "src/js/extend/jqeasyui.extend.js",
+            "function": ["onLoadError"],
+            "description": "动态加载iframe内容，使用的iframe.write函数"
+        }]
+    }, {
+        "date": "2016-3-17 16:58:42",
+        "author": "wu.hao",
+        "issue": "最大化窗口还原不了窗口大小",
+        "image": ["20160317165622.png","20160317165612.png","20160317165632.png"],
+        "url": "http://dev.tms-city.belle.net.cn:3080/tms_transport_point/list?moduleId=56",
+        "path": "物流tms系统首页>调度管理>配送点信息管理",
+        "changes": [{
+            "file": "src/js/src/jquery.panel.js",
+            "function": ["maximizePanel"],
+            "description": "最大化窗口时记录窗口size"
+        }]
+    }, {
+        "date": "2016-3-16 16:58:42",
+        "author": "wu.hao",
+        "issue": "窗口居中对齐计算有问题",
+        "image": ["20160316165622.png"],
+        "url": "http://dev.tms-city.belle.net.cn:3080/tms_auto_truck/list?moduleId=2114",
+        "path": "物流tms系统首页>调度管理>预派车计划管理",
+        "changes": [{
+            "file": "src/js/extend/jqeasyui.extend.js",
+            "function": ["$.fn.datagrid.defaults.onLoadError","onLoadError"],
+            "description": "打开窗口时重置需要居中对齐的window"
+        }]
+    }, {
+        "date": "2016-3-10 17:10:22",
+        "author": "chen.cheng",
+        "issue": "500服务器错误提示boot.js重复加载报警告",
+        "image": ["20160311101524.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/lop_bill_information/list",
+        "path": "物流lmp系统首页>数据核对报表>未同步单据临时表",
+        "changes": [{
+            "file": "src/js/extend/jqeasyui.extend.js",
+            "function": ["$.fn.datagrid.defaults.onLoadError","onLoadError"],
+            "description": "针对返回的报错信息是个页面代码的情况进行处理，增加了iframe盒子,并增加了错误提示时对组件datagrid的识别功能"
+        }]
+    }, {
+        "date": "2016-03-10 14:24:31",
+        "author": "wu.hao",
+        "issue": "由于setTimeout验证的代码没有被移除，下次触发focusEventHandler的时候报错",
+        "image": ["20160310145911.png"],
+        "url": "http://dev.tms-city.belle.net.cn:3080/tms_transport_point/list?moduleId=56",
+        "changes": [{
+            "file": "src/js/src/jquery.validatebox.js",
+            "function": ["focusEventHandler"],
+            "description": "过滤被移除结点的验证"
+        }]
+    }, {
+        "date": "2016-03-10 10:56:23",
+        "author": "wu.hao",
+        "issue": "3.0中导致通知提示窗口居中自适应",
+        "image": ["20160310105911.png", "20160310110304.png"],
+        "url": "http://dev.tms-city.belle.net.cn:3080/sso_to_index?error=",
+        "changes": [{
+            "file": "src/js/src/jquery.messager.js",
+            "function": ["notify"],
+            "description": "新增右下角通知提示窗口"
+        }]
+    }, {
+        "date": "2016-03-07 11:03:23",
+        "author": "chen.cheng",
+        "issue": "新增属性expandAll控制combotree搜索时tree的展开折叠功能",
+        "path": "combotree组件",
+        "changes": [{
+            "file": "src/js/extend/jquery.combotree.extend.js",
+            "function": [
+                "initSearchBox"
+            ],
+            "description": "新增属性expandAll控制combotree搜索时tree的展开折叠功能"
+        }]
+    }, {
+        "date": "2016-03-04 11:03:23",
+        "author": "chen.cheng",
+        "issue": "物流lmp子系统lsp_common.js多选级联函数loadSysNo4CascadeMultiple报错",
+        "image": ["20160309092708.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/rpt_wms2runsa_stock/list",
+        "path": "物流lmp系统首页>数据核对报表>WMS与分销库存对比报表",
+        "changes": [{
+            "file": "/resources/js/common/lsp_common.js",
+            "function": [
+                "loadSysNo4CascadeMultiple"
+            ],
+            "description": "级联下拉框方法cateForMultipleCascade由于缺少cateArray参数报错，由于看不懂该方法业务逻辑，暂时启用loadMajorNo4SysNoMultiple载入大类方法，注释cateForMultipleCascade方法"
+        }]
+    }, {
+        "date": "2016-03-03 16:27:12",
+        "author": "wu.hao",
+        "issue": "在控制台输出错误信息",
+        "changes": [{
+            "file": "src/js/extend/jqeasyui.extend.js",
+            "function": ["onLoadError"],
+            "description": "在控制台输出ajax请求出错时的错误信息"
+        }]
+    }, {
+        "date": "2016-03-03 11:47:30",
+        "author": "wu.hao",
+        "issue": "后端业务系统传入的data.rows等数据不正确的时候报错",
+        "image": ["20160308160106.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/lmp2wms_base_check/list?moduleId=286",
+        "path": "物流lmp系统首页>数据核对报表>基础资料核对报表",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["$.fn.datagrid"],
+            "description": "针对rows等于undefined等异常情况进行处理"
+        }]
+    }, {
+        "date": "2016-03-03 11:47:52",
+        "author": "chen.cheng",
+        "issue": "物流lmp子系统Lmp2WmsBaseCheck.js返回值报错",
+        "image": ["20160303135027.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/tms_bm_shipper/list",
+        "path": "物流lmp系统首页>数据核对报表>基础资料核对报表",
+        "changes": [{
+            "file": "/resources/js/report/Lmp2WmsBaseCheck.js",
+            "function": ["lmp2WmsBaseCheck.getColumnInfo"],
+            "description": "新增里面的ajax请求成功后返回的信息如果存在错误代码的话弹出错误信息errorMessage"
+        }]
+    }, {
+        "date": "2016-03-02 15:25:21",
+        "author": "chen.cheng",
+        "issue": "物流lmp子系统common.js中使用的正则表达式修正",
+        "image": ["20160303134410.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/tms_bm_shipper/list",
+        "path": "物流lmp系统首页>TMS资料管理>承运商信息",
+        "changes": [{
+            "file": "/resources/common/other-lib/common.js",
+            "function": ["commonValidRule.validateInputTel.validateInputTel.validator"],
+            "description": "exec方法在使用全局搜索的时候回有个lastIndex定位，每次只会返回一个匹配的元素的数组，所以有可能会返回一个null的值，这里取消全局搜索"
+        }]
+    }, {
+        "date": "2016-03-02 15:25:21",
+        "author": "chen.cheng",
+        "issue": "物流lmp子系统common.js中使用validate的rules报错方法isValidString不存在",
+        "image": ["20160303120520.png"],
+        "url": "http://dev.lmp.belle.net.cn:3020/tms_bm_shipper/list",
+        "path": "物流lmp系统首页>TMS资料管理>承运商信息",
+        "changes": [{
+            "file": "/resources/common/other-lib/common.js",
+            "function": ["commonValidRule.isValidText.isValidText.validator"],
+            "description": "新增方法isValidString解决不包含非法字符“<”,“>”,“input”的问题"
+        }]
+    }, {
+        "date": "2016-02-26 13:43:36",
+        "author": "chen.cheng",
+        "issue": "物流lmp子系统左侧菜单没有搜索功能",
+        "image": ["20160226135408.png"],
+        "url": "dev.lmp.belle.net.cn:3020/sso_to_index",
+        "path": "物流lmp系统首页",
+        "changes": [{
+            "file": "sso_to_index",
+            "function": ["div#left"],
+            "description": "新增属性searchBox:true"
+        }, {
+            "file": "resources/common/other-lib/index.js",
+            "function": ["InitLeftMenu"],
+            "description": "注释原来的左侧菜单生成代码，改用base.js生成"
+        }]
+    }, {
+        "date": "2016-02-23 17:31:46",
+        "author": "chen.cheng",
+        "issue": "新增combotree搜索功能的需求",
+        "image": ["20160223173420.png"],
+        "path": "combotree组件",
+        "changes": [{
+            "file": "src/js/extend/jquery.combotree.extend.js",
+            "function": ["initSearchBox"],
+            "description": "新增属性oneRootChecked:boolean,可以设置combotree第一个根节点只有一个的时候初始化处于选中状态"
+        }]
+    }, {
+        "date": "2016-02-18 17:39:36",
+        "author": "chen.cheng",
+        "issue": "修复了datebox的宽度计算错误问题",
+        "image": ["20160218174935.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/bill_im_check_rep/forBillImCheckRep",
+        "path": "物流系统>报表管理>入库查询",
+        "changes": [{
+            "file": "src/js/src/jquery.my97.extend.js",
+            "function": ["$.fn.datebox"],
+            "description": "由于计算规则不同，不适用width()设置宽度使用css()设置宽度就可以"
+        }]
+    }, {
+        "date": "2016-2-18 11:35:44",
+        "author": "chen.cheng",
+        "issue": "二次修复了numberbox的默认prompt",
+        "image": ["20160218113603.jpg"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/os_cust_buffer/list",
+        "path": "物流系统>基础档案>客户与暂存区维护",
+        "changes": [{
+            "file": "src/js/src/jquery.combobox.js",
+            "function": ["$.fn.combobox.defaults"],
+            "description": "注释了textbox和numberbox的默认值prompt，在combobox里面设置默认值prompt为'请选择...'"
+        }]
+    }, {
+        "date": "2016-2-18 11:18:57",
+        "author": "chen.cheng",
+        "issue": "修复了numberbox的默认prompt",
+        "image": ["20160218112428.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/os_cust_buffer/list",
+        "path": "物流系统>基础档案>客户与暂存区维护",
+        "changes": [{
+            "file": "src/js/src/jquery.numberbox.js",
+            "function": ["$.fn.numberbox.defaults"],
+            "description": "设置了新的默认值prompt为空，textbox中的默认prompt只适用于combobox"
+        }]
+    }, {
+        "date": "2016-02-16 13:37:42",
+        "author": "chen.cheng",
+        "issue": "重构了左侧菜单搜索功能组件",
+        "image": ["20160216135439.png"],
+        "url": "dev.wms.belle.net.cn:3090/logistics-wms-city-web/sso_to_index",
+        "path": "物流系统>首页",
+        "changes": [{
+            "file": "src/js/src/jquery.layout.js",
+            "function": ["buildSearchPanel"],
+            "description": "设置了layout的dir是west的时候可以生成左侧菜单导航节点"
+        }, {
+            "file": "src/js/extend/jquery.searchbar.js",
+            "function": ["$.fn.searchbar"],
+            "description": "新增searchbar组件配合combobox和combotext使用使layout上只需要设置searchBox:true即可自动生成搜素功能"
+        }, {
+            "file": "src/js/_global/global.utils.build.js",
+            "function": ["buildMenuCommon"],
+            "description": "注释渲染searchBox扩展的判断功能，不需要再传递请求返回的data数据"
+        }, {
+            "file": "/logistics-wms-city-web/resources/common/other-lib/index.js",
+            "function": ["InitLeftMenu"],
+            "description": "初始化左侧的方法有问题，accordion的title会与下面树的根目录title重复一次，建议以后统一使用base.js里面的左侧菜单生成函数buildMenuCommon"
+        }, {
+            "file": "/src/css/extend/accordion.extend.css",
+            "function": [".panel-search"],
+            "description": "样式.panel-search的padding-top设置为4px，其余样式删除"
+        }]
+    }, {
+        "date": "2016-02-16 11:46:32",
+        "author": "chen.cheng",
+        "issue": "textbox在火狐浏览器下keydown和keyup事件的兼容性问题",
+        "image": ["20160216115022.png"],
+        "url": "dev.wms.belle.net.cn:3090/logistics-wms-city-web/sso_to_index",
+        "path": "物流系统>首页",
+        "changes": [{
+            "file": "src/js/src/jquery.textbox.js",
+            "function": ["bindEvents"],
+            "description": "增加了浏览器的判断条件，在火狐浏览器下keydown改为keyup"
+        }]
+    }, {
+        "date": "2016-02-26 10:44:10",
+        "image": ["20160226104156.png"],
+        "author": "wu.hao",
+        "issue": "datagrid.renderRow未处理代码异常逻辑",
+        "url": "http://dev.lmp.belle.net.cn:3020/store/list?moduleId=16",
+        "path": "物流(LMP)系统>基础资料>机构管理",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["renderRow"]
+        }]
+    }, {
+        "date": "2016-02-25 15:56:30",
+        "author": "wu.han",
+        "issue": "combotree增加输入框里是否显示父节点文字的功能",
+        "changes": [{
+            "file": "src/js/src/jquery.combotree.js",
+            "function": ["retrieveValues"],
+            "description": "2.0.0的功能移植，属性showParentText为false的情况下，点击子节点不会在combotree的输入框里显示父节点的名称"
+        }]
+    }, {
+        "date": "2016-02-03 18:31:57",
+        "author": "chen.cheng",
+        "issue": "物流系统仓库选择combobox的下拉框高度不断减少和浏览器崩溃问题",
+        "image": ["20160203182229.png"],
+        "url": "dev.wms.belle.net.cn:3090/logistics-wms-city-web/sso_to_index",
+        "path": "物流系统>首页",
+        "changes": [{
+            "file": "/logistics-wms-city-web/resources/common/other-lib/index.js",
+            "function": ["initComtextEvent"],
+            "description": "删除2016-02-02日关于maxHeight属性的修改，问题出自于物流系统自定义的index.js文件，它覆盖了combo的方法options，返回的不是json对象而是jquery对象，导致maxHeight的undefined。而且事件多次绑定，造成浏览器崩溃。更好的实现方式是把这个对jquery对象的独立操作封装成函数在请求的仓库数据返回时回调"
+        }]
+    }, {
+        "date": "2016-02-03 17:48:00",
+        "author": "wu.han",
+        "issue": "增加物流的蓝色主题",
+        "url": "dev.wms.belle.net.cn:3090/logistics-wms-city-web/sso_to_index",
+        "path": "物流系统>首页",
+        "changes": [{
+            "file": "assets/thems/logistics",
+            "function": [],
+            "description": "物流的主题名称为logistics，引用boot.js的路径后面需加上主题参数，如http://retail.belle.net.cn/common/3.0.0/boot.js?theme=logistics"
+        }]
+    }, {
+        "date": "2016-02-02 15:28:00",
+        "author": "wu.han",
+        "issue": "增加datagrid显示当前选中的checkbox数量的功能",
+        "url": "dev.wms.belle.net.cn:3090/logistics-wms-city-web/sso_to_index",
+        "path": "物流系统>首页",
+        "changes": [{
+            "file": "src/js/src/jquery.panel.extend.js",
+            "function": ["showCheckedNumber", "checkRow", "uncheckRow", "checkAll", "uncheckAll"],
+            "description": "datagrid右下角分页处增加显示当前选中的checkbox数量，需配置checkedNumber为true"
+        }]
+    }, {
+        "date": "2016-02-02 14:49:56",
+        "author": "chen.cheng",
+        "issue": "panel-body的maxHeight属性没有定义，第二次聚焦的时候弹出的combobox下拉框的maxHeight会被$.fn.panel.extensions.defaults.maxHeight覆盖",
+        "image": ["20160202152225.png"],
+        "url": "dev.wms.belle.net.cn:3090/logistics-wms-city-web/sso_to_index",
+        "path": "物流系统>首页",
+        "changes": [{
+            "file": "src/js/src/jquery.panel.extend.js",
+            "function": ["onResize"],
+            "description": "获取当前状态下的panel-body的maxHeight属性值，如果存在即赋值给opts.maxHeight"
+        }]
+    }, {
+        "date": "2016-02-02 10:07:40",
+        "author": "chen.cheng",
+        "issue": "combobox设置为disabled:true后没有起到屏蔽作用",
+        "image": ["20160202103206.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/bm_locno_group/list?moduleId=2292",
+        "path": "物流系统>基础资料>基础档案>仓库组别维护",
+        "changes": [{
+            "file": "src/js/src/jquery.combo.js",
+            "function": ["$.fn.combo"],
+            "description": "取消了state状态存在的时候直接返回，使其再次验证combobox组件实现disabled:true的验证效果"
+        }]
+    }, {
+        "date": "2016-02-01 14:56:30",
+        "author": "chen.cheng",
+        "issue": "datagrid排序面板的箭头样式错乱问题",
+        "image": ["20160201145449.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/supplier/list?moduleId=114",
+        "path": "物流系统>基础资料>基础档案>供应商管理",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.extend.js",
+            "function": ["initHeaderCellClickMenu"],
+            "description": "新版样式s-btn-downarrow与旧版有很大差异，导致旧版扩展的showMenu面板的箭头出现样式错乱，为保证非拓展情况下样式的功能，新增样式datagrid-header-cell-arrow-fix修复箭头定位问题"
+        }]
+    }, {
+        "date": "2016-01-29 18:16:30",
+        "author": "chen.cheng",
+        "issue": "toolbar按钮样式iconCls被物理系统自定义样式覆盖造成的重叠错乱问题",
+        "image": ["20160129181730.jpg"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/billomexp/list?moduleId=128",
+        "path": "物流系统>分货管理>分货管理>发货通知",
+        "changes": []
+    }, {
+        "date": "2016-01-29 11:44:38",
+        "author": "chen.cheng",
+        "issue": "textbox下拉框宽高定义和hover样式问题",
+        "image": ["20160127115530.jpg"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/supplier/list?moduleId=114",
+        "path": "物流系统>基础资料>基础档案>供应商管理",
+        "changes": [{
+            "file": "src/js/src/jquery.textbox.js",
+            "function": ["setSize", "$.fn.textbox.defaults"],
+            "description": "为防止html版本冲突给下拉按钮和input加上样式“box-sizing:border-box”,修正input计算宽高的问题"
+        }, {
+            "file": "src/css/themes/dev/combo.css",
+            "function": [".combo-arrow:hover", ".combo .textbox-icon-disabled"],
+            "description": "样式问题删除.combo-arrow:hover,新增.combo .textbox-icon-disabled，消除disabled时鼠标移入变色加深该状态时颜色"
+        }]
+    }, {
+        "date": "2016-01-28 13:58:00",
+        "author": "wu.hao",
+        "issue": "jquery-1.11.3中parseJSON解析空('')时报错",
+        "image": ["20160128171847.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/instant_concontent/list?moduleId=241",
+        "path": "物流系统>报表管理>即时库存查询",
+        "changes": [{
+            "file": "src/js/extend/jquery.extend.js",
+            "function": ["$.parseJSON"],
+            "description": "在jquery-1.11.3中当请求JSON类型的数据时，无结果返回会导致JSON.parse解析出错"
+        }]
+    }, {
+        "date": "2016-01-28 13:58:00",
+        "author": "wu.hao",
+        "issue": "初始化combobox时会显示验证信息",
+        "image": ["20160128135547.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/bill_sm_waste/list?moduleId=133",
+        "path": "物流系统>库存管理>库内管理>其它出库",
+        "changes": [{
+            "file": "src/js/src/jquery.textbox.js",
+            "function": ["initValue"],
+            "description": "增加一个initText方法，初始化combo的text时候使用initText方法，不要用setText方法（有验证）"
+        }]
+    }, {
+        "date": "2016-01-26 14:31:00",
+        "author": "wu.hao",
+        "issue": "当combo是disabled时点击下拉按钮面板会显示",
+        "image": ["20160127102711.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/supplier/list?moduleId=114",
+        "path": "物流系统>基础资料>基础档案>供应商管理",
+        "changes": [{
+            "file": "src/js/extend/jquery.combo.extend.js",
+            "function": ["initialize"],
+            "description": "在click事件触发时判断combo如果是disabled就不执行面板显示"
+        }]
+    }, {
+        "date": "2016-01-25 10:30:00",
+        "author": "wu.hao",
+        "issue": "combogrid样式计算异常",
+        "image": ["20160127143809.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/bill_us_labelprint/list?moduleId=365",
+        "path": "物流系统>报表管理>门店箱标签打印",
+        "changes": [{
+            "file": "src/js/src/jquery.combogrid.js",
+            "function": ["$.fn.combogrid.defaults"],
+            "description": "重置继承自$.fn.datagrid.defaults的fit属性"
+        }]
+    }, {
+        "date": "2016-01-22 10:36:00",
+        "author": "wu.hao",
+        "issue": "返回0条结果集时loaded会重复触发loadData导致部分代码执行异常",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["$.fn.datagrid"],
+            "description": "给opts的data赋值，loaded时判断opts.data有没有结果集返回"
+        }]
+    }, {
+        "date": "2016-01-21 16:06:00",
+        "author": "wu.hao",
+        "issue": "tab默认显示操作进度提醒的bug",
+        "changes": [{
+            "file": "src/js/extend/jquery.tabs.extend.js",
+            "function": ["updateTab", "$.fn.tabs.extensions.defaults"],
+            "description": "通过设置showMessager=false，可强制不显示操作进度提醒"
+
+        }]
+    }, {
+        "date": "2016-01-21 14:06:00",
+        "author": "wu.hao",
+        "issue": "没有设置url时部分页面会报错",
+        "image": ["20160127150359.png"],
+        "url": "http://dev.wms.belle.net.cn:3090/logistics-wms-city-web/billomexp/list?moduleId=128",
+        "path": "物流系统>分货管理>发货通知",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["$.fn.datagrid"],
+            "description": "有些datagrid默认没有设置url,需要动态设置url,初始化时判断如果有设置url就发出请求"
+
+        }]
+    }, {
+        "date": "2016-01-21 11:21:00",
+        "author": "wu.hao",
+        "issue": "setTimeout循环调用move导致页面不断重绘",
+        "changes": [{
+            "file": "src/js/src/jquery.combo.js",
+            "function": ["movePanel"],
+            "description": "用resize代替setTimeout的循环调用"
+
+        }]
+    }, {
+        "date": "2016-01-20 13:56:00",
+        "author": "wu.hao",
+        "issue": "初始化validatebox时默认验证",
+        "changes": [{
+            "file": "src/js/src/jquery.textbox.js",
+            "function": ["$.fn.textbox"],
+            "description": "初始化textbox的时候，如果默认值不等于空的就调用验证"
+
+        }, {
+            "file": "src/js/src/jquery.validatebox.js",
+            "function": ["setValidation"],
+            "description": "采用取消easyui源代码中默认验证的方式来解决问题"
+        }]
+    }, {
+        "date": "2016-01-06 13:56:00",
+        "author": "wu.hao",
+        "issue": "firefox下没有设置行号时点击选中行会跳行",
+        "changes": [{
+            "file": "src/js/src/jquery.datagrid.js",
+            "function": ["selectRow"],
+            "description": "注释selectRow函数里面的scrollTo解决firefox下跳行的bug"
+        }]
+    }, {
+        "date": "2015-12-21 10:00:00",
+        "author": "chen.cheng",
+        "issue": "通用机构查询点+号出来的弹出层高度不一致且太高的没有滚动条",
+        "category": "js"
+    }, {
+        "date": "2015-12-21 10:00:00",
+        "author": "chen.cheng",
+        "issue": "通用商品查询上面的属性没有上边距及下面的方案看不到",
+        "category": "js"
+    }, {
+        "date": "2015-11-30 10:00:00",
+        "author": "chen.cheng",
+        "issue": "datagrid双击一行出来的弹出框有滚动条的问题",
+        "category": "js"
+    }, {
+        "date": "2015-11-27 10:00:00",
+        "author": "chen.cheng",
+        "issue": "datagrid双击一行出来的弹出框不居中而是在左下角",
+        "category": "js"
+    }, {
+        "date": "2015-11-26 10:00:00",
+        "author": "wu.han",
+        "issue": "readonly属性的combobox获取焦点时无法自动弹出下拉列表",
+        "category": "js"
+    }, {
+        "date": "2015-11-26 10:00:00",
+        "author": "wu.han",
+        "issue": "tab标签右键菜单的刷新选项卡功能无效",
+        "category": "js"
+    }, {
+        "date": "2015-11-26 10:00:00",
+        "author": "chen.cheng",
+        "issue": "datagrid里有数据也会显示“暂无数据”",
+        "category": "js"
+    }, {
+        "date": "2015-11-25 10:00:00",
+        "author": "chen.cheng",
+        "issue": "datagrid页数显示NAN的问题",
+        "category": "js"
+    }, {
+        "date": "2015-11-19 10:00:00",
+        "author": "chen.cheng",
+        "issue": "通用机构查询里点+号出来的弹出层里面的选项无法选中",
+        "category": "js"
+    }, {
+        "date": "2015-11-19 10:00:00",
+        "author": "wu.han",
+        "issue": "datagrid里使用键盘换行后第一个单元格的combogrid未选中",
+        "category": "js"
+    }, {
+        "date": "2015-11-18 10:00:00",
+        "author": "chen.cheng",
+        "issue": "combobox和combogrid的弹出菜单不支持键盘上下键选择",
+        "category": "js"
+    }, {
+        "date": "2015-11-18 10:00:00",
+        "author": "wu.han",
+        "issue": "通用机构查询的参考机构查询结果不显示",
+        "category": "js"
+    }, {
+        "date": "2015-11-18 10:00:00",
+        "author": "wu.han",
+        "issue": "通用商品查询选择方案，未选中的会出现在列表中",
+        "category": "js"
+    }, {
+        "date": "2015-11-18 10:00:00",
+        "author": "wu.han",
+        "issue": "2.2.4及之后版本的新功能移植",
+        "category": "js"
+    }, {
+        "date": "2015-11-12 10:00:00",
+        "author": "wu.han",
+        "issue": "textbox的弹出框高度一直是200像素",
+        "category": "js"
+    }, {
+        "date": "2015-11-10 10:00:00",
+        "author": "chen.cheng",
+        "issue": "textbox输入框提示文字不显示",
+        "category": "js"
+    }, {
+        "date": "2015-11-10 10:00:00",
+        "author": "chen.cheng",
+        "issue": "通用商品查询和机构查询的下拉框过大",
+        "category": "js"
+    }, {
+        "date": "2015-11-10 10:00:00",
+        "author": "wu.han",
+        "issue": "通用机构查询导入按钮图标错位",
+        "category": "css"
+    }, {
+        "date": "2015-11-10 10:00:00",
+        "author": "wu.han",
+        "issue": "下拉框combobox的样式跟以前不一致",
+        "category": "css"
+    }, {
+        "date": "2015-11-10 10:00:00",
+        "author": "wu.han",
+        "issue": "高亮选中的背景色及字体色跟以前不一致",
+        "category": "css"
+    }, {
+        "date": "2015-11-10 10:00:00",
+        "author": "wu.han",
+        "issue": "通用商品查询二级属性不显示",
+        "category": "js"
+    }, {
+        "date": "2015-11-09 10:00:00",
+        "author": "chen.cheng",
+        "issue": "datagrid的onClickRow事件没有传index参数",
+        "category": "js"
+    }, {
+        "date": "2015-11-09 10:00:00",
+        "author": "chen.cheng",
+        "issue": "datagrid右键showmenu错误",
+        "category": "js"
+    }, {
+        "date": "2015-11-09 10:00:00",
+        "author": "wu.han",
+        "issue": "系统桌面图标错位",
+        "category": "css"
+    }, {
+        "date": "2015-11-09 10:00:00",
+        "author": "chen.cheng",
+        "issue": "tab标签无右键菜单",
+        "category": "js"
+    }]
+}

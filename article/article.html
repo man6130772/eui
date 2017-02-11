@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>文章划列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid=null;
+var myform=null;
+function parsePage(){
+
+$('#toolbar').toolbar({
+	items: [{
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : function() {
+					add();
+				}
+			}, '-', {
+				text : '删除',
+				iconCls:'icon-del',
+				handler : function() {
+					var node = tbgrid.datagrid('getChecked');
+					var ids=[];
+					$.each(node,function(index,val){
+						ids.push(val.id);
+					});
+					del(ids);
+				}
+			}] 
+});
+
+tbgrid = $('#tbList').datagrid({
+			data:{"total":1,"rows":[{'id':1,'col1':'电子商务销售技巧','col2':'2011-8-4 12:00 - 16:00','col3':'2','col4':1,'col5':'--'},{'id':2,'col1':'双十一培训','col2':'2011-11-10 12:00 - 16:00','col3':'1','col4':1,'col5':'--'}]},
+			singleSelect:false,
+			frozenColumns : [[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+			}]],
+		    columns:[[
+					{
+					title:'培训标题',
+					field:'col1',
+					width:200,
+					align:'left',
+					sortable:true
+				    },
+					{
+					title:'开讲时间',
+					field:'col2',
+					width:100
+					},{
+					title:'主讲导师',
+					field:'col3',
+					width:100
+					},{
+					title:'状态',
+					field:'col4',
+					width:80,
+					formatter:function(value,rec,index){
+						return value==0?'未审核':'已审核';
+					}
+					},{
+					title:'内容',
+					field:'col5',
+					width:200
+					},{
+					title:'操作',
+					field:'opt',
+					width:100,
+					formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsEdit" >编辑</a> | <a data-id='+rec.id+' href="javascript:;" class="jsDel">删除</a>';
+						return str;
+					}
+					}
+		]],
+		onLoadSuccess:function(){
+			//编辑
+			$('.jsEdit').click(function(){
+				tbgrid.datagrid('unselectAll');
+				tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+				var rows = tbgrid.datagrid('getSelected');
+				edit(rows);
+				return false;
+			});
+			
+			//删除
+			$('.jsDel').click(function(){
+				tbgrid.datagrid('unselectAll');
+				tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+				var id=$(this).attr('data-id');
+				del(id);
+				return false;
+			});
+		
+		}
+
+	});
+
+}
+
+
+function add(){
+	myform=$('#myForm');
+	myform.form("clear"); //清空表单
+	ygDialog({
+		title:'添加文章',
+		target:$('#myFormPanel'),
+		width:680,
+		height:500,
+		 buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog)
+			}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});
+	
+	
+	
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){					 
+				showSuc('删除成功！'+id);
+				tbgrid.datagrid('deleteRow',0);
+				$('#tbList').datagrid('reload');
+				  
+	});
+}
+
+
+function edit(rows){
+	myform=$('#myForm');
+	$('input[name=title]').val(rows.col1);
+	$('input[name=startTime]').val(rows.col2);
+	$('#jiangshi').combobox('setValue',rows.col3);
+	rows.col4==1?$('input[name=rad]').eq(0).attr('checked',true):$('input[name=rad]').eq(1).attr('checked',true);
+	$('#content').editor('setValue',rows.col5);
+	
+	ygDialog({
+		title:'编辑文章',
+		target:$('#myFormPanel'),
+		width:680,
+		height:500,
+		 buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});	
+}
+
+function save(dialog){
+	$('#content').val($('#content').editor('getValue'));
+	myform.form({
+	url:'form3_proc.php',
+	onSubmit:function(params){
+		console.log(params);
+		return $(this).form('validate');
+	},
+	success:function(data){
+		showSuc('操作成功！');
+		var data = myform.form("getData");
+		console.log(data);
+		dialog.close();
+	}
+	});
+	myform.submit();	
+}
+
+$(function(){
+	$('#rad2').click(function(){
+		$('input[name=pubTime]').show();
+	});
+	$('#rad1').click(function(){
+		$('input[name=pubTime]').hide();
+	});
+});
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>主讲导师：</th>
+                                <td><input class="ipt" /></td>
+                                <th>培训标题：</th>
+                                <td><input class="ipt" /></td>
+                                <th>计划时间：</th>
+                                <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+
+<!--新增文章表单-->
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm" method="post" novalidate>
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;"><em class="cred">*</em> 文章标题：</th>
+                        <td><input name="title" type="text" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'计划标题不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 文章类别：</th>
+                        <td><select id="leibie" name="leibie" class="easyui-combobox easyui-validatebox" data-options="prompt:'请选择...',width:160,panelHeight:100,required:true,missingMessage:'请选择文章类别！'">
+                                <option value="1" selected>类别1111</option>
+                                <option value="2">类别2222</option>
+                                
+                                <option value="2">类别2222</option><option value="2">类别2222</option><option value="2">类别2222</option><option value="2">类别2222</option><option value="2">类别2222</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th  class="vtop">  文章内容：</th>
+                        <td><textarea id="content" name="content" class="easyui-editor "  style=" width:480px;height:250px;"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 发布时间：</th>
+                        <td><input type="radio" name="rad" id="rad1" checked  value="1"/>
+                            <label for="rad1">马上发布</label>
+                            <input type="radio" name="rad" id="rad2"  value="0" class="ml10" />
+                            <label for="rad2">定时发布</label>
+                            <input name="pubTime" type="text" readonly class="ipt easyui-datebox ml5 none" data-options="dateFmt:'yyyy-MM-dd HH:mm:ss'"  /></td>
+                    </tr>
+                    <tr>
+                        <th> </th>
+                        <td><input type="checkbox" name="tuijian" id="tuijian" /> <label for="tuijian">设为推荐</label></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<!--新增文章表单结束-->
+
+</body>
+</html>

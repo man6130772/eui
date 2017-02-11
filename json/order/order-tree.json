@@ -1,0 +1,67 @@
+﻿[
+{
+	"id":1,
+	"text":"订单查询",
+	"iconCls":"icon-doc-base",
+	"children":[{
+		"id":101,
+		"text":"活动订单",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/active-order.html"
+		}
+	},{
+		"id":102,
+		"text":"全部订单",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/active-order.html"
+		}
+	}]
+},
+{
+	"id":1,
+	"text":"新建订单",
+	"iconCls":"icon-doc-base",
+	"children":[{
+		"id":101,
+		"text":"新建订单",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/create-order.html"
+		}
+	},{
+		"id":102,
+		"text":"导入订单",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/import-order.html"
+		}
+	}]
+},{
+	"id":2,
+	"text":"订单处理",
+	"iconCls":"icon-doc-layout",
+	"children":[{
+		"id":202,
+		"text":"问题订单",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/issue-order.html"
+		}
+	},{
+		"id":203,
+		"text":"订单处理",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/handle-order.html"
+		}
+	},{
+		"id":204,
+		"text":"订单预警",
+		"iconCls":"tree-file",
+		"attributes":{
+			"url":"order/warn-order.html"
+		}
+	}]
+}]

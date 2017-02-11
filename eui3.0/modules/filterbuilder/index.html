@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>通用机构查询-New</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="http://s.belle.net.cn/common/3.0.0/boot.js"></script>
+    <!-- <script type="text/javascript" src="http://s.belle.net.cn/common/boot.js"></script> -->
+    <link type="text/css" rel="stylesheet" href="css/filterbuilder.css" />
+    <script>
+        var BasePath = 'http://dev.mdm.belle.net.cn/mdm';
+        var resourcesUrl = 'http://dev.mdm.belle.net.cn/mdm';
+        var staticurl = 'http://s.belle.net.cn/common/3.0.0';
+        var test = true;
+    </script>
+    <script type="text/javascript" src="http://s.belle.net.cn/common/3.0.0/assets/js/libs/sea.js"></script>
+    <script type="text/javascript" src="js/filterbuilder.js"></script>
+</head>
+
+<body class="easyui-layout" data-options="fit:true,border:false">
+<div region="north" style="height: 200px;">
+    通用条件查询：<input id="searchCommon" class="ipt" />
+    通用条件查询-2：<input id="searchCommonSecond" class="ipt" />
+    通用机构查询：<input id="searchOrgan" class="ipt" />
+    通用机构查询-2：<input id="searchOrganSecond" class="ipt" />
+</div>
+<div region="center">
+    <button type="button" for="searchCommon">获取条件值</button>
+    <button type="button" for="searchCommonSecond">获取条件值-2</button>
+    <button type="button" for="searchOrgan">获取机构值</button>
+    <button type="button" for="searchOrganSecond">获取机构值-2</button>
+    <button type="button" id="searchCommonWindow">窗口机构查询</button>
+    <br />
+    <div id="resultInfo"></div>
+</div>
+
+<div id="createBalanceDeductPanel">
+    <p>
+        编号：<input type="text" id="shopNo_c" class="ipt" />
+    </p>
+    <p>
+        选择：<input type="text" id="shortName" class="ipt" />
+    </p>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        $("#searchCommon").filterbuilder(
+            {
+                title:  '通用条件查询',
+                type:  'item',
+                maxRowNum: 200,
+                onSave: function(result){
+                    console.log(result);
+                }
+            }
+        );
+
+        $("#searchCommonSecond").filterbuilder(
+            {
+                title:  '通用条件查询-2',
+                type:  'item',
+                maxRowNum: 500,
+                onSave: function(result){
+                    console.log(result);
+                }
+            }
+        );
+
+        $("#searchOrgan").filterbuilder(
+            {
+                title: '通用机构查询',
+                type: 'organ',
+                organFlag: 0,
+                roleType: 'bizCity',
+                onSave: function(result){
+                    console.log(result);
+                }
+            }
+        );
+
+        $("#searchOrganSecond").filterbuilder(
+            {
+                title: '通用机构查询-2',
+                type: 'organ',
+                organFlag: 1,
+                roleType: 'shop',
+                onSave: function(result){
+                    console.log(result);
+                }
+            }
+        );
+
+        $("button").on('click',function(){
+            var btn = $(this);
+            var rst = $("#resultInfo");
+            var value = $("#"+btn.attr("for")).filterbuilder('getValue');
+            rst.text(value);
+        });
+
+        $("#searchCommonWindow").on('click',function(){
+            ygDialog({
+                title : '店铺费用生成',
+                target : $('#createBalanceDeductPanel'),
+                width : 560,
+                height : 260,
+                onOpen:function() {
+                    //绑定店铺通用查询
+                    $("#shortName").filterbuilder({
+                        type:'organ',
+                        organFlag: 2,
+                        roleType:'bizCity', 
+                        onSave : function(result) { 
+                            var value = $(this).filterbuilder('getValue');
+                            $("#shopNo_c").val(value);
+                        }
+                    });
+                },
+                buttons : [ {
+                    text : '确认',
+                    iconCls : 'icon-save',
+                    handler : function(dialog) {
+                        console.log('确认!');
+                        dialog.close();
+                    }
+                }, {
+                    text : '取消',
+                    iconCls : 'icon-cancel',
+                    handler : function(dialog) {
+                        dialog.close();
+                    }
+                } ]
+            });
+        });
+
+    });
+
+</script>
+</body>
+</html>

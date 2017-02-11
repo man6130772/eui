@@ -1,0 +1,537 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>会员编辑</title>
+<script type="text/javascript" src="../boot.js"></script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div data-options="region:'center',border:false">
+    <div class="pd10">
+        <div class="easyui-panel" data-options="title:'基本信息',fieldset:true,cls:'mt10',fitWidth:true">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;">会员名称：</th>
+                        <td><input value="分销商酷锐" type="text" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'会员名称不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th>登录账号：</th>
+                        <td>kr1</td>
+                    </tr>
+                    <tr>
+                        <th>订单来源：</th>
+                        <td><select id="twoNode">
+                            </select>
+                            <span id="orderSourceNoDiv" class="none ml10">
+                            <select id="orderSourceNo"  name="orderSourceNo">
+                            </select>
+                            </span></td>
+                    </tr>
+                    <tr>
+                        <th>会员等级：</th>
+                        <td><select id="levelId">
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">业务类型：</th>
+                        <td><div class="easyui-tabs" data-options="plain:true,width:700">
+                                <div data-options="title:'平台代发',cls:'pd10'">
+                                    <div class="easyui-panel" data-options="collapsible:false,fieldset:true,cls:'mt10',title:'<input id=\'bizTypeName_1\'  onclick=\'changeBizType(1);\' type=\'checkbox\' /> 平台代发'">
+                                        <div class="pl10">
+                                            <p>
+                                                <input checked type="radio" value="0" name="payMethod_1" onclick="changePayType('1','0');" psid="1" id="payMethod_0_1">
+                                                <label for="payMethod_0_1">按件现付</label>
+                                                <input class="ml20" type="radio" value="1" name="payMethod_1" onclick="changePayType('1','1');" psid="1" id="payMethod_1_1">
+                                                <label for="payMethod_1_1">按单现付</label>
+                                                <input class="ml20" type="radio" value="2" name="payMethod_1" onclick="changePayType('1','2');" psid="1" id="payMethod_2_1">
+                                                <label for="payMethod_2_1">到付</label>
+                                            </p>
+                                            <div id="jpaydiv_0_1" class="mt10">
+                                                <p>
+                                                    默认费用：<input type="text" value="" name="j_shippingFee" onblur="checkNumb(this);" onchange="jcheckDefautFee('1','0')" id="j_shippingFee_1" style="width:50px;" class="g-ipt"> 元/件
+                                                </p>
+                                                <p class="mt5">
+                                                    <input type="checkbox" value="" name="j_isSpecial" onclick="changeSpecial('1','0');" id="j_isSpecial_1"> 启用特殊运费设置：从 <input class="easyui-datebox" type="text" value="" readonly name="j_specialStartTime"  id="j_specialStartTime_1" style="width:100px;"> 到 <input class="easyui-datebox" type="text" value=""   name="j_specialEndTime"  id="j_specialEndTime_1" style="width:100px;">&nbsp;&nbsp;商品金额≥ <input type="text" value="" name="j_jeshippingFee" onblur="checkNumb(this);" onchange="changeSpecial('1','0')" id="j_jeshippingFee_1" class="g-ipt" style="width:50px;"> 元 <input type="text" value="" name="j_spcshippingFee" onblur="checkNumb(this);" onchange="changeSpecial('1','0')" id="j_spcshippingFee_1" style="width:50px;" class="g-ipt"> 元/件
+                                                </p>
+                                            </div>
+                                            <div style="display:none;" id="dpaydiv_1_1" class="mt10">
+                                                <p>
+                                                    默认费用：<input type="text" value="" name="d_shippingFee" onblur="dcheckDefautFee('1','1')" id="d_shippingFee_1" style="width:50px;" class="g-ipt"> 元/单
+                                                </p>
+                                                <p class="mt5">
+                                                    <input type="checkbox" value="" name="d_isSpecial" onclick="changeSpecial('1','1');" id="d_isSpecial_1"> 启用特殊运费设置：从 <input type="text" value=""  name="d_specialStartTime"  id="d_specialStartTime_1" style="width:100px;" class="easyui-datebox"> 到 <input type="text" value="" readonly name="d_specialEndTime"  id="d_specialEndTime_1" style="width:100px;" class="easyui-datebox">&nbsp;&nbsp;订单金额≥ <input type="text" value="" name="d_jeshippingFee" onblur="checkNumb(this);" onchange="changeSpecial('1','1')" id="d_jeshippingFee_1" class="g-ipt" style="width:50px;"> 元 <input type="text" value="" name="d_spshippingFee" onblur="checkNumb(this);" onchange="changeSpecial('1','1')" id="d_spshippingFee_1" class="g-ipt" style="width:50px;"> 元/单
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-options="title:'线上小额批发'">
+                                </div>
+                                <div data-options="title:'线上大额批发'">
+                                </div>
+                                <div data-options="title:'地面分销'">
+                                </div>
+                                <div data-options="title:'淘宝供销'">
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <th>是否启用：</th>
+                        <td><input id="enabled" type="radio" onclick="checkInput();" value="Y" checked="" name="enabled">
+                            <label for="enabled">是</label>
+                            <input class="ml10" id="enabled2" type="radio" onclick="checkInput();" value="N" name="enabled">
+                            <label for="enabled2">否</label></td>
+                    </tr>
+                    <tr>
+                        <th>支付方式：</th>
+                        <td><input type="radio" value="0" checked="" name="payType" id="payType1">
+                            <label for="payType1">预存款支付 </label>
+                            <input class="ml10" type="radio" value="1" name="payType"  id="payType2">
+                            <label for="payType2">线下转账</label></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!--公司资料-->
+        <style>
+				#CompanyData input,#CompanyData textarea{width:200px;}
+				</style>
+        <div id="CompanyData" class="easyui-panel" data-options="title:'公司资料',fieldset:true,cls:'mt20',fitWidth:true">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;">公司地址：</th>
+                        <td><input type="text" class="ipt" /></td>
+                    </tr>
+                    <tr>
+                        <th>公司邮箱：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>营业执照注册号：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>法人姓名：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>法人身份证号：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>注册资本：</th>
+                        <td><input type="text" class="ipt" /></td>
+                    </tr>
+                    <tr>
+                        <th>营业执照有效期：</th>
+                        <td><input type="text" class="ipt" /></td>
+                    </tr>
+                    <tr>
+                        <th style="vertical-align:top;">营业执照经营范围：</th>
+                        <td class="pt5"><textarea  name="remark" class="ipt txt-remark"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--资质图片-->
+        <div class="easyui-panel" data-options="title:'资质图片',fieldset:true,cls:'mt20',fitWidth:true">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;">营业执照：</th>
+                        <td><input type="file" class="easyui-inputfile" /></td>
+                    </tr>
+                    <tr>
+                        <th>组织代码证：</th>
+                        <td><input type="file" class="easyui-inputfile" /></td>
+                    </tr>
+                    <tr>
+                        <th>税务登记证：</th>
+                        <td><input type="file" class="easyui-inputfile" /></td>
+                    </tr>
+                    <tr>
+                        <th>法人身份证：</th>
+                        <td><input type="file" class="easyui-inputfile" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--申请人资料-->
+        <div class="easyui-panel" data-options="title:'申请人资料',fieldset:true,cls:'mt20',fitWidth:true">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;">申请人姓名：</th>
+                        <td><input type="text" class="ipt" /></td>
+                    </tr>
+                    <tr>
+                        <th>固定电话：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>手机号码：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>QQ号码：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>电子邮箱：</th>
+                        <td><input type="text" class="ipt"  /></td>
+                    </tr>
+                    <tr>
+                        <th>申请人身份证号：</th>
+                        <td><input type="text" class="ipt" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="../assets/js/libs/hasmaptool.js"></script> 
+<script>
+
+function parsePage(){
+	
+	
+	$('#toolbar').toolbar({
+		items:[{
+			text:'保存',
+			iconCls:'icon-save',
+			handler:function(){}
+		},'-',
+		{
+			text:'返回',
+			iconCls:'icon-goback',
+			handler:function(){
+				$(this).closeCurrentTab();
+				}
+		}]
+	});
+	
+	$('#levelId').combobox({
+		data:[{value:'',text:'请选择'},{value:'1',text:'VIP1'},{value:'2',text:'VIP2'},{value:'3',text:'VIP3'}],
+		textFiled:'text',
+		valueField:'value',
+		value:'1',
+		width:160
+	});
+	
+	$('#twoNode').combobox({
+		data:[{value:'',text:'请选择'},{value:'FXPT-XJ',text:'西街'},{value:'FXPT-TBFXD',text:'淘宝分销店'},{value:'FXPT-MXQ',text:'麦鞋趣'}],
+		textFiled:'text',
+		valueField:'value',
+		width:160,
+		onChange:function(value){
+			if(value!=""){
+					$('#orderSourceNo').combobox({
+						data:[{value:'FXPT-XJ-XJ',text:'西街'},{value:'FXPT-XJ-JD',text:'西街_京东'},{value:'FXPT-XJ-COO8',text:'西街_COO8'}],
+						textFiled:'text',
+						valueField:'value',
+						multiple:true,
+						width:250
+					});
+					$('#orderSourceNoDiv').show();
+			}
+		}
+	});
+	
+	$('#twoNode').combobox('setValue','FXPT-XJ');
+	$('#orderSourceNo').combobox('setValues','FXPT-XJ-JD,FXPT-XJ-COO8'.split(','));
+	
+}
+
+/***业务js***/
+var bizTypeArr = [];
+var sellerJson = [];
+var hashMapBiz=new HashMap(); 
+var objvalue = {};
+
+
+function checkValue(){
+	var parBizArr = hashMapBiz.values();
+		for(var i = 0 ; i < parBizArr.length ;i++){
+			if($("#bizTypeName_"+parBizArr[i].bizTypeId).val() == "淘宝供销"){
+				$("#bizTypeName_"+parBizArr[i].bizTypeId+"_Error").html("");
+				break;	
+			}
+		   if(parBizArr[i].payType == "" || parBizArr[i].payType == null 
+				   || parBizArr[i].payType == "undefined"){
+		   	$("#bizTypeName_"+parBizArr[i].bizTypeId+"_Error").html("请选择运费设置");
+		   	$("#btn").attr("disabled","disabled");
+		   	break;
+		   }else{
+		   	$("#bizTypeName_"+parBizArr[i].bizTypeId+"_Error").html("");
+		   }
+		}
+		return;
+}
+
+//检查输入数据是否正确
+function checkInput(){
+//分销商名称
+     var sellerName = trim($("#sellerName").val());
+	 if(sellerName ==null || sellerName==""){
+	 	$("#sellerNameError").html("请填写分销商名称");
+	 	$("#btn").attr("disabled","disabled");
+	 	return;
+	 }else{
+		 $("#sellerNameError").html("");
+		 $("#btn").removeAttr("disabled");
+	 }
+}
+
+function trim(str){ //删除左右两端的空格
+	if(str != null && str != 'undefined')
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+
+//支付类型
+function changePayType(bizTypeId,payType){
+var bizTypeId;
+var payType;
+var isSpecial = "";
+var shippingFee = "";
+var specialStartTime ="";
+var specialEndTime = "";
+var jeshippingFee = "";
+var specialShippingFee = "";
+
+  checkInput();
+
+  var parBizArr = hashMapBiz.values();
+	if(payType == "0"){
+		$("#jpaydiv_0_"+bizTypeId).attr("style","display:block;");
+		$("#dpaydiv_1_"+bizTypeId).attr("style","display:none;"); 
+		$("#tpaydiv_2_"+bizTypeId).attr("style","display:none;");
+		
+		$("#j_shippingFee_"+bizTypeId).removeAttr("disabled");
+		$("#j_specialStartTime_"+bizTypeId).removeAttr("disabled");
+		$("#j_specialEndTime_"+bizTypeId).removeAttr("disabled");
+		$("#j_spcshippingFee_"+bizTypeId).removeAttr("disabled");
+		$("#j_isSpecial_"+bizTypeId).removeAttr("disabled");
+		$("#j_jeshippingFee_"+bizTypeId).removeAttr("disabled");
+		
+		for(var i = 0 ; i < parBizArr.length ;i++){
+		    var sid = parBizArr[i].bizTypeId;
+			if(sid == bizTypeId){
+				bizTypeId = $("#bizTypeName_"+bizTypeId).attr("Sid");
+				payType = $("#payMethod_"+payType+"_"+bizTypeId).val();
+				isSpecial = "0";				
+				shippingFee = $("#j_shippingFee_"+bizTypeId).val();				
+				if($("#j_isSpecial_"+bizTypeId).attr("checked")){
+				    isSpecial = "1";
+					specialStartTime = ($("#j_specialStartTime_"+bizTypeId).val() != "")?$("#j_specialStartTime_"+bizTypeId).val():"\"\"";
+					specialEndTime = ($("#j_specialEndTime_"+bizTypeId).val() != "")?$("#j_specialEndTime_"+bizTypeId).val():"\"\"";				
+					specialShippingFee = ($("#j_spcshippingFee_"+bizTypeId).val() != "")?$("#j_spcshippingFee_"+bizTypeId).val():"\"\"";		
+					jeshippingFee = ($("#j_jeshippingFee_"+bizTypeId).val() != "")?$("#j_jeshippingFee_"+bizTypeId).val():"\"\"";
+				}								    
+				objvalue = {"bizTypeId":bizTypeId,"payType":payType,"isSpecial":isSpecial,"shippingFee":shippingFee,"specialStartTime":specialStartTime,"specialEndTime":specialEndTime,"jeshippingFee":jeshippingFee,"specialShippingFee":specialShippingFee};
+				hashMapBiz.remove(bizTypeId);
+				hashMapBiz.put(bizTypeId,objvalue);
+			}
+		}
+	}
+	if(payType == "1"){
+		$("#jpaydiv_0_"+bizTypeId).attr("style","display:none;");
+		$("#dpaydiv_1_"+bizTypeId).attr("style","display:block;"); 
+		$("#tpaydiv_2_"+bizTypeId).attr("style","display:none;");
+		
+		$("#d_shippingFee_"+bizTypeId).removeAttr("disabled");
+		$("#d_specialStartTime_"+bizTypeId).removeAttr("disabled");
+		$("#d_specialEndTime_"+bizTypeId).removeAttr("disabled");
+		$("#d_jeshippingFee_"+bizTypeId).removeAttr("disabled");
+		$("#d_isSpecial_"+bizTypeId).removeAttr("disabled");
+		$("#d_spshippingFee_"+bizTypeId).removeAttr("disabled");
+	
+		for(var i = 0 ; i < parBizArr.length ;i++){
+		    var sid = parBizArr[i].bizTypeId;
+			if(sid == bizTypeId){
+				bizTypeId = $("#bizTypeName_"+bizTypeId).attr("Sid");
+				payType = $("#payMethod_"+payType+"_"+bizTypeId).val();
+				isSpecial = "0";				
+				shippingFee = $("#d_shippingFee_"+bizTypeId).val();				
+				if($("#d_isSpecial_"+bizTypeId).attr("checked")){
+				    isSpecial = "1";
+					specialStartTime = ($("#d_specialStartTime_"+bizTypeId).val() != "")?$("#d_specialStartTime_"+bizTypeId).val():"\"\"";
+					specialEndTime = ($("#d_specialEndTime_"+bizTypeId).val() != "")?$("#d_specialEndTime_"+bizTypeId).val():"\"\"";				
+					jeshippingFee = ($("#d_jeshippingFee_"+bizTypeId).val() != "")?$("#d_jeshippingFee_"+bizTypeId).val():"\"\"";	
+					specialShippingFee = ($("#d_spshippingFee_"+bizTypeId).val() != "")?$("#d_spshippingFee_"+bizTypeId).val():"\"\"";		
+				}
+				objvalue = {"bizTypeId":bizTypeId,"payType":payType,"isSpecial":isSpecial,"shippingFee":shippingFee,"specialStartTime":specialStartTime,"specialEndTime":specialEndTime,"jeshippingFee":jeshippingFee,"specialShippingFee":specialShippingFee};
+				hashMapBiz.remove(bizTypeId);
+				hashMapBiz.put(bizTypeId,objvalue);
+			}
+		}
+	}
+	if(payType == "2"){
+		$("#jpaydiv_0_"+bizTypeId).attr("style","display:none;");
+		$("#dpaydiv_1_"+bizTypeId).attr("style","display:none;"); 
+		$("#tpaydiv_2_"+bizTypeId).attr("style","display:block;");
+		
+		for(var i = 0 ; i < parBizArr.length ;i++){
+		    var sid = parBizArr[i].bizTypeId;
+			if(sid == bizTypeId){
+				bizTypeId = $("#bizTypeName_"+bizTypeId).attr("Sid");
+				payType = $("#payMethod_"+payType+"_"+bizTypeId).val();				
+				objvalue = {"bizTypeId":bizTypeId,"payType":payType,"isSpecial":isSpecial,"shippingFee":shippingFee,"specialStartTime":specialStartTime,"specialEndTime":specialEndTime,"jeshippingFee":jeshippingFee,"specialShippingFee":specialShippingFee};
+				hashMapBiz.remove(bizTypeId);
+				hashMapBiz.put(bizTypeId,objvalue);
+			}
+		}
+	}
+	checkValue();
+	//console.log(hashMapBiz.values());
+}
+
+//业务类型
+function changeBizType(bizTypeId){
+var bizTypeId;
+var payType="";
+var isSpecial = "";
+var shippingFee = "";
+var specialStartTime ="";
+var specialEndTime = "";
+var jeshippingFee = "";
+var specialShippingFee = "";
+
+   	//获得业务类型数组
+	bizTypeArr = document.getElementsByName("bizTypeTL");
+	var curbizType = $("#bizTypeName_"+bizTypeId);
+	  //若选择淘宝供销，则其他不可以选
+		if(curbizType.val() == "淘宝供销"){
+		  if(curbizType.attr("checked")){
+			for(var i = 0 ; i < bizTypeArr.length ;i++){
+				if(bizTypeArr[i].value != "淘宝供销"){
+					bizTypeArr[i].setAttribute("disabled","true");
+					bizTypeArr[i].removeAttribute("checked");
+				}else{
+					checkInput();
+					bizTypeId = bizTypeArr[i].getAttribute("Sid");
+					objvalue = {"bizTypeId":bizTypeId,"payType":"","isSpecial":isSpecial,"shippingFee":shippingFee,"specialStartTime":specialStartTime,"specialEndTime":specialEndTime,"jeshippingFee":jeshippingFee,"specialShippingFee":specialShippingFee};
+					hashMapBiz.remove(bizTypeId);
+					hashMapBiz.put(bizTypeId,objvalue);
+					
+					$("#bizTypeNameError").html("");
+					$("#btn").removeAttr("disabled");
+				}
+			}
+		  }else{
+		    //反选淘宝供销选项时
+		  	for(var i = 0 ; i < bizTypeArr.length ;i++){
+				bizTypeArr[i].removeAttribute("disabled");
+				if(hashMapBiz.containsKey(bizTypeArr[i].getAttribute("Sid"))){
+					hashMapBiz.remove(bizTypeArr[i].getAttribute("Sid"));
+				}
+			}
+			$("#bizTypeNameError").html("请选择业务类型");
+			$("#btn").attr("disabled","disabled");
+		  }
+		}else{
+		  //若选择除淘宝供销其他的任意，则淘宝供销不可选
+		      var allFlag = false;
+		      var index;
+			  for(var i = 0 ; i < bizTypeArr.length ;i++){
+			    if(bizTypeArr[i].value == "淘宝供销"){
+			        index = i;
+			    	break;
+			    }				
+			  }
+			  for(var i = 0 ; i < bizTypeArr.length ;i++){
+			    if(bizTypeArr[i].value != "淘宝供销" && bizTypeArr[i].checked){
+			        allFlag = true;
+			    	break;
+			    }				
+			  }
+			  if(allFlag){
+			  	bizTypeArr[index].setAttribute("disabled","disabled");	
+			  }else{
+			  	bizTypeArr[index].removeAttribute("disabled");
+			  }
+			if(curbizType.attr("checked")){
+				$("#payMethod_0_"+bizTypeId).removeAttr("disabled");	
+				$("#payMethod_1_"+bizTypeId).removeAttr("disabled");	
+				$("#payMethod_2_"+bizTypeId).removeAttr("disabled");			
+			    var spaypeArr = document.getElementsByName("payMethod_"+bizTypeId);
+			    for(var i = 0 ; i < spaypeArr.length ;i++){
+					if(spaypeArr[i].checked && bizTypeId == spaypeArr[i].getAttribute("psid")){
+						payType = spaypeArr[i].value;
+						break;				
+					}else{
+						payType = "";
+					}
+			    }
+			    var fxObj = hashMapBiz.get(bizTypeId);
+			    if(fxObj != null){
+			    	isSpecial = (fxObj.isSpecial != null)? fxObj.isSpecial : "";
+			    	shippingFee = (fxObj.shippingFee != null)?fxObj.shippingFee : "";
+			    	specialStartTime = (fxObj.specialStartTime != null)?fxObj.specialStartTime : "";
+			    	specialEndTime = (fxObj.specialEndTime != null)?fxObj.specialEndTime : "";
+			    	jeshippingFee = (fxObj.jeshippingFee != null)?fxObj.jeshippingFee : "";
+			    	specialShippingFee = (fxObj.specialShippingFee != null)? fxObj.specialShippingFee:"";
+			    }
+				objvalue = {"bizTypeId":bizTypeId,"payType":payType,"isSpecial":isSpecial,"shippingFee":shippingFee,"specialStartTime":specialStartTime,"specialEndTime":specialEndTime,"jeshippingFee":jeshippingFee,"specialShippingFee":specialShippingFee};
+				hashMapBiz.put(bizTypeId,objvalue);
+				checkValue();
+				$("#bizTypeNameError").html("");
+			}else{
+				hashMapBiz.remove(bizTypeId);
+				$("#payMethod_0_"+bizTypeId).attr("disabled","disabled");	
+				$("#payMethod_1_"+bizTypeId).attr("disabled","disabled");	
+				$("#payMethod_2_"+bizTypeId).attr("disabled","disabled");
+				
+				
+				$("#payMethod_0_"+bizTypeId).removeAttr("checked");	
+				$("#payMethod_1_"+bizTypeId).removeAttr("checked");	
+				$("#payMethod_2_"+bizTypeId).removeAttr("checked");
+				
+				$("#j_shippingFee_"+bizTypeId).val("");
+				$("#j_specialStartTime_"+bizTypeId).val("");
+				$("#j_specialEndTime_"+bizTypeId).val("");
+				$("#j_isSpecial_"+bizTypeId).removeAttr("checked");
+				$("#j_spcshippingFee_"+bizTypeId).val("");
+				
+				$("#j_shippingFee_"+bizTypeId).attr("disabled","disabled");
+				$("#j_specialStartTime_"+bizTypeId).attr("disabled","disabled");
+				$("#j_specialEndTime_"+bizTypeId).attr("disabled","disabled");
+				$("#j_isSpecial_"+bizTypeId).attr("disabled","disabled");
+				$("#j_spcshippingFee_"+bizTypeId).attr("disabled","disabled");
+				
+				$("#d_shippingFee_"+bizTypeId).val("");
+				$("#d_specialStartTime_"+bizTypeId).val("");
+				$("#d_specialEndTime_"+bizTypeId).val("");
+				$("#d_jeshippingFee_"+bizTypeId).val("");
+				$("#d_isSpecial_"+bizTypeId).removeAttr("checked");
+				$("#d_spshippingFee_"+bizTypeId).val("");
+				
+				$("#d_shippingFee_"+bizTypeId).attr("disabled","disabled");
+				$("#d_specialStartTime_"+bizTypeId).attr("disabled","disabled");
+				$("#d_specialEndTime_"+bizTypeId).attr("disabled","disabled");
+				$("#d_jeshippingFee_"+bizTypeId).attr("disabled","disabled");
+				$("#d_isSpecial_"+bizTypeId).attr("disabled","disabled");
+				$("#d_spshippingFee_"+bizTypeId).attr("disabled","disabled");
+				
+				if(!allFlag){
+					$("#bizTypeNameError").html("请选择业务类型");
+					$("#btn").attr("disabled","disabled");
+				}
+				
+				$("#bizTypeName_"+bizTypeId+"_Error").html("");
+				
+			}
+		}	
+	//console.log(hashMapBiz.values());
+}
+</script>
+</body>
+</html>

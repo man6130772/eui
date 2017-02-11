@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>保证金冻结管理</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	var toolbar=$('#toolbar').toolbar({
+		items:[{
+			text:'全部',
+			iconCls:'icon-sucai',
+			selected:true,
+			handler:function(){
+				toolbar.toolbar('select',0);
+				tbgrid.datagrid('reload');
+			}
+		},'-',
+		{
+			text:'未冻结',
+			iconCls:'icon-sucai',
+			handler:function(){
+				toolbar.toolbar('select',2);
+				tbgrid.datagrid('reload');
+			}
+		},'-',
+		{
+			text:'已解冻',
+			iconCls:'icon-sucai',
+			handler:function(){
+				toolbar.toolbar('select',4);
+				tbgrid.datagrid('reload');
+			}
+		}]
+	});
+	
+	
+	var tbgrid=$('#tbList').datagrid({
+		data:{"total":1,"rows":[{'id':'1','col1':'西街代销商','col2':'xijie1','col3':'100.00','col4':'100.00','col5':'2013-09-12 13:42:19 ','col6':'--','col7':1,'col8':'--'}]},
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'分销商名称 ',
+					field:'col1',
+					width:150,
+					sortable:true
+				    },
+					{
+					title:'登录帐号',
+					field:'col2',
+					width:100
+					},{
+					title:'冻结金额',
+					field:'col3',
+					width:100,
+					align:'right'
+					},{
+					title:'解冻金额',
+					field:'col4',
+					width:100,
+					align:'right'
+					},{
+					title:'冻结时间',
+					field:'col5',
+					width:100
+					},{
+					title:'到期时间',
+					field:'col6',
+					width:100
+					},{
+					title:'是否已解冻 ',
+					field:'col7',
+					width:80,
+					formatter:function(value,rec,index){
+						return value==1?'已解冻':'';
+					}
+					},{
+					title:'备注',
+					field:'col8',
+					width:100
+					},{
+						title:'操作',
+						field:'opt',
+						width:100,
+						formatter:function(){
+							var str=' ';
+							return str;
+						}
+					}
+		]]
+	});
+	
+	
+}
+
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <div class="easyui-layout" data-options="fit:true">
+        <div data-options="region:'north',border:false">
+            <!--搜索start-->
+            <div data-options="region:'north',border:false" >
+                <div class="search-div">
+                    <form name="searchForm" id="searchForm" action="" method="post" >
+                        <table class="search-tb" >
+                            <col width="80" />
+                            <col/>
+                            <col width="80" />
+                            <col/>
+                            <col width="80" />
+                            <col/>
+                            <col width="80" />
+                            <col/>
+                            <tbody>
+                                <tr>
+                                    <th>分销商名称：</th>
+                                    <td><input class="ipt" /></td>
+                                    <th>登录帐号：</th>
+                                    <td><input class="ipt" /></td>
+                                    <th>冻结时间：</th>
+                                    <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /></td>
+                                    <th>到期时间：</th>
+                                    <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+            <!--搜索end-->
+        </div>
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

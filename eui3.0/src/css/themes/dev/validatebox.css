@@ -1,0 +1,19 @@
+.validatebox-invalid {
+  background-image: url('images/validatebox_warning.png');
+  background-repeat: no-repeat;
+  background-position: right center;
+  /**
+   * Description: Insert css priority sign !important to the border-color and background-color
+   * Author: chen.c1
+   * Date: 2015/10/16
+   * Modify Start
+   */
+  /*
+  border-color: #ffa8a8
+  background-color: #fff3f3
+  */
+  border-color: #ffa8a8 !important;
+  background-color: #fff3f3 !important;
+  /* Modify End */
+  color: #000;
+}

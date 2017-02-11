@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>预存款查询</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+$('#toolbar').toolbar({
+});
+toolSearch({
+	items:[{"text":"分销商名称","name":"key1"},{"text":"登录账号","name":"key2"},{"text":"姓名","name":"key3"},{"text":"手机号码","name":"key4"}],
+	collapsible:false,
+	callback:function(key,name){
+			if(key==""){
+				showInfo('请输入关键字');
+				return;
+			}
+		showInfo(key);
+	}
+});	
+
+
+
+tbgrid = $('#tbList').datagrid({
+				data:{"total":1,"rows":[{'col1':'分销商酷锐','col2':'kr1','col3':'--','col4':'--','col5':'--','col6':'2013-08-21 11:46:13 ','col7':'--','col8':'990,554.50','col9':'0.00','col10':'990,554.50'}]},
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'分销商名称',
+					field:'col1',
+					width:120,
+					sortable:true
+				    },
+					{
+					title:'登录帐号',
+					field:'col2',
+					width:100
+					},{
+					title:'姓名',
+					field:'col3',
+					width:80
+					},{
+					title:'电话',
+					field:'col4',
+					width:80
+					},{
+					title:'邮箱',
+					field:'col5',
+					width:80
+					},{
+					title:'创建日期',
+					field:'col6',
+					width:100
+					},{
+					title:'性别',
+					field:'col7',
+					width:60
+					},{
+					title:'预存款金额',
+					field:'col8',
+					width:80,
+					align:'right'
+					},{
+					title:'冻结金额',
+					field:'col9',
+					width:80,
+					align:'right'
+					},{
+					title:'可用金额',
+					field:'col10',
+					width:80,
+					align:'right'
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:150,
+				formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsView">查看明细</a> | <a href="javascript:;" class="jsRecharge">充值</a> | <a href="javascript:;" class="jsFreeze">冻结</a>';
+						return str;
+					}
+			}
+		]],
+		onLoadSuccess:function(){	
+			$('.jsFreeze').click(function(){
+				ygDialog({
+					width:550,
+					height:400,
+					title:'预存款冻结',
+					href:'toDistributionAccount-freeze.html',
+					buttons:[{
+						text:'确认',
+						handler:function(dialog){
+							save(dialog);
+						}
+					},{
+						text:'取消',
+						handler:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			});
+			
+
+			$('.jsRecharge').click(function(){
+				ygDialog({
+					width:550,
+					height:400,
+					title:'预存款充值',
+					href:'toDistributionAccount-recharge.html',
+					buttons:[{
+						text:'确认',
+						handler:function(dialog){
+							save(dialog);
+						}
+					},{
+						text:'取消',
+						handler:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			});
+			
+			
+			
+			$('.jsView').click(function(){
+				ygDialog({
+					title:'分销商账户明细表',
+					href:'toDistributionAccount-detail.html'
+				});
+				return false;
+			});
+		}
+
+	});
+
+}
+
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+
+</script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+</body>
+</html>

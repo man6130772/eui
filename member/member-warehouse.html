@@ -1,0 +1,205 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>分配仓库</title>
+
+</head>
+<body>
+<style>
+.warehouse-list span {
+	width:120px;
+	height:22px;
+	display:inline-block;
+	overflow:hidden;
+	margin-right:5px;
+	text-overflow:ellipsis;
+}
+</style>
+<div class="easyui-layout" data-options="fit:true">
+    <div data-options="region:'north',border:false" class="toolbar-region">
+        <div id="toolbarWarehouse">
+        </div>
+    </div>
+    <div data-options="region:'center',border:false">
+        <form id="myForm">
+            <div class="pd10">
+                <table class="form-tb">
+                    <tbody>
+                        <tr>
+                            <th style="width:80px;">分销商名称：</th>
+                            <td>分销商酷锐 </td>
+                        </tr>
+                        <tr>
+                            <th class="vtop">所属仓库：</th>
+                            <td><p class="warehouse-list">
+                                    <span> <input type="checkbox" value="01130423161269" name="warehouseStr"> oywd</span>
+                                    <span> <input type="checkbox" value="01130409708075" name="warehouseStr"> 胡贤琳测试商家仓库</span>
+                                    <span> <input type="checkbox" value="01130524505311" name="warehouseStr"> test123</span>
+                                    <span> <input type="checkbox" value="01130606791465" name="warehouseStr"> 商家心凉仓</span>
+                                    <span> <input type="checkbox" value="01130626305691" name="warehouseStr"> 测试商家_阿波罗仓</span>
+                                    <span> <input type="checkbox" value="01130626110972" name="warehouseStr"> 政委委员_网络公司仓</span>
+                                    <span> <input type="checkbox" value="01130626545017" name="warehouseStr"> 测试心凉商家仓库</span>
+                                    <span> <input type="checkbox" value="01130716728661" name="warehouseStr"> 商家_冯jj仓库</span>
+                                    <span> <input type="checkbox" value="01130729819352" name="warehouseStr"> 商家_心凉仓11</span>
+                                    <span> <input type="checkbox" value="01130821572588" name="warehouseStr"> 商家_燕子测试专用仓库</span>
+                                    <span> <input type="checkbox" value="01131011042760" name="warehouseStr"> 商家_李明测试仓</span>
+                                    <span> <input type="checkbox" value="01130520925172" name="warehouseStr"> 香港A仓库</span>
+                                    <span> <input type="checkbox" value="012011061084002" name="warehouseStr"> 深圳仓库</span>
+                                    <span> <input type="checkbox" value="012011062744637" name="warehouseStr"> 深圳商派仓库</span>
+                                    <span> <input type="checkbox" value="01130425036676" name="warehouseStr"> 商家测试仓库</span>
+                                    <span> <input type="checkbox" value="01120730095138" name="warehouseStr"> 北京仓库</span>
+                                    <span> <input type="checkbox" value="01111012068697" name="warehouseStr"> 北京商派仓库</span>
+                                    <span> <input type="checkbox" value="012011061057115" name="warehouseStr"> 上海仓库</span>
+                                    <span> <input type="checkbox" value="012011061089936" name="warehouseStr"> 上海商派仓库</span>
+                                    <span> <input type="checkbox" value="012011061020229" name="warehouseStr"> 上海体育商城</span>
+                                    <span> <input type="checkbox" value="01111123145805" name="warehouseStr"> 地区_华南仓库</span>
+                                    <span> <input type="checkbox" value="012011061058597" name="warehouseStr"> 地区_广州仓库</span>
+                                    <span> <input type="checkbox" value="01130530589065" name="warehouseStr"> 地区_香港仓库</span>
+                                    <span> <input type="checkbox" value="01110921970866" name="warehouseStr"> 淘宝仓库</span>
+                                    <span> <input type="checkbox" value="01120629800007" name="warehouseStr"> 线下服装店</span>
+                                    <span> <input type="checkbox" value="01121224497227" name="warehouseStr"> 缺货临时仓</span>
+                                    <span> <input type="checkbox" value="01130530336862" name="warehouseStr"> 伊娜仓库</span>
+                                    <span> <input type="checkbox" value="01121121539293" name="warehouseStr"> 商家_福建杰米熊仓</span>
+                                    <span> <input type="checkbox" value="01120619340348" name="warehouseStr"> 商家_上海马克华菲仓</span>
+                                    <span> <input type="checkbox" value="01121122986268" name="warehouseStr"> 商家_上海波司登仓</span>
+                                    <span> <input type="checkbox" value="01120709353248" name="warehouseStr"> 商家_广州汇美服装仓</span>
+                                    <span> <input type="checkbox" value="01120412831153" name="warehouseStr"> 商家_深圳子牧服饰仓</span>
+                                    <span> <input type="checkbox" value="01121122229693" name="warehouseStr"> 商家_广州策恩仓</span>
+                                    <span> <input type="checkbox" value="01121126056513" name="warehouseStr"> 商家_北京童壹库仓</span>
+                                    <span> <input type="checkbox" value="01120730212637" name="warehouseStr"> 商家_广东骆驼服饰仓</span>
+                                    <span> <input type="checkbox" value="01121205743684" name="warehouseStr"> 商家_上海回力仓</span>
+                                    <span> <input type="checkbox" value="01120807437012" name="warehouseStr"> 商家_厦门皇家宝贝仓</span>
+                                    <span> <input type="checkbox" value="01120807306071" name="warehouseStr"> 商家_杭州一一丫丫仓</span>
+                                    <span> <input type="checkbox" value="01120808897616" name="warehouseStr"> 商家_杭州亦谷服饰仓</span>
+                                    <span> <input type="checkbox" value="01120817779338" name="warehouseStr"> 商家_杭州锦欧时装仓</span>
+                                    <span> <input type="checkbox" value="01120817025263" name="warehouseStr"> 商家_富贵鸟仓</span>
+                                    <span> <input type="checkbox" value="01121212935368" name="warehouseStr"> 商家_深圳维多利亚仓</span>
+                                    <span> <input type="checkbox" value="01120827154864" name="warehouseStr"> 商家_厦门零度尚品仓</span>
+                                    <span> <input type="checkbox" value="01120829876155" name="warehouseStr"> 商家_广州英爱贸易仓</span>
+                                    <span> <input type="checkbox" value="01120906591264" name="warehouseStr"> 商家_泉州海泰客仓</span>
+                                    <span> <input type="checkbox" value="01120917137164" name="warehouseStr"> 商家_广州华恩仓</span>
+                                    <span> <input type="checkbox" value="01120917043733" name="warehouseStr"> 商家_成都咔摩乔仓</span>
+                                    <span> <input type="checkbox" value="01120412499640" name="warehouseStr"> 商家_兴泰季候风仓</span>
+                                    <span> <input type="checkbox" value="01121009050031" name="warehouseStr"> 商家_厦门瑞行体育仓</span>
+                                    <span> <input type="checkbox" value="01121011626889" name="warehouseStr"> 商家_广东骆驼服饰2仓</span>
+                                    <span> <input type="checkbox" value="01121011251937" name="warehouseStr"> 商家_富信天伦天仓</span>
+                                    <span> <input type="checkbox" value="01121015861287" name="warehouseStr"> 商家_宁波太平鸟仓</span>
+                                    <span> <input type="checkbox" value="01121016657516" name="warehouseStr"> 商家_广州炜信服饰仓</span>
+                                    <span> <input type="checkbox" value="01121024827528" name="warehouseStr"> 商家_佛山卡迪仓</span>
+                                    <span> <input type="checkbox" value="01121030402716" name="warehouseStr"> 商家_广州大洋洲仓</span>
+                                    <span> <input type="checkbox" value="01121214523100" name="warehouseStr"> 商家_义乌杉杉服饰仓</span>
+                                    <span> <input type="checkbox" value="01121106136322" name="warehouseStr"> 商家_浙江卓诗尼仓</span>
+                                    <span> <input type="checkbox" value="01121108296670" name="warehouseStr"> 商家_浙江银泰仓</span>
+                                    <span> <input type="checkbox" value="01121113841673" name="warehouseStr"> 商家_上海山石久渡仓</span>
+                                    <span> <input type="checkbox" value="01121113667475" name="warehouseStr"> 商家_上海李宁仓</span>
+                                    <span> <input type="checkbox" value="01121217144474" name="warehouseStr"> 商家_深圳维多利亚2仓</span>
+                                    <span> <input type="checkbox" value="01121114879110" name="warehouseStr"> 商家_深圳多多服饰仓</span>
+                                    <span> <input type="checkbox" value="01121219239303" name="warehouseStr"> 商家_深圳伊丝艾拉仓</span>
+                                    <span> <input type="checkbox" value="01121219311081" name="warehouseStr"> 商家_深圳欧尼迩仓</span>
+                                    <span> <input type="checkbox" value="01121219636480" name="warehouseStr"> 商家_开封乐一通仓</span>
+                                    <span> <input type="checkbox" value="01121219571489" name="warehouseStr"> 商家_浙江太子龙服饰仓</span>
+                                    <span> <input type="checkbox" value="01121220237413" name="warehouseStr"> 商家_广州鳄鱼恤</span>
+                                    <span> <input type="checkbox" value="01121221102091" name="warehouseStr"> 商家_中山英杰皮具仓</span>
+                                    <span> <input type="checkbox" value="01121224309790" name="warehouseStr"> 商家_浙江红蜻蜓仓</span>
+                                    <span> <input type="checkbox" value="01121227015576" name="warehouseStr"> 商家_深圳喜士登仓</span>
+                                    <span> <input type="checkbox" value="01121228509842" name="warehouseStr"> 商家_广州哥弟贸易仓</span>
+                                    <span> <input type="checkbox" value="01130104603966" name="warehouseStr"> 商家_南昌良良仓</span>
+                                    <span> <input type="checkbox" value="01130108423466" name="warehouseStr"> 商家_北京探路者户外仓</span>
+                                    <span> <input type="checkbox" value="01130110625451" name="warehouseStr"> 商家_北京康尔健野仓</span>
+                                    <span> <input type="checkbox" value="01130115328856" name="warehouseStr"> 商家_上海钧钛仓</span>
+                                    <span> <input type="checkbox" value="01130116577072" name="warehouseStr"> 商家_深圳慧简服饰仓</span>
+                                    <span> <input type="checkbox" value="01130121069338" name="warehouseStr"> 商家_广州天创仓</span>
+                                    <span> <input type="checkbox" value="01130122999871" name="warehouseStr"> 商家_宁波和合杰斯卡仓</span>
+                                    <span> <input type="checkbox" value="01130125552525" name="warehouseStr"> 商家_上海鲁普塔服饰仓</span>
+                                    <span> <input type="checkbox" value="01130128157996" name="warehouseStr"> 商家_深圳蜜丝罗妮仓</span>
+                                    <span> <input type="checkbox" value="01130128064470" name="warehouseStr"> 商家_深圳淑女屋仓</span>
+                                    <span> <input type="checkbox" value="01130219760159" name="warehouseStr"> 商家_深圳爱特爱服饰仓</span>
+                                    <span> <input type="checkbox" value="01130227054441" name="warehouseStr"> 商家_深圳三川丰服饰仓</span>
+                                    <span> <input type="checkbox" value="01130228646679" name="warehouseStr"> 商家_上海睿盈贸易仓</span>
+                                    <span> <input type="checkbox" value="01130326994176" name="warehouseStr"> 商家_利信达商业仓</span>
+                                    <span> <input type="checkbox" value="01130326320197" name="warehouseStr"> 商家_上海天盈贸易仓</span>
+                                    <span> <input type="checkbox" value="01130326481802" name="warehouseStr"> 商家_上海纽恩特仓</span>
+                                    <span> <input type="checkbox" value="01130328463765" name="warehouseStr"> 商家_浙江报喜鸟服饰仓</span>
+                                    <span> <input type="checkbox" value="01130328278434" name="warehouseStr"> 商家_上海明缎贸易仓</span>
+                                    <span> <input type="checkbox" value="01130329082359" name="warehouseStr"> 商家_浙江龙迪士仓</span>
+                                    <span> <input type="checkbox" value="01130408989519" name="warehouseStr"> 商家_杭州秋水伊人仓</span>
+                                    <span> <input type="checkbox" value="01130409309571" name="warehouseStr"> 商家_广州邦易仓</span>
+                                    <span> <input type="checkbox" value="01130409442129" name="warehouseStr"> 商家_广州卡美多贸易仓</span>
+                                    <span> <input type="checkbox" value="01130415427066" name="warehouseStr"> 商家_深圳子牧服饰2仓</span>
+                                    <span> <input type="checkbox" value="01130415704567" name="warehouseStr"> 商家_上海纳薇服装仓</span>
+                                    <span> <input type="checkbox" value="01130418096277" name="warehouseStr"> 商家_依文服饰仓</span>
+                                    <span> <input type="checkbox" value="01130419846634" name="warehouseStr"> 商家_深圳南梦服饰仓</span>
+                                    <span> <input type="checkbox" value="01130422751282" name="warehouseStr"> 商家_江阴浦天服装仓</span>
+                                    <span> <input type="checkbox" value="01130424747283" name="warehouseStr"> 商家_浙江意森服饰仓</span>
+                                    <span> <input type="checkbox" value="01130425070472" name="warehouseStr"> 商家_泉州适凯商贸仓</span>
+                                    <span> <input type="checkbox" value="01130428989645" name="warehouseStr"> 商家_厦门零贝贝商贸仓</span>
+                                    <span> <input type="checkbox" value="01130428192770" name="warehouseStr"> 商家_深圳叶子服装仓</span>
+                                    <span> <input type="checkbox" value="01130508076486" name="warehouseStr"> 商家_东莞衣讯服饰仓</span>
+                                    <span> <input type="checkbox" value="01130508381861" name="warehouseStr"> 商家_深圳银座服饰仓</span>
+                                    <span> <input type="checkbox" value="01130508355115" name="warehouseStr"> 商家_天津源铭兆仓</span>
+                                    <span> <input type="checkbox" value="01130508930019" name="warehouseStr"> 商家_北京鄂尔多斯仓</span>
+                                    <span> <input type="checkbox" value="01130510726695" name="warehouseStr"> 商家_上海昱购服饰仓</span>
+                                    <span> <input type="checkbox" value="01130515154562" name="warehouseStr"> 商家_上海帕菲帕贝仓</span>
+                                    <span> <input type="checkbox" value="01130516087212" name="warehouseStr"> 商家_厦门三舒法绅仓</span>
+                                    <span> <input type="checkbox" value="01130517125358" name="warehouseStr"> 商家_石狮高尔普服饰仓</span>
+                                    <span> <input type="checkbox" value="01130517870270" name="warehouseStr"> 商家_深圳玛花玛莎仓</span>
+                                    <span> <input type="checkbox" value="01130523554929" name="warehouseStr"> 商家_南京泉德怡仓</span>
+                                    <span> <input type="checkbox" value="01130523210616" name="warehouseStr"> 商家_北京圣雷兰仓</span>
+                                    <span> <input type="checkbox" value="01130523005881" name="warehouseStr"> 商家_上海诺帝卡服饰仓</span>
+                                    <span> <input type="checkbox" value="01130524640578" name="warehouseStr"> 商家_深圳宝丝露服装仓</span>
+                                    <span> <input type="checkbox" value="01130524498227" name="warehouseStr"> 商家_北京夏朗多吉仓</span>
+                                    <span> <input type="checkbox" value="01130527659625" name="warehouseStr"> 商家_深圳粉蓝衣橱服饰仓</span>
+                                    <span> <input type="checkbox" value="01130527892508" name="warehouseStr"> 商家_深圳汇洁服饰仓</span>
+                                    <span> <input type="checkbox" value="01130527331972" name="warehouseStr"> 商家_广州凹凸服饰仓</span>
+                                    <span> <input type="checkbox" value="01130527736415" name="warehouseStr"> 商家_中国特步仓</span>
+                                    <span> <input type="checkbox" value="01130528409656" name="warehouseStr"> 商家_卡莎布兰卡服饰仓</span>
+                                    <span> <input type="checkbox" value="01130530696214" name="warehouseStr"> 商家_上海森沃佛服饰仓</span>
+                                    <span> <input type="checkbox" value="01130604768636" name="warehouseStr"> 商家_南昌良良服饰仓</span>
+                                    <span> <input type="checkbox" value="01130605906338" name="warehouseStr"> 商家_上海森岛贸易仓</span>
+                                    <span> <input type="checkbox" value="01130608403139" name="warehouseStr"> 商家_浙江华鼎品牌管理仓</span>
+                                    <span> <input type="checkbox" value="01130608979958" name="warehouseStr"> 商家_杭州尚形天品电子商务仓</span>
+                                    <span> <input type="checkbox" value="01130618539844" name="warehouseStr"> 商家_深圳虎威制衣广州仓</span>
+                                    <span> <input type="checkbox" value="01130619472967" name="warehouseStr"> 商家_厦门宝锦贸易仓</span>
+                                    <span> <input type="checkbox" value="01130619115126" name="warehouseStr"> 商家_广州腾弈服饰仓</span>
+                                    <span> <input type="checkbox" value="01130620284260" name="warehouseStr"> 商家_东莞市兔仔唛服饰仓</span>
+                                    <span> <input type="checkbox" value="01130620493079" name="warehouseStr"> 商家_晋江市汤姆斯鞋业仓</span>
+                                    <span> <input type="checkbox" value="01130620811390" name="warehouseStr"> 商家_杭州傲爵贸易仓</span>
+                                    <span> <input type="checkbox" value="01130627559908" name="warehouseStr"> 商家_广州苹果鞋服仓</span>
+                                    <span> <input type="checkbox" value="01130627151029" name="warehouseStr"> 商家_南京泉德怡贸易仓</span>
+                                    <span> <input type="checkbox" value="01130702106223" name="warehouseStr"> 商家_东莞市祥富彩印仓</span>
+                                    <span> <input type="checkbox" value="01130305452506" name="warehouseStr"> 测试_测试商家仓</span>
+                                    <span> <input type="checkbox" value="012011061089823" name="warehouseStr"> 北京旧仓库已停用</span>
+                                </p></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+$(function(){
+$('#toolbarWarehouse').toolbar();
+toolSearch({
+	target:$('#toolbarWarehouse'),
+	items:[{"text":"仓库名称","name":"key1"}],
+	collapsible:false,
+	callback:function(key,name){
+			if(key==""){
+				showInfo('请输入关键字');
+				return;
+			}
+		showInfo(key);
+	}
+});	
+
+$('.warehouse-list span').mousedown(function(){
+	 $(this).find('input').click();
+	 return false;
+});
+
+});
+</script>
+</body>
+</html>

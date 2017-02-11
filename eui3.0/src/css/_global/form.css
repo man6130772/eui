@@ -1,0 +1,16 @@
+/* form.css */
+.form-tb th, .detail-tb th { font-weight: normal; text-align: right; height: 20px; }
+.form-tb td { padding: 3px 0 3px 2px; }
+.form-tb td.left { text-align: left; }
+.form-tb th { padding: 3px 0; }
+.form-tb-short .ipt { width: 100px; }
+.ipt, .short-ipt { font: 12px/22px ''; height: 22px; padding: 0 4px; overflow: hidden; border: 1px solid #999; background-color: #FFFFFF; }
+.short-ipt { width: 80px; }
+.ipt-focus { border-color: #4B6E69; background-color: #F0F4F4; }
+.form-tb .ipt { width: 150px; }
+.form-tb th em { margin-right: 3px; }
+.form-tb .easyui-combobox { width: 160px; }
+.ipt-search-box { position: relative; }
+.ipt-search-box .ipt { width: 134px; padding-right: 20px; }
+.ipt-search-box i { display: block; background: url('images/search.png') no-repeat; width: 16px; height: 16px; position: absolute; right: 3px; top: 4px; cursor: pointer; }
+.timer-span { position: absolute; right: 5px; top: 40px; font-family: Arial, Helvetica, sans-serif; }

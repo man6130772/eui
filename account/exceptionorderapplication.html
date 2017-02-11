@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>预存款扣款调整申请</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	
+	$('#toolbar').toolbar({
+		items:[{
+			text:'新增异常订单',
+			iconCls:'icon-add',
+			handler:function(){
+				add();
+			}
+		}]
+	});
+	
+	toolSearch({
+		collapsible:false,
+		items:[{'text':'订单号','name':'key1'},{'text':'分销商','name':'key2'},{'text':'下单时间>=','name':'key2'}]
+	});
+	
+	$('#myTabs').createTabs({
+		tabs:[{
+			title:'未处理异常订单列表',
+			href:'exceptionorderapplication-0.html'
+		},{
+			title:'已处理异常订单列表',
+			href:'exceptionorderapplication-1.html',
+			lazyload:true
+		}]
+		
+	});
+	
+
+	
+}
+
+
+
+function add(){
+	ygDialog({
+	 title:'新增异常订单',
+	 href:'exceptionorderapplication-add.html',
+	 width:500,
+	 height:380,
+	 buttons:[{
+		text:'确认',
+		handler:function(dialog){
+			save(dialog);
+		}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});
+
+}
+
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false" class="pd10">
+    <div id="myTabs">
+    </div>
+</div>
+</body>
+</html>

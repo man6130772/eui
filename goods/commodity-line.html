@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>产品线列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	
+$('#toolbar').toolbar({
+	items:[{
+		text:'添加产品线',
+		iconCls:'icon-add',
+		handler:function(){
+			add();
+		}
+	}]
+});
+
+toolSearch();
+
+tbgrid = $('#tbList').datagrid({
+				data:{"total":2,"rows":[{'id':'1','col1':'淘宝测试','col2':'全部 - 全部 - 童装 - 全部 <br/>全部 - 全部 - 女鞋 - 全部 ','col3':0,'col4':'淘宝供销','col5':6,'col6':'超级管理员','col7':'2013-9-3 11:45:19'},{'id':'2','col1':'线上小额批发_产品线','col2':'全部 - 全部 - 童装 - 全部<br/>全部 - 全部 - 童装 - 全部 ','col3':0,'col4':'线上小额批发','col5':6,'col6':'超级管理员','col7':'2013-9-3 11:45:19'}]},
+				singleSelect:true,
+				offset: { width: -250, height: -150},
+		    columns:[[
+					{
+					title:'产品线名称',
+					field:'col1',
+					width:100,
+					sortable:true
+				    },
+					{
+					title:'产品线筛选条件',
+					field:'col2',
+					width:200
+					},{
+					title:'新上架商品',
+					field:'col3',
+					width:60
+					},{
+					title:'支持分销业务类型',
+					field:'col4',
+					width:80
+					},{
+					title:'商品数量',
+					field:'col5',
+					width:60
+					},{
+					title:'创建人',
+					field:'col6',
+					width:60
+					},{
+					title:'创建时间',
+					field:'col7',
+					width:100,
+					minWidth:150
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:200,
+				minWidth:250,
+				formatter:function(value,rec,index){
+						var str='<div class="opt-div"><a href="javascript:;" class="jsGoods">商品目录</a> | <a href="javascript:;" class="jsTiaoJia">批量调价</a> | <a href="javascript:;" class="jsEdit">编辑</a> | <a href="javascript:;" class="jsDel">删除</a></div>';
+						return str;
+					}
+			}
+		]],
+		frozenColumns : [[]],
+		onLoadSuccess:function(){
+			
+			//商品目录
+			$('.jsGoods').click(function(){
+				parent.addBlankTab({
+					title:'添加产品线商品',
+					href:'goods/commodity-line-addCommodity.html',
+					refreshed:true
+				});
+			});
+			
+			//批量调价
+			$('.jsTiaoJia').click(function(){
+				top.addBlankTab({
+					title:'批量调价',
+					href:'goods/commodity-line-addCommodity.html',
+					refreshed:true
+				});
+			});
+			
+			
+			//编辑
+			$('.jsEdit').click(function(){
+				ygDialog({
+					width:850,
+					height:450,
+					title:'产品线编辑',
+					href:'commodity-line-edit.html',
+					buttons:[{
+					text:'保存',
+					handler:function(dialog){
+						save(dialog);
+					}
+						},{
+						text:'取消',
+						handler:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+				return false;
+			});
+			
+			//删除
+			$('.jsDel').click(function(){
+				del(0);
+				return false;
+			});
+			
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){
+		showSuc('删除成功！'+id);
+		tbgrid.datagrid('deleteRow',0);
+		tbgrid.datagrid('reload');
+	});
+}
+
+
+function add(){
+	top.addBlankTab({
+		title:'添加产品线',
+		href:'goods/commdity-line-add.html'
+		});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="70" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>产品线名称：</th>
+                                <td><input class="ipt" /></td>
+                                <th>创建人：</th>
+                                <td><input class="ipt" /></td>
+                                <th>创建时间：</th>
+                                <td><input class="ipt easyui-datebox w80" /> - <input class="ipt easyui-datebox w80" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>预存款冻结</title>
+</head>
+<body>
+
+<div class="pd10">
+    <div class="easyui-panel" data-options="title:'基本信息',fieldset:true,collapsible:false,cls:'mt10'">
+        <p class="pl15">
+            预存款余额：<em class="cred">￥990554.5</em>
+            <span class="ml10">可用余额：<em class="cred">￥990554.5</em></span>
+            <span class="ml10">冻结总金额：<em class="cred">￥0</em></span>
+        </p>
+    </div>
+    <div class="easyui-panel" data-options="title:'充值信息',fieldset:true,collapsible:false,cls:'mt20'">
+        <form id="myForm" method="post" novalidate>
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th><em class="cred">*</em> 摘要类型：</th>
+                        <td><select class="easyui-combobox" name="summaryType" id="summaryType" data-options="panelHeight:150,width:160">
+                                <option value="1" name="1">线下充值</option>
+                                <option value="2" name="2">线上充值</option>
+                                <option value="3" name="3">下单支付</option>
+                                <option value="4" name="4">售后退款</option>
+                                <option value="5" name="5">运费补偿</option>
+                                <option value="6" name="6">保证金冻结</option>
+                                <option value="7" name="7">普通冻结</option>
+                                <option value="8" name="8">扣款</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th style="width:100px;"><em class="cred">*</em> 冻结金额：</th>
+                        <td><input type="text"  class="ipt easyui-validatebox w80" validType="currency" data-options="required:true,missingMessage:'冻结金额不能为空！'" /> 元 </td>
+                    </tr>
+                    <tr>
+                        <th>到期时间：</th>
+                        <td><input type="text"  class="ipt easyui-datebox" /></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">备注：</th>
+                        <td><textarea class="ipt txt-remark"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

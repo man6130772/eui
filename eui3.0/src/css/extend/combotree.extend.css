@@ -1,0 +1,10 @@
+/* search box */
+.combo-panel .panel-search {
+	padding: 4px;
+}
+.combo-panel .panel-search i {
+	top: 7px;
+}
+.combotree-search {
+	background-color: #f2f2f2; 
+}

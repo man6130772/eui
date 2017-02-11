@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>产品线编辑</title>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'center',border:false">
+    <div class="pd10">
+        <form id="myForm" method="post">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:120px;">产品线名称：</th>
+                        <td><input  type="text" class="ipt easyui-validatebox w280" data-options="required:true,missingMessage:'产品线名称不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">产品线说明：</th>
+                        <td><textarea class="ipt txt-remark w280" name="remark"></textarea></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">业务类型：</th>
+                        <td><div class="easyui-tabs" data-options="plain:true,width:700">
+                                <div data-options="title:'平台代发',cls:'pd10'">
+                                    <table class="form-tb">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width:100px;">是否启动：</th>
+                                                <td><input class="favorable_style radioEnable" type="radio" name="enable-1" value="Y"> 是 <input class="favorable_style radioEnable ml10" type="radio" checked="" name="enable-1" value="N"> 否 </td>
+                                            </tr>
+                                            <tr>
+                                                <th>折扣基准价：</th>
+                                                <td><input  type="text" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'折扣基准价不能为空！'" /></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="vtop">折扣设置：</th>
+                                                <td> VIP1：<input id="" class="ipt dicountInput" type="text" name="discount-1-1" style="width:40px;"> &nbsp;&nbsp;VIP2：<input id="" class="ipt dicountInput" type="text" name="discount-1-1" style="width:40px;"> &nbsp;&nbsp;VIP3：<input id="" class="ipt dicountInput" type="text" name="discount-1-1" style="width:40px;"> &nbsp;&nbsp; VIP4：<input id="" class="ipt dicountInput" type="text" name="discount-1-1" style="width:40px;">
+                                                    <p class="mt5 cgray">
+                                                        （填写0至10之间的数字，比如填写9，则代表9折）
+                                                    </p></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div data-options="title:'线上小额批发'">
+                                </div>
+                                <div data-options="title:'线上大额批发'">
+                                </div>
+                                <div data-options="title:'地面分销'">
+                                </div>
+                                <div data-options="title:'淘宝供销'">
+                                </div>
+                            </div></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><input id="updateAll" class="favorable_style" type="checkbox" name="updateAll" value="0"> 更新所有商品   如果勾选，该产品线下所有商品都按该处设置的折扣结算，即便之前有单独调整的商品。 </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

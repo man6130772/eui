@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加返点</title>
+</head>
+
+<body>
+<form id="myForm">
+    <div class="pd10">
+        <div class="easyui-panel" data-options="title:'返点设置',fieldset:true,fitWidth:true,cls:'mt20'" >
+            <table class="form-tb">
+                <tbody>
+                <col width="120" />
+                <tr>
+                    <th>返点名称：</th>
+                    <td><input type="text"   class="ipt easyui-validatebox" data-options="required:true,missingMessage:'返点名称不能为空！'" style="width:300px;" /></td>
+                </tr>
+                <tr>
+                    <th>返点类型：</th>
+                    <td><label><input type="radio" /> 正常返点</label>
+                        <label><input type="radio" class="ml10" /> 特殊返点</label></td>
+                </tr>
+                <tr>
+                    <th>返点周期：</th>
+                    <td><label><input type="radio" name="rad" /> 周</label>
+                        <label><input type="radio" class="ml10" name="rad" /> 月</label>
+                        <label><input type="radio" class="ml10" name="rad" /> 季 </label>
+                        <label><input type="radio" class="ml10" name="rad" /> 年 </label>
+                        <span class="ml10">开始日期：<input type="text" class="ipt easyui-datebox" data-options="dateFmt:'yyyy-MM-dd HH:mm:ss'" style="width:140px;" /></span></td>
+                </tr>
+                <tr>
+                    <th>参与对象：</th>
+                    <td><label><input type="radio" name="rad3" /> 全部分销商</label>
+                        <label><input type="radio"  name="rad3" class="ml10" /> 指定分销商等级</label>
+                        <label><input type="radio"  name="rad3" class="ml10" /> 指定分销商</label></td>
+                </tr>
+                <tr>
+                    <th>返点规则：</th>
+                    <td><label><input type="radio" name="rad4" /> 按销售额的百分比返点</label>
+                        <label><input type="radio"  name="rad4" class="ml10" /> 直接指定返点金额</label></td>
+                </tr>
+                <tr>
+                    <th>是否启用：</th>
+                    <td><label><input type="radio" name="rad5" /> 是</label>
+                        <label><input type="radio"  name="rad5" class="ml10" /> 否</label></td>
+                </tr>
+                <tr>
+                    <th class="vtop">返点说明：</th>
+                    <td>
+                    	<textarea name="" class="ipt" style="width:250px;height:80px;"></textarea>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</form>
+</body>
+</html>

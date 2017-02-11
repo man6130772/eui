@@ -1,0 +1,18 @@
+/* scrollmenu.css */
+.scrollmenu { -moz-user-select: none; -webkit-user-select: none; -ms-user-select: none; user-select: none; }
+.scrollmenu-arrow { display: none; position: absolute; top: 40%; z-index: 5; width:10px; height: 20px; cursor: pointer; }
+.scrollmenu-arrow-l { left: 0; }
+.scrollmenu-arrow-r { right: 0; }
+.scrollmenu-arrow:after { position: absolute; top: 0; right: 0; z-index: 6; width: 0; height: 0; border: 6px solid transparent; content: " "; }
+.scrollmenu-arrow-l:after { border-right-color: #800; }
+.scrollmenu-arrow-r:after { border-left-color: #800; }
+.scrollmenu-arrow-l:hover:after { border-right-color: #D85200; }
+.scrollmenu-arrow-r:hover:after { border-left-color: #D85200; }
+.menuBar .scrollmenu-content > * { float: none !important; display: inline-block; vertical-align: middle; }
+.menuBar .scrollmenu-arrow { top:30%; }
+.menuBar .scrollmenu-arrow-l { left: 2px; }
+.menuBar .scrollmenu-arrow-r { right: 2px; }
+.menuBar .scrollmenu-arrow-l:after { border-right-color: #888; }
+.menuBar .scrollmenu-arrow-r:after { border-left-color: #888; }
+.menuBar .scrollmenu-arrow-l:hover:after { border-right-color: #555; }
+.menuBar .scrollmenu-arrow-r:hover:after { border-left-color: #555; }

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>售后退款</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){	
+
+$('#myTabs').createTabs(
+	{
+		tabs:[{
+		title:'等待审核',
+		href:'returndebt-0.html',
+		lazyload:true
+	},{
+		title:'待确认支付',
+		href:' ',
+		lazyload:true
+	},{
+		title:'全部',
+		href:' ',
+		lazyload:true
+	},{
+		title:'已作废',
+		href:' ',
+		lazyload:true
+	}],
+	selected:1
+});
+
+	
+}
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div  data-options="region:'center',border:false" class="pd10">
+    <div id="myTabs">
+    </div>
+</div>
+</body>
+</html>

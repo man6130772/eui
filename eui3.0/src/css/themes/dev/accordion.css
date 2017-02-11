@@ -1,0 +1,53 @@
+.accordion {
+  overflow: hidden;
+  border-width: 1px;
+  border-style: solid;
+}
+.accordion .accordion-header {
+  border-width: 0 0 1px;
+  cursor: pointer;
+}
+.accordion .accordion-body {
+  border-width: 0 0 1px;
+}
+.accordion-noborder {
+  border-width: 0;
+}
+.accordion-noborder .accordion-header {
+  border-width: 0 0 1px;
+}
+.accordion-noborder .accordion-body {
+  border-width: 0 0 1px;
+}
+.accordion-collapse {
+  background: url('images/accordion_arrows.png') no-repeat 0 0;
+}
+.accordion-expand {
+  background: url('images/accordion_arrows.png') no-repeat -16px 0;
+}
+.accordion {
+  background: #ffffff;
+  border-color: #D3D3D3;
+}
+.accordion .accordion-header {
+  background: -webkit-linear-gradient(top,#EBEBEB 0,#DCDAD8 100%);
+  background: -moz-linear-gradient(top,#EBEBEB 0,#DCDAD8 100%);
+  background: -o-linear-gradient(top,#EBEBEB 0,#DCDAD8 100%);
+  background: linear-gradient(to bottom,#EBEBEB 0,#DCDAD8 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#EBEBEB,endColorstr=#DCDAD8,GradientType=0);
+}
+.accordion .accordion-header-selected {
+  background: -webkit-linear-gradient(top,#68948E 0,#4A6D68 100%);
+  background: -moz-linear-gradient(top,#68948E 0,#4A6D68 100%);
+  background: -o-linear-gradient(top,#68948E 0,#4A6D68 100%);
+  background: linear-gradient(to bottom,#68948E 0,#4A6D68 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#68948E,endColorstr=#4A6D68,GradientType=0);
+}
+.accordion .accordion-header-selected .panel-title {
+  color: #fff;
+}
+.accordion .accordion-body {
+    background-color: #F7F7F7;
+}

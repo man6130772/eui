@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>未完成跟进</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script src="../assets/js/modules/purchase/incomplete-follow.js"></script>
+</head>
+
+<body class="easyui-layout">
+<div id="loading"></div>
+<div data-options="region:'north',border:false" class="toolbar-region">
+  <div id="toolbar">
+  </div>
+</div>
+<div id="main" data-options="region:'center',border:false">
+  <div class="easyui-layout" data-options="fit:true" id="subLayout">
+    <!--搜索-->
+    <div data-options="region:'north',border:false" >
+      <div class="search-div" style="height:95px;">
+        <form name="searchForm" id="searchForm" action="" method="post" >
+          <table class="search-tb">
+            <col width="80" />
+            <col  />
+            <col width="80" />
+            <col  />
+            <col width="80" />
+            <col  />
+            <col width="80" />
+            <col />
+            <tbody>
+              <tr>
+                <th>采购类型：</th>
+                <td><select id="purchaseType" name="">
+                  </select></td>
+                <th>供应商：</th>
+                <td><select id="supplier" name="">
+                  </select></td>
+                <th>仓库：</th>
+                <td><select id="wareHouse" name="">
+                  </select></td>
+                <th>采购日期：</th>
+                <td><input  type="text" name=""  id="startTime" />
+                  至
+                  <input type="text" name=""  id="endTime" /></td>
+              </tr>
+              <tr>
+                <th>商品名称：</th>
+                <td><input class="ipt" type="text" name="" value="" /></td>
+                <th>品牌名称：</th>
+                <td><input class="ipt" type="text" name="" value="" /></td>
+                <th>分类名称：</th>
+                <td><input class="ipt" type="text" name="" value="" /></td>
+                <th>采购员：</th>
+                <td><input class="ipt" type="text" name="" style="width:180px;" /></td>
+              </tr>
+              <tr>
+                <th>自定义：</th>
+                <td colspan="3"><select id="custom" name="">
+                  </select>
+                  <input class="ipt" type="text" name="" value="" style="width:230px;" /></td>
+                <th>商品款号：</th>
+                <td><input class="ipt" type="text" name="" value="" /></td>
+                <td colspan="2"><a class="easyui-linkbutton fr" id="SearchBtn">搜索</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </form>
+      </div>
+    </div>
+    <!--列表-->
+    <div data-options="region:'center',border:false">
+      <table id="tbList">
+      </table>
+    </div>
+  </div>
+</div>
+</body>
+</html>

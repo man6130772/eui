@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加联系人</title>
+</head>
+<body>
+
+<form id="myForm">
+    <div class="pd10">
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:80px;">分销商名称：</th>
+                    <td><input type="text"  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'分销商名称不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th>姓名：</th>
+                    <td><input type="text" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'姓名不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th>类型：</th>
+                    <td><select id="comboxType" class="easyui-combobox" data-options="width:160">
+                    <option value="1">技术</option>
+                    <option value="2">客服</option>
+                    <option value="3">运营</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <th>手机号码：</th>
+                    <td><input type="text"   class="ipt easyui-validatebox"  data-options="required:true,missingMessage:'手机号不能为空！',validType:['mobile']" /></td>
+                </tr>
+                <tr>
+                    <th>电话号码：</th>
+                    <td><input type="text"  class="ipt" /></td>
+                </tr>
+                <tr>
+                    <th>传真号码：</th>
+                    <td><input type="text"  class="ipt" /></td>
+                </tr>
+                <tr>
+                    <th>电子邮箱：</th>
+                    <td><input type="text"  class="ipt" /></td>
+                </tr>
+                <tr>
+                    <th class="vtop">地址：</th>
+                    <td >
+                    <p id="area">
+                    </p>
+                        <p class="mt5">
+                            <input type="text"  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'详细地址不能为空！',tipPosition:'top'" style="width:340px;" />
+                        </p></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+
+<script>
+$(function(){
+	$('#area').district({
+	level:3
+	});
+});
+</script>
+</body>
+</html>

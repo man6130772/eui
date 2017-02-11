@@ -1,0 +1,147 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>预存款充值</title>
+</head>
+<body>
+
+<div class="pd10">
+    <div class="easyui-panel" data-options="title:'基本信息',fieldset:true,collapsible:false,cls:'mt10'">
+        <p class="pl15">
+            预存款余额：<em class="cred">￥990554.5</em>
+            <span class="ml10">可用余额：<em class="cred">￥990554.5</em></span>
+            <span class="ml10"> 冻结总金额：<em class="cred">￥0</em></span>
+        </p>
+    </div>
+    <div class="easyui-panel" data-options="title:'充值信息',fieldset:true,collapsible:false,cls:'mt20'">
+        <form id="myForm" method="post" novalidate>
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:100px;"><em class="cred">*</em> 充值金额：</th>
+                        <td><input type="text"  class="ipt easyui-validatebox w80" validType="currency" data-options="required:true,missingMessage:'充值金额不能为空！'" /> 元
+                            <span class="ml10 cred">(如果是扣款，填写的充值金额请为负数)</span></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 收款账户：</th>
+                        <td><select class="easyui-combobox" name="bid" id="bid"  data-options="panelHeight:150,width:300">
+                                <option value="" name="0">请选择</option>
+                                <option value="8a80946a3f97dd8b013f981272cd0003">111111111111(111111111111111111111111)</option>
+                                <option value="8a809e3538e1a5b60138e1b93bdd0161">D-005(D-005)</option>
+                                <option value="8a809e353aaa3fb5013aaa431aee0003">J-003(J-003)</option>
+                                <option value="8a809e353b02f49e013b20f346b30262">J-004(J-004)</option>
+                                <option value="8a809e3539e2fe240139e3099238019d">J-005(J-005)</option>
+                                <option value="23422222sfdsf234234234234">QQ-优购官方旗舰店(11111111111)</option>
+                                <option value="8a809ec83bb14dcf013bb150c5c40001">red(11111)</option>
+                                <option value="8a80941041b4e6310141b5ecf6800003">test003(003521)</option>
+                                <option value="8a80946a3d3850a9013d389bea800001">V+(V+建设银行)</option>
+                                <option value="8a809e35397aadbe01398b07b0cf04f4">一号店(ssss)</option>
+                                <option value="8a809ec83ceb0416013ceb4fd569001e">亚马逊(yamaxun@yougou.com)</option>
+                                <option value="8a809ec83cf64c0e013cf68e23bd0044">亚马逊(yamazon@yougou.com)</option>
+                                <option value="8a8094783fd1973f013fd1ac2de30002">亦可(FXPT-YIKE-YIKE)</option>
+                                <option value="8a809ec83922c6d2013922e930560001">京东(aaaaaaaa)</option>
+                                <option value="8a809ec83bd00ef3013bd0291f600005">京东-优购运动旗舰店(jd_yougougyou)</option>
+                                <option value="8a809ec83ef32721013ef3f791c0004d">京东-优购鞋靴旗舰店(55552525255)</option>
+                                <option value="8a809ec8392338a0013923b822610059">京东-朗玟官方旗舰店(11111111111)</option>
+                                <option value="8a809ec83ef32721013ef3f70d10004c">京东-百丽集团童装童鞋旗舰店(55552525)</option>
+                                <option value="8a809ec83bd12fb2013bd14135ba0003">京东006(006)</option>
+                                <option value="8a80945843227003014322a552f10006">优购名品(111)</option>
+                                <option value="8a80945843227003014322a6b4e20007">优购客服单(11)</option>
+                                <option value="8a80945843227003014322a2cf910003">优购时尚商城(1111111111)</option>
+                                <option value="8a80945843227003014322a371400004">优购特卖商城(11)</option>
+                                <option value="2c94813030cfba5d0130d08be2cc079f">优购科技有限公司(4000024109200180788)</option>
+                                <option value="8a8094583fcbdc26013fcbff708d0002">凡客特卖(1111111111111111111111111)</option>
+                                <option value="8a809ec83b176272013b17dc0279011a">分销(fengxiao@yougou.com)</option>
+                                <option value="8a80945839f6a7440139f6e29e640001">分销商收款账户(fenxiaoshang@yougou.com)</option>
+                                <option value="8a809e35395746f70139574ce49705c3">库巴测试(5555555)</option>
+                                <option value="8a809e3538e1a5b60138e1b6a0050151">当当(123@123)</option>
+                                <option value="8a809ec83d154e9f013d1561ed67034b">当当_优购运动官方旗舰店(D-008)</option>
+                                <option value="8a809ec838e209510138e52ebc62009a">当当_朗玟服饰旗舰店(D-004)</option>
+                                <option value="8a809ec838e209510138e52f31ed009b">当当_迈薇服饰旗舰店(11111111111)</option>
+                                <option value="8a80946a3f40b48f013f421d28860003">当当优购店(WBPT-DD-YGXX)</option>
+                                <option value="8a8094583fe19779013fe19d7e720002">微信商城-百丽女鞋(222222222)</option>
+                                <option value="8a8094583fe19779013fe19e31570003">微信商城-百丽服饰(333333333)</option>
+                                <option value="8a809ec83fd1a62d013fd1b4b1720003">我是分销商7(ZDLFJKDOI332323)</option>
+                                <option value="8a8094584322700301400f3ae1460011">手机WAP(232)</option>
+                                <option value="8a8094584322700301400f3a84800010">手机优购名品-Android(55)</option>
+                                <option value="8a8094584322700301400f3a227b000f">手机优购名品-iOS(111)</option>
+                                <option value="8a8094584322700301400f38c972000c">手机优购奥莱-Android(4)</option>
+                                <option value="8a8094584322700301400f3863c3000b">手机优购奥莱-iOS(3)</option>
+                                <option value="8a8094584322700301400f38019e000a">手机优购时尚商城-Android(2)</option>
+                                <option value="8a8094584322700301400f3790270009">手机优购时尚商城-iOS(1)</option>
+                                <option value="8a809ec84110201e0141102f42c80004">手机支付宝钱包(YG-SJZFBQB-SJZFBQB)</option>
+                                <option value="8a8094584322700301400f3990d9000e">手机整点降价-Android(6)</option>
+                                <option value="8a8094584322700301400f393684000d">手机整点降价-iOS(5)</option>
+                                <option value="8a8a8a1835cf90300135d1852fae076a">拍拍e百丽官方旗舰店  (855000226)</option>
+                                <option value="8a8a8a1835cf90300135d1864ebd0774">拍拍TOP运动专营店(855000147)</option>
+                                <option value="8a8a8a1835cf90300135d185bc880772">拍拍百丽包包专卖店(855002493)</option>
+                                <option value="2c9481303213195e0132134049b70003">支付宝(111111111111111)</option>
+                                <option value="8a8a8a18363383950136349caff6229a">支付宝17(bldssh17@belle.com.cn)</option>
+                                <option value="8a80945843227003014322a4b44f0005">整点降价(555555)</option>
+                                <option value="8a8a8a1836b9a1b80136c947326835f6">淘宝C店-lavu服饰直营店(easytoto@163.com)</option>
+                                <option value="8a8a8a18369ef32c0136a02170200f73">淘宝C店-踏步流云(tonyxie888@163.com)</option>
+                                <option value="8a809ec83d8b9cb4013d8c02729100aa">淘宝e百丽旗舰店(2)</option>
+                                <option value="2c948131345eade401345fdb78fa0dfe">淘宝e百丽旗舰店(bldssh2@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fde4ded0e16">淘宝innet官方旗舰店(bldssh5@belle.com.cn)</option>
+                                <option value="2c94813134b454520134b63760960216">淘宝lavu服饰旗舰店(bldssh16@belle.com.cn)</option>
+                                <option value="8a809ec8413025a10141446f193f001e">淘宝miffy米菲旗舰店(TB-TBZXD-MIFFY)</option>
+                                <option value="2c94813134879fdb01348937981f1af5">淘宝mywell服饰官方旗舰店(bldssh6@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fdd8ae90e0f">淘宝top运动名品专营店(bldssh4@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fdf90a50e27">淘宝他她官方旗舰店(bldssh7@belle.com.cn)</option>
+                                <option value="8a80946a3dc3aed8013dc44b1e980002">淘宝他她官方旗舰店(淘宝他她官方旗舰店)</option>
+                                <option value="8a8a8a1835a63d380135a8f5df8f0bfd">淘宝优购官方旗舰店(yggfqjd@yougou.com)</option>
+                                <option value="2c948131345eade401345fe09df00e2a">淘宝天美意官方旗舰店(bldssh8@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fe27ff40e42">淘宝妙丽官方旗舰店(bldssh14@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fe3c2e70ec9">淘宝森达官方旗舰店(bldssh18@belle.com.cn)</option>
+                                <option value="8a8a8a183566cf88013566e4d3d70010">淘宝法雷诺服饰旗舰店(bldssh9@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fdcf81e0e08">淘宝百丽官方旗舰店(bldssh3@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fe21a390e34">淘宝百丽集团男鞋专营店(bldssh13@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fe44e610f31">淘宝百丽集团童鞋专营店(bldssh12@belle.com.cn)</option>
+                                <option value="8a8a8a18357b293f01357fa0867010a0">淘宝百思图官方旗舰店(bldssh1@belle.com.cn)</option>
+                                <option value="8a8a8a1835ee770d0135f5205c9f30a1">淘宝百草滩(zhengzx01@163.com)</option>
+                                <option value="2c948131345eade401345fe382420ec8">淘宝美丽宝官方旗舰店(bldssh15@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fe1b5970e32">淘宝芩萌运动专营店(bldssh11@belle.com.cn)</option>
+                                <option value="8a8a8a1836f57c1e0136f69b8bbb031a">淘宝芩萌运动专营店-分销(bldssh11@belle.com.cn)</option>
+                                <option value="2c948131345eade401345fe1437d0e2f">淘宝锐捷运动专营店(bldssh10@belle.com.cn)</option>
+                                <option value="2c94813134879fdb013487b31d2100b1">淘秀商城(bldssh@belle.com.cn)</option>
+                                <option value="8a809ec83f9e35f4013f9e803b6d0060">爱淘(5555252555)</option>
+                                <option value="8a8094f13fcc9aec013fccca55f40003">百丽旗舰(rksn@163.com)</option>
+                                <option value="2c94813134d6092a0134d67c32a60445">百丽电子商务（上海）有限公司(1001170309006918710)</option>
+                                <option value="8a80941639d2017f0139d21b846f0004">移动商城(2222222222222222)</option>
+                                <option value="8a809ec84057bf21014057c7605a0004">西街分销(FXPT-XJ-FX)</option>
+                                <option value="8a809ec84057bf21014057e98b0a000c">连云港文石(FXPT-LYGWS-LYGWS)</option>
+                                <option value="8a809ec83b3a7111013b3a75c8f60005">银泰(546545546546)</option>
+                                <option value="8a80946a3e8212aa013e826e512f0003">集团采购(FXPT-JTCG-JTCG)</option>
+                                <option value="8a80945843227003014322a00c1c0002">香港直发(5555555)</option>
+                                <option value="8a809ec83fc76b7f013fc7f3a6570050">香港直发_支付宝(5555555522222)</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 摘要类型：</th>
+                        <td><select class="easyui-combobox" name="summaryType" id="summaryType" data-options="panelHeight:150,width:160">
+                                <option value="1" name="1">线下充值</option>
+                                <option value="2" name="2">线上充值</option>
+                                <option value="3" name="3">下单支付</option>
+                                <option value="4" name="4">售后退款</option>
+                                <option value="5" name="5">运费补偿</option>
+                                <option value="6" name="6">保证金冻结</option>
+                                <option value="7" name="7">普通冻结</option>
+                                <option value="8" name="8">扣款</option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em> 交易单号：</th>
+                        <td><input type="text"  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'交易单号不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">备注：</th>
+                        <td><textarea class="ipt txt-remark"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>

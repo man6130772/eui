@@ -1,0 +1,17 @@
+/* header.css */
+.header { height: 68px; overflow: hidden; background: url("../img/bg-header.png") scroll repeat-x 0 -20px; }
+.header .wrapper { width: 98%; height: inherit; margin: 0 auto; position: relative; }
+.header .logo { float: left; position: absolute; top: 5px; z-index: 2; width: auto; height: 56px; line-height: 56px; padding-left: 90px; background: url("../img/logo.png") scroll no-repeat 0 center; }
+.header .logo h1 { margin: 0; color: #1F433D; font-size: 3em; font-weight: normal; font-family: "Microsoft Yahei"; }
+.header .logo.retail-logo { left: 6px; width: 168px; background-image: url("../img/logo-retail.png"); }
+.header .logo.retail-logo h1 { display: none; }
+.header .flag-pro { position: absolute; top: 0; left: 200px; z-index: 2; width: 48px; height: 60px; background: url("../img/flag-pro-header.png") no-repeat; }
+.header .flag-train { position: absolute; top: 0; left: 200px; z-index: 2; width: 48px; height: 60px; background: url("../img/flag-train-header.png") no-repeat; }
+.header .nav { float: right; position: relative; z-index: 3; text-align: right; }
+.header .nav .system { height: 24px; line-height: 24px; margin-top: 5px; color: #5B5550; }
+.header .nav .system span { display: inline-block; }
+.header .nav .system .service { margin: 0 15px; padding-left: 24px; background: url("../img/icon-kf.png") scroll no-repeat 0 0; }
+.header .nav .system .logout { padding-left: 24px; background: url("../img/icon-logout.png") scroll no-repeat 0 0; }
+.header .nav .subSys { line-height: 36px; font-size: 16px; font-family: "Microsoft Yahei"; }
+.header .nav .subSys a { color: #1F433D; margin-left: 20px; }
+.header .nav .subSys a.active { color: #9D5503; }

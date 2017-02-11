@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>会员联系人列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+
+function parsePage(){
+$('#toolbar').toolbar({
+	items:[{
+		text:'添加联系人',
+		iconCls:'icon-add',
+		handler:function(){
+			add();
+		}
+	},'-',{
+		text:'返回',
+		iconCls:'icon-goback',
+		handler:function(){
+			$(this).closeCurrentTab();
+		}
+	}]
+});
+
+$('select').combobox({
+	width:160
+});
+
+var jsonData={"total":1,"rows":[{"id":1,"col1":"分销商酷锐","col2":"何伟昌","col3":"技术","col4":"18665986374","col5":"--","col6":"--","col7":"--","col8":"北京北京市火星管理区科技大厦"}]};
+tbgrid = $('#tbList').datagrid({
+				data:jsonData,
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'分销商名称',
+					field:'col1',
+					width:80,
+					sortable:true
+				    },
+					{
+					title:'姓名',
+					field:'col2',
+					width:80
+					},{
+					title:'类型',
+					field:'col3',
+					width:80
+					},{
+					title:'手机号码',
+					field:'col4',
+					width:60
+					},{
+					title:'电话号码',
+					field:'col5',
+					width:60
+					},{
+					title:'传真号码',
+					field:'col6',
+					width:60
+					},{
+					title:'电子邮箱',
+					field:'col7',
+					width:100
+					},{
+					title:'地址',
+					field:'col8',
+					width:150,
+					formatter:function(value,rec,index){
+						return '<span title='+value+'>'+value+'</span>';
+					}
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:200,
+				formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsEdit">编辑</a> | <a data-id='+rec.id+' href="javascript:;" class="jsDel">删除</a>';
+						return str;
+					}
+			}
+		]],
+		onLoadSuccess:function(){
+			
+			//删除
+			$('.jsDel').click(function(){
+				var id=$(this).attr('data-id');
+				del(id);
+			});
+			
+			//编辑
+			$('.jsEdit').click(function(){
+				ygDialog({
+					width:550,
+					height:420,
+					title:'编辑联系人',
+					href:'../member/member-contact-add.html',
+					buttons:[{
+						text:'确认',
+						handler:function(dialog){
+							save(dialog);
+						}
+					},{
+						text:'取消',
+						handler:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			});
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){
+		showSuc('删除成功！'+id);
+		var rowIndex = tbgrid.datagrid('getRowIndex');
+		tbgrid.datagrid('deleteRow',rowIndex);
+		tbgrid.datagrid('reload');
+	});
+}
+
+
+function add(){
+	ygDialog({
+		width:550,
+		height:420,
+		title:'添加联系人',
+		href:'../member/member-contact-add.html',
+		buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+			text:'取消',
+			handler:function(dialog){
+				dialog.close();
+			}
+		}]
+	});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+
+
+
+</script>
+</head>
+
+<body class="easyui-layout">
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>优惠券列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid=null;
+function parsePage(){
+tbgrid=$('#tbList').datagrid({
+				data:{"total":120,"rows":[{'id':'1','col2':'全场可用','col3':'99','col4':'优惠券','col5':'9999','col6':'2013-10-29 14:00:00','col7':'2013-12-28 14:00:00','col8':1},{'id':'2','col2':'可以使用无限次的优惠券','col3':'109','col4':'礼品卡','col5':'100','col6':'2013-10-29 14:00:00','col7':'2013-12-28 14:00:00','col8':1}]},
+				singleSelect:false,
+		    columns:[[
+					{
+					title:'请选择',
+					field:'col1',
+					width:80,
+					checkbox : true
+				  },
+					{
+					title:'优惠方案',
+					field:'col2',
+					width:150
+					},{
+					title:'面额',
+					field:'col3',
+					width:80
+					},{
+					title:'类型',
+					field:'col4',
+					width:80
+					},{
+					title:'限发数量',
+					field:'col5',
+					width:80
+					},{
+					title:'发放开始时间',
+					field:'col6',
+					width:120
+					},{
+					title:'发放结束时间',
+					field:'col7',
+					width:120
+					},{
+					title:'状态',
+					field:'col8',
+					width:100,
+					formatter:function(value,rec,index){
+						var str="活动中";
+						switch(value){
+							case 0:
+							str="已终止";
+							break;
+						}
+						return str;
+					}
+					}
+		]]
+
+	});
+	
+
+}
+
+function save(dialog){
+	var rows=tbgrid.datagrid('getChecked');
+	$.each(rows,function(i,v){
+		if(!$('#coupon_'+v.id,parent.$('#couponList'))[0]){
+			var str='<li id="coupon_'+v.id+'"><input type="text" readonly value="'+v.col2+'" name="giftCouponName"  class="ipt w280" /> <select class="easyui-combobox" data-options="width:40" name="giftCouponCount"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option></select> <a class="easyui-linkbutton jsDelCoupon" data-options="plain:true,iconCls:\'icon-del\'"></a></li>';
+			parent.$('#couponList ul').append(str);
+		}
+	});
+	$.parser.parse(parent.$('#couponList'));
+	dialog.close();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" >
+    <div class="search-div">
+        <form name="searchForm" id="searchForm" action="" method="post" >
+            <table class="search-tb" >
+                <col width="80" />
+                <col/>
+                <col width="80" />
+                <col/>
+                <col width="80" />
+                <col/>
+                <col width="80" />
+                <col/>
+                <tbody>
+                    <tr>
+                        <th>优惠券方案：</th>
+                        <td><input type="text" class="ipt" /></td>
+                        <th>类别：</th>
+                        <td><select id="type" name="type" class="easyui-combobox">
+                                <option value="1">优惠券</option>
+                                <option value="5">礼品卡</option>
+                            </select></td>
+                        <th>发放时间：</th>
+                        <td><input class="ipt easyui-datebox" /> - <input class="ipt easyui-datebox" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<!--搜索end--> 
+<!--列表-->
+<div data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+</body>
+</html>

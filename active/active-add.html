@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加活动</title>
+<style>
+.cpnlst ul li {
+	margin-top:5px;
+}
+</style>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+function parsePage(){
+	$('#toolbar').toolbar({
+		items: [{ 
+		text: '保存',  
+		iconCls: 'icon-save',  
+		handler: function(){
+		 save();
+		}
+		}] 
+	});
+}
+
+function save(){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+		}
+	});
+	myform.submit();
+}
+
+
+$(function(){
+	$('#selectCoupon').click(function(){
+		
+		ygDialog({
+			title:'选择优惠券',
+			isFrame:true,
+			href:'getCoupon.html',
+			width:1000,
+			height:450,
+			buttons:[{
+				text:'确认',
+				handler:'save'
+				
+			},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+					}
+				}]
+		});
+		
+	});
+	
+	
+	$('#selectGift').click(function(){
+		dgSelector({
+			title:'选择赠品',
+			isFrame:true,
+			href:'getGift.html',
+			width:800,
+			height:450,
+			fn:function(data){
+				$('input[name=giftCouponName]').val(data.col3);
+			}
+		});
+	});
+	
+});
+
+$('.jsDelCoupon').live('click',function(){
+	$(this).parent().remove();
+});
+</script>
+</head>
+
+<body class="easyui-layout">
+<form id="myForm">
+    <div data-options="region:'north',border:false" class="toolbar-region">
+        <div id="toolbar">
+        </div>
+    </div>
+    <div data-options="region:'center',border:false">
+        <div class="pd10">
+            <div class="easyui-panel" data-options="title:'活动设置',plain:true,fitWidth:true,cls:'mt20'" >
+                <table class="form-tb">
+                    <tbody>
+                    <col width="120" />
+                    <tr>
+                        <th>活动名称：</th>
+                        <td><input type="text"   class="ipt easyui-validatebox" data-options="required:true,missingMessage:'活动名称不能为空！'" style="width:300px;" /></td>
+                    </tr>
+                    <tr>
+                        <th>添加时间：</th>
+                        <td><input type="text" class="ipt easyui-datebox" data-options="dateFmt:'yyyy-MM-dd HH:mm:ss'" style="width:140px;" /> - <input type="text" class="ipt easyui-datebox" data-options="dateFmt:'yyyy-MM-dd HH:mm:ss'" style="width:140px;" /></td>
+                    </tr>
+                    <tr>
+                        <th>最低订单金额：</th>
+                        <td><input type="text" class="ipt easyui-validatebox w60" data-options="required:true,missingMessage:'最低订单金额不能为空！'" /> 元</td>
+                    </tr>
+                    <tr>
+                        <th>购买限制：</th>
+                        <td> 每个商品最高购买数量 <input type="text" maxlength="5" size="5" value="0" name="maxPerProduct" id="maxPerProduct" class="ipt w40"> &nbsp;&nbsp;&nbsp;
+                            
+                            活动商品最高购买数量 <input type="text" maxlength="5" size="5" value="0" name="maxPerCart" id="maxPerCart" class="ipt w40"> <font class="cred">(提示：输入数字0表示不限制)</font></td>
+                    </tr>
+                    <tr>
+                        <th>支持优惠券：</th>
+                        <td><label> <input type="checkbox" class="join_object" value="1" name="isSupportCoupons"> 支持使用优惠券</label></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!--活动规则设置-->
+            <div class="easyui-panel" data-options="title:'活动规则设置',plain:true,fitWidth:true,cls:'mt20'" >
+                <table class="form-tb">
+                    <tbody>
+                    <col width="120" />
+                    <tr>
+                        <th class="vtop">活动规则：</th>
+                        <td ><p>
+                                满 <input class="ipt" style="width:60px" id="minRuleAmount_1" name="minRuleAmount" value="" type="text"> 元，
+                                减 <input class="ipt" style="width:60px" id="decreaseAmount_1" name="decreaseAmount" value="" type="text"> 元
+                            </p>
+                            <p class="mt5">
+                                满 <input class="ipt" style="width:60px" id="minRuleAmount_2" name="minRuleAmount" value="" type="text"> 元，
+                                减 <input class="ipt" style="width:60px" id="decreaseAmount_2" name="decreaseAmount" value="" type="text"> 元
+                            </p>
+                            <p class="mt5">
+                                满 <input class="ipt" style="width:60px" id="minRuleAmount_2" name="minRuleAmount" value="" type="text"> 元，
+                                减 <input class="ipt" style="width:60px" id="decreaseAmount_2" name="decreaseAmount" value="" type="text"> 元
+                            </p></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop" style="padding-top:10px;">活动赠品：</th>
+                        <td><div class="clearfix">
+                                <div class="fl w100">
+                                    <a class="easyui-linkbutton fl mt5" id="selectCoupon">选择优惠券</a>
+                                </div>
+                                <div class="fl ml20 cpnlst" id="couponList">
+                                    <ul>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="clearfix mt10">
+                                <div class="fl w100">
+                                    <a class="easyui-linkbutton fl mt5" id="selectGift">选择赠品</a>
+                                </div>
+                                <div class="fl ml20 cpnlst">
+                                    <ul>
+                                        <li> <input type="text" readonly  name="giftCouponName"   class="ipt w280">
+                                            <select class="easyui-combobox" data-options="width:40" name="giftCouponCount">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                            <a class="easyui-linkbutton" data-options="plain:true,iconCls:'icon-del'"></a> </li>
+                                    </ul>
+                                </div>
+                            </div></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <!--活动设置及说明-->
+            <div class="easyui-panel" data-options="title:'活动设置及说明',plain:true,fitWidth:true,cls:'mt20'" >
+                <table class="form-tb">
+                    <tbody>
+                    <col width="120" />
+                    <tr>
+                        <th>活动参与对象：</th>
+                        <td ><label><input name="memberType" value="2c94811e30cf9f5a0130cfa6c7800001" checked="" style="margin-right:5px;" type="checkbox">普通会员</label>
+                            <label class="ml10"><input name="memberType" value="2c94813131281aad013128b3d2491943" checked="" type="checkbox">VIP会员</label>
+                            <label  class="ml10"><input name="memberType" value="2c94813131db7f0a0131dba6f2c70541" checked="" type="checkbox">SVIP会员</label></td>
+                    </tr>
+                    <tr>
+                        <th>是否打促销标：</th>
+                        <td><label> <input type="checkbox" class="join_object" checked="" value="1" name="isMakeMark"> 为活动商品打标</label></td>
+                    </tr>
+                    <tr>
+                        <th>参与商品：</th>
+                        <td><label id="commodityType_0"><input name="commodityType" value="0" class="join_object" type="radio"> 全站促销</label>
+                            <label id="commodityType_1" class="ml10"><input name="commodityType" value="1" class="join_object" type="radio"> 按品类促销</label>
+                            <label id="commodityType_2" class="ml10"><input name="commodityType" value="2" class="join_object" type="radio"> 按品牌促销</label>
+                            <label id="commodityType_3" class="ml10"><input name="commodityType" value="3" class="join_object" type="radio"> 按品牌品类促销</label>
+                            <label id="commodityType_4" class="ml10"><input name="commodityType" value="4" class="join_object" type="radio"> 多品促销</label></td>
+                    </tr>
+                    <tr>
+                        <th class="vtop">活动说明：</th>
+                        <td style="padding-top:5px;"><textarea id="activeStatement" class="ipt"  maxlength="300" style="width:320px;height:100px;" name="activeStatement"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

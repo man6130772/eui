@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>编辑会员业务类型</title>
+</head>
+<body>
+
+<div class="pd10">
+    <form id="myForm" method="post" novalidate>
+        <table class="form-tb">
+            <tbody>
+                <tr>
+                    <th style="width:120px;">业务类型名称：</th>
+                    <td><input type="text"  value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'业务类型名称不能为空！'" /></td>
+                </tr>
+                <tr>
+                    <th>金额最低限制：</th>
+                    <td>不低于 <input id="minOrderAmount" class="ipt" type="text" maxlength="12" size="12" value="0" name="minOrderAmount" style="width:110px;" /> 元 </td>
+                </tr>
+                <tr>
+                    <th class="vtop">收货地址：</th>
+                    <td class="pt5"><p>
+                            <input id="defaultLevel_no" type="radio" checked="true" value="0" name="defaultLevel"> 不限制
+                            <span class="cgray ml10"> 分销商能添加新的收货信息或修改收货信息</span>
+                        </p>
+                        <p>
+                            <input id="defaultLevel_yes" type="radio" disabled="disabled" value="1" name="defaultLevel"> 限制
+                             <span class="cgray ml10">分销商不能添加新的收货信息或修改收货信息,须在优购后台设置好</span>
+                        </p></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</body>
+</html>

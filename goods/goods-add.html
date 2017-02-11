@@ -1,0 +1,476 @@
+<!DOCTYPE HTML>
+<html style="min-width:1024px;">
+<head>
+<meta charset="utf-8">
+<title>添加货品</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var colorTrArray=new Array();//颜色数组行
+var sizeTrArray=new Array(); //尺码数组行
+
+Array.prototype.remove = function(b) {
+var a = this.indexOf(b);
+if (a >= 0) {
+this.splice(a, 1);
+return true;
+}
+return false;
+}; 
+
+
+function parsePage(){
+$('#toolbar').toolbar({
+	items: [{ 
+	text: '保存',  
+	iconCls: 'icon-save',  
+	handler: function(){
+	 save();
+	}
+	}] 
+});
+
+$('#cat,#type').combobox({
+	url: '../json/goods/goods-pcat.json',
+	width:160,
+	valueField:'id',  
+	textField:'text',
+	method:'get',
+	editable:false
+});
+
+$('#brand').combobox({
+	url: '../json/goods/combox-brand.json',
+	width:160,
+	valueField:'id',  
+	textField:'text',
+	method:'get',
+	editable:false
+});
+
+$('#uploadGoodsImgPanel').panel({
+	title:'图片上传',
+	width:350,
+	height:365
+});
+
+$('#uploadGoodsImgPanelToolBar').toolbar({
+	items:[{  
+		text: '上传图片',  
+		iconCls: 'icon-upload',  
+		handler: function(){
+		  showSuc('弹窗上传图片控件！');
+		}
+}]
+});
+
+
+$("#sizePropList input:checkbox").click(function(){
+	selectSize($(this));
+})
+
+
+$("#colorPropList input:checkbox").click(function(){
+	selectColor($(this));
+})
+
+
+//尺码全选
+$("#chkallSize").click(function(){
+	sizeTrArray=[];
+	var _that=$(this);
+	$("#sizePropList input:checkbox").not("#chkallSize").each(function(index, element) {
+		$(this).attr("checked",_that.is(":checked"));
+		selectSize($(this));
+	});
+});
+
+
+
+//颜色全选
+$("#chkallColor").click(function(){
+	colorTrArray=[];
+	$(".propColorTable tbody").empty();
+	var _that=$(this);
+	$("#colorPropList input:checkbox").not("#chkallColor").each(function(index, element) {
+		$(this).attr("checked",_that.is(":checked"));
+		selectColor($(this));
+	});
+})
+
+}
+
+
+//选择颜色
+function selectColor(obj)
+{
+	var _chked=obj.attr("checked");
+	var _chkLen=$("#colorPropList .propList_item input:checked").length;
+	var _colorVal=obj.next().css("background-color");
+	var _colorName=obj.nextAll(".labelName").html();
+
+	if(_chked)
+	{
+		obj.parent().addClass("curr");
+		colorTrArray.push(_colorVal+":"+_colorName);
+	}
+	else
+	{
+		obj.parent().removeClass("curr");
+		colorTrArray.remove(_colorVal+":"+_colorName);
+	}
+
+	if(_chkLen>0)
+		$("#propColorTable").show();
+	else
+		$("#propColorTable").hide();
+		
+		createColorTable();
+		createSizeTable();
+}
+
+
+//建立颜色属性表格
+function createColorTable()
+{
+	$("#propColorTable tbody").empty();
+	for(var i=0;i<colorTrArray.length;i++)
+	{
+			var color=colorTrArray[i];
+			var colorVal=color.split(':')[0];
+			var colorName=color.split(':')[1];
+			var fileInput="fp-"+i;
+			var strHtml='<tr>'+
+		'<td><label class="colorLump" style="background-color:'+colorVal+'"></label><label class="labelName">'+colorName+'</label></td>'+
+		'<td><input id="aa" class="easyui-inputfile" type="file" size="30" name="'+fileInput+'" /></td>'+
+		'<td><a href="javascript:;" class="cblue" >选择图片</a></td>'+
+		'</tr>';
+		$("#propColorTable tbody").append(strHtml);
+		$.parser.parse($('#propColorTable'));
+	}
+	
+		
+}
+
+
+//建立尺码属性表格
+function  createSizeTable()
+{
+		$("#propSizeTable tbody").empty();
+		
+		for(var i=0;i<colorTrArray.length;i++)
+		{
+			var color=colorTrArray[i];
+			var colorVal=color.split(':')[0];
+			var colorName=color.split(':')[1];
+			var strHtml='<tr>'+
+			'<td rowspan='+sizeTrArray.length+'><label class="colorLump" style="background-color:'+colorVal+'"></label><label class="labelName">'+colorName+'</label></td>'+
+			'<td>'+sizeTrArray[0]+'</td>'+
+			'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="15" class="editTxt" data-id="" /></td>'+
+			'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="20" class="editTxt" data-id="" /></td>'+
+			'</tr>';
+			
+			for(var j=1;j<sizeTrArray.length;j++)
+			{
+				
+				var size=sizeTrArray[j];
+				var str='<tr>'+
+					'<td>'+size+'</td>'+
+					'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="15" class="editTxt" data-id="" /></td>'+
+					'<td><input style="border:1px solid #ccc;height:22px;line-height:22px;" type="text" size="20" class="editTxt" data-id="" /></td>'+
+					'</tr>';
+				strHtml+=str;
+			}
+			
+			$("#propSizeTable tbody").append(strHtml);
+		}
+}
+
+
+//选择尺码
+function selectSize(obj){
+	
+		var _sizeVal=obj.next().html();
+		var _chked=obj.attr("checked");
+		var _chkLen=$("#sizePropList .propList_item input:checked").length;
+		obj.parent().addClass("curr");
+		obj.nextAll(".editTxt").focus();
+		
+		if(_chked)
+		{
+			sizeTrArray.push(_sizeVal);
+		}
+		else
+		{
+			sizeTrArray.remove(_sizeVal);
+			obj.parent().removeClass("curr");
+			
+		}
+		createSizeTable();
+		
+	
+	if(_chkLen>0)
+		$("#propSizeTable").show();
+	else
+		$("#propSizeTable").hide();
+};
+
+
+function save(){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<form id="myForm">
+    <div data-options="region:'north',border:false" class="toolbar-region">
+        <div id="toolbar">
+        </div>
+    </div>
+    <div data-options="region:'center',border:false">
+        <div class="pd10">
+            <div class="easyui-panel" data-options="title:'基本信息',plain:true,fitWidth:true,cls:'mt20'" >
+                <div class="fl">
+                    <table class="form-tb">
+                        <tbody>
+                        <col width="120" />
+                        <tr>
+                            <th>所属分类：</th>
+                            <td><select id="cat" data-options="panelHeight:'auto'">
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>所属类型：</th>
+                            <td><select id="type" data-options="panelHeight:'auto'">
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>商品名称：</th>
+                            <td><input type="text" name="order" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'商品名称不能为空！'" value="1" style="width:250px;" /></td>
+                        </tr>
+                        <tr>
+                            <th>商品关键词：</th>
+                            <td><input type="text" name="cname"  class="ipt easyui-validatebox" style="width:250px;" data-options="required:true,missingMessage:'商品关键词不能为空！'"  />
+                                <span class="cgray">多个关键词用半角竖线分开"|"</span></td>
+                        </tr>
+                        <tr>
+                            <th>品牌：</th>
+                            <td><select id="brand" data-options="panelHeight:'auto'">
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>计量单位：</th>
+                            <td><input type="text" name="cname"  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'计量单位不能为空！'" /></td>
+                        </tr>
+                        <tr>
+                            <th>简介：</th>
+                            <td><input type="text" name="cname"  class="ipt" /></td>
+                        </tr>
+                        <tr>
+                            <th>是否上架销售：</th>
+                            <td><input type="radio" name="radSj" id="radSj0" checked />
+                                <label for="radSj0">是</label>
+                                <input type="radio" name="radSj" id="radSj1" checked />
+                                <label for="radSj1">否</label></td>
+                        </tr>
+                        <tr>
+                            <th>是否包邮：</th>
+                            <td><input type="radio" name="radBaoyou" id="radBaoyou0" checked />
+                                <label for="radBaoyou0">是</label>
+                                <input type="radio" name="radBaoyou" id="radBaoyou1" checked />
+                                <label for="radBaoyou1">否</label></td>
+                        </tr>
+                        <tr>
+                            <th>市场价：</th>
+                            <td><input type="text" name="cname"  class="ipt easyui-validatebox" data-options="required:true,missingMessage:'市场价不能为空！'" style="width:120px;" /> 元</td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align:top;">简介：</th>
+                            <td class="pt5"><textarea  name="remark" class="ipt txt-remark"></textarea></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="fl ml20">
+                    <div id="uploadGoodsImgPanel">
+                        <div id="uploadGoodsImgPanelToolBar">
+                        </div>
+                        <table style="border-collapse:collapse;height:290px;width:340px;">
+                            <tbody>
+                                <tr>
+                                    <td class="center">此处显示商品默认图片</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!--商品扩展属性-->
+            <div class="easyui-panel" data-options="title:'商品扩展属性',plain:true,fitWidth:true,cls:'mt20'">
+                <table class="form-tb">
+                    <col width="120" />
+                    <tbody>
+                        <tr>
+                            <th>质地：</th>
+                            <td><select id="zhidi" class="easyui-combobox" data-options="panelHeight:'auto',width:160">
+                                    <option value="">请选择</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>适合季节：</th>
+                            <td><select id="jijie" class="easyui-combobox" data-options="panelHeight:'auto',width:160">
+                                    <option value="">请选择</option>
+                                    <option value="0">春季</option>
+                                    <option value="1">夏季</option>
+                                    <option value="2">秋季</option>
+                                    <option value="3">冬季</option>
+                                    <option value="4">春夏</option>
+                                    <option value="5">春秋</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>风格：</th>
+                            <td><select id="fengge" class="easyui-combobox" data-options="panelHeight:'auto',width:160">
+                                    <option value="">请选择</option>
+                                    <option value="0">日系</option>
+                                    <option value="1">韩版</option>
+                                    <option value="2">欧美</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>衣领：</th>
+                            <td><select id="yiling" class="easyui-combobox" data-options="panelHeight:'auto',width:160">
+                                    <option value="">请选择</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>衣袖：</th>
+                            <td><select id="yixiu" class="easyui-combobox" data-options="panelHeight:'auto',width:160">
+                                    <option value="">请选择</option>
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th>款式：</th>
+                            <td><select id="type" data-options="panelHeight:'auto',width:160">
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align:top;padding-top:5px;">颜色分类：</th>
+                            <td class="pd5"><p class="info-tips cred mt5">
+                                    请尽量选择已有的颜色，如果自定义也请相近的颜色进行自定义，否则会被搜索降权。
+                                </p>
+                                <ul class="propList" id="colorPropList">
+                                    <li class="propList_item"> <input type="checkbox" data-color="fff" value="0-1" id="prop-0-1" />
+                                        <label for="prop-0-1" class="colorLump" style="background-color:#fff;"></label>
+                                        <label for="prop-0-1" class="labelName" >白色</label>
+                                        <input type="text" class="editTxt" value="白色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" data-color="e4e4e4" value="0-2" id="prop-0-2" />
+                                        <label for="prop-0-2" class="colorLump" style="background-color:#e4e4e4;"></label>
+                                        <label for="prop-0-2" class="labelName">浅灰色</label>
+                                        <input type="text" class="editTxt" value="浅灰色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" data-color="666" value="0-3" id="prop-0-3" />
+                                        <label for="prop-0-3" class="colorLump" style="background-color:#666;"></label>
+                                        <label for="prop-0-3" class="labelName">深灰色</label>
+                                        <input type="text" class="editTxt" value="深灰色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="0-4" id="prop-0-4" />
+                                        <label for="prop-0-4" class="colorLump" style="background-color:#FFB6C1;"></label>
+                                        <label for="prop-0-4" class="labelName">粉红色</label>
+                                        <input type="text" class="editTxt" value="粉红色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="0-5" id="prop-0-5" />
+                                        <label for="prop-0-5" class="colorLump" style="background-color:#008000;"></label>
+                                        <label for="prop-0-5" class="labelName">绿色</label>
+                                        <input type="text" class="editTxt" value="绿色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="0-6" id="prop-0-6" />
+                                        <label for="prop-0-6" class="colorLump" style="background-color:#1EDDFF;"></label>
+                                        <label for="prop-0-6" class="labelName">天蓝色</label>
+                                        <input type="text" class="editTxt" value="天蓝色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="0-7" id="prop-0-7" />
+                                        <label for="prop-0-7" class="colorLump" style="background-color:#4B0082;"></label>
+                                        <label for="prop-0-7" class="labelName">深紫色</label>
+                                        <input type="text" class="editTxt" value="深紫色" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="0-3" id="prop-0-8" />
+                                        <label for="prop-0-8" class="colorLump" style="background-color:#DDA0DD;"></label>
+                                        <label for="prop-0-8" class="labelName">紫罗兰</label>
+                                        <input type="text" class="editTxt" value="紫罗兰" /> </li>
+                                    <li style="clear:both;"> <input id="chkallColor" class="chkall" type="checkbox">
+                                        <label class="prop-all" for="chkallColor">全选</label>
+                                    </li>
+                                </ul>
+                                <table class="list_detail_table none" id="propColorTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:130px;">颜色分类</th>
+                                            <th>图片（无图片可不填）</th>
+                                            <th>关联商品相册图片</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table></td>
+                        </tr>
+                        <tr>
+                            <th class="pt5" style="vertical-align:top;">尺码：</th>
+                            <td class="pt5"><ul class="propList" id="sizePropList">
+                                    <li class="propList_item"> <input type="checkbox" value="1-1" id="prop-1-1" />
+                                        <label for="prop-1-1" class="labelName" >35</label>
+                                        <input type="text" class="editTxt" value="35" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-2" id="prop-1-2" />
+                                        <label for="prop-1-2" class="labelName">36</label>
+                                        <input type="text" class="editTxt" value="36" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-3" id="prop-1-3" />
+                                        <label for="prop-1-3" class="labelName">37</label>
+                                        <input type="text" class="editTxt" value="37" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-4" id="prop-1-4" />
+                                        <label for="prop-1-4" class="labelName">38</label>
+                                        <input type="text" class="editTxt" value="38" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-5" id="prop-1-5" />
+                                        <label for="prop-1-5" class="labelName">39</label>
+                                        <input type="text" class="editTxt" value="39" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-6" id="prop-1-6" />
+                                        <label for="prop-1-6" class="labelName">40</label>
+                                        <input type="text" class="editTxt" value="40" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-7" id="prop-1-7" />
+                                        <label for="prop-1-7" class="labelName">41</label>
+                                        <input type="text" class="editTxt" value="41" /> </li>
+                                    <li class="propList_item"> <input type="checkbox" value="1-3" id="prop-1-8" />
+                                        <label for="prop-1-8" class="labelName">42</label>
+                                        <input type="text" class="editTxt" value="42" /> </li>
+                                    <li style="clear:both;"> <input id="chkallSize" class="chkall" type="checkbox">
+                                        <label class="prop-all" for="chkallSize">全选</label>
+                                    </li>
+                                </ul>
+                                <table class="list_detail_table  none" id="propSizeTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:100px;">颜色分类</th>
+                                            <th style="width:80px;">尺码</th>
+                                            <th style="width:80px;">数量</th>
+                                            <th style="width:150px;">商家货品编码</th>
+                                        </tr>
+                                    <tbody>
+                                    </tbody>
+                                </table></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--商品详情-->
+            <div class="easyui-panel" data-options="title:'商品详情',plain:true,fitWidth:true,cls:'mt20'">
+                <div class="pd15">
+                    <textarea class="easyui-editor" name="detail" id="detail" style="width:740px;height:450px;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>

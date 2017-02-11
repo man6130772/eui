@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>添加供应商</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+using(['parser','layout','panel','toolbar','combobox','linkbutton'],function(){
+	$(function(){
+		$.parser.parse();
+		parsePage();
+	});
+});
+
+function parsePage(){
+	$('#toolbar').toolbar({
+		items: [{ 
+			text: '保存',  
+			iconCls: 'icon-save',  
+			handler: function(){
+			 showSucTips('操作成功！');
+			}
+		}] 
+	});
+}
+</script>
+</head>
+<body class="easyui-layout" >
+
+<div data-options="region:'north',border:false" class="toolbar-region">
+  <div id="toolbar">
+  </div>
+</div>
+<div  data-options="region:'center',border:false" class="pd10">
+  <div class="easyui-panel" data-options="title:'基本信息',fit:true,plain:true,cls:'mt20'">
+    <table class="form-tb">
+      <col width="120" />
+      <col />
+      <col width="200" />
+      <col />
+      <tbody>
+        <tr>
+          <th><span class="cred mr5">*</span>供应商名字：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'供应商名字不能为空！'"  /></td>
+          <td  colspan="2"></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>供应商类型：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'供应商类型不能为空！'"  /></td>
+          <td  colspan="2"></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>供应商简称：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'供应商简称不能为空！'"  /></td>
+          <td  colspan="2"></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>供应商地址：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" style="width:300px;" data-options="required:true,missingMessage:'供应商地址不能为空！'"  /></td>
+          <td  colspan="2"></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>银行开户名：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'银行开户名不能为空！'"  /></td>
+          <th>营业执照所在地：</th>
+          <td><input type="text" name="" value="" class="ipt" /></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>公司银行账号：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'公司银行账号不能为空！'"  /></td>
+          <th>营业执照有效期：</th>
+          <td><input type="text" name="" value="" class="ipt" /></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>开户行支行名称：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'开户行支行名称不能为空！'"  /></td>
+          <th>税务登记证号：</th>
+          <td><input type="text" name="" value="" class="ipt" /></td>
+        </tr>
+        <tr>
+          <th><span class="cred mr5">*</span>开户银行所在地：</th>
+          <td><input type="text" name="" value="" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'开户银行所在地不能为空！'"  /></td>
+          <th>组织机构代码：</th>
+          <td><input type="text" name="" value="" class="ipt" /></td>
+        </tr>
+        <tr>
+          <th>营业执照号：</th>
+          <td><input type="text" name="" value="" class="ipt" /></td>
+          <th>纳税人识别号：</th>
+          <td><input type="text" name="" value="" class="ipt" /></td>
+        </tr>
+        <tr>
+          <th>备注：</th>
+          <td colspan="3"><textarea  name="" class="ipt" style="width:320px;height:60px;"></textarea>
+            <span class="c9 ml5">（限100个字符）</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

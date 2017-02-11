@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>返点列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+function parsePage(){
+	
+$('#toolbar').toolbar({
+	items:[{
+		text:'新增',
+		iconCls:'icon-add',
+		handler:function(){
+			add();
+		}
+	},'-',{
+		text:'停用',
+		iconCls:'icon-stop'
+	}]
+});
+
+toolSearch();
+
+tbgrid = $('#tbList').datagrid({
+				data:{"total":1,"rows":[{'id':'1','col1':'返点1','col2':'满50000元，返点2%','col3':'正常返点','col4':'全部分销商','col5':'2012-08-08 9:00:12','col6':'2012-08-08 9:00:12','col7':'2012-08-08 9:00:12','col8':1,'col9':'超级管理员'}]},
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'返点名称',
+					field:'col1',
+					width:100
+					},{
+					title:'返点规则',
+					field:'col2',
+					width:120
+					},{
+					title:'返点类型',
+					field:'col3',
+					width:120
+					},{
+					title:'参与对象',
+					field:'col4',
+					width:150
+					},{
+					title:'添加时间',
+					field:'col5',
+					width:120
+					},{
+					title:'开始时间',
+					field:'col6',
+					width:120
+					},{
+					title:'结束时间',
+					field:'col7',
+					width:120
+					},{
+					title:'是否启用',
+					field:'col8',
+					width:60
+					},{
+					title:'添加人',
+					field:'col9',
+					width:60
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:60,
+				formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsStop">停用</a> | <a href="javascript:;" class="jsEdit">编辑</a>';
+						return str;
+					}
+			}
+		]],
+		onLoadSuccess:function(){		
+			//
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){
+		showSuc('删除成功！'+id);
+		tbgrid('deleteRow',0);
+		tbgrid('reload');
+	});
+}
+
+
+function add(){
+	ygDialog({
+		title:'添加返点',
+		href:'rebate-add.html',
+		width:650,
+		height:450,
+		buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+			text:'取消',
+			handler:function(dialog){
+				dialog.close();
+			}
+		}]
+		});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+		}
+	});
+	myform.submit();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <!--subLayout start-->
+    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+        <!--搜索start-->
+        <div data-options="region:'north',border:false" >
+            <div class="search-div">
+                <form name="searchForm" id="searchForm" action="" method="post" >
+                    <table class="search-tb" >
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <col width="80" />
+                        <col/>
+                        <tbody>
+                            <tr>
+                                <th>返点名称：</th>
+                                <td><input type="text" class="ipt" /></td>
+                                <th>是否启用：</th>
+                                <td><select class="easyui-combobox" style="width:80px;">
+                                			<option value="1">是</option>
+                                      <option value="0">否</option>
+                                    </select></td>
+                                <th>返点时间：</th>
+                                <td ><select class="easyui-combobox"  style="width:80px;">
+                                			<option value="0">开始时间</option>
+                                      <option value="1">结束时间</option>
+                                      <option value="2">添加时间</option>
+                                    </select> <input class="ipt easyui-datebox" data-options="dateFmt:'yyyy-mm-dd HH:mm:ss'" style="width:140px;" /> - <input class="ipt easyui-datebox" data-options="dateFmt:'yyyy-mm-dd HH:mm:ss'" style="width:140px;" /> <a class="easyui-linkbutton ml10" id="SearchBtn">搜索</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <!--搜索end--> 
+        <!--列表-->
+        <div data-options="region:'center',border:false">
+            <table id="tbList">
+            </table>
+        </div>
+    </div>
+    <!--subLayout end-->
+</div>
+</body>
+</html>

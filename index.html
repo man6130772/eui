@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html style="overflow:hidden;">
+<head>
+<meta charset="utf-8" />
+<title>优购分销系统</title>
+<script type="text/javascript" src="boot.js"></script>
+</head>
+<body class="easyui-layout">
+<div id="loading"><p>加载中，请稍后...</p></div>
+<div id="header" class="header" data-options="region:'north',border:false">
+    <div class="wrapper">
+        <div class="logo">
+            <h1>零售系统</h1>
+        </div>
+        <div class="nav">
+            <div class="system">
+                <span class="welcome">你好，管理员XXXX。欢迎进入！</span>
+                <span class="service">客服MM</span>
+                <span class="logout"><a href="#">退出</a></span>
+            </div>
+            <div class="subSys">
+                <a href="#" class="current">门店销售</a>
+                <a href="#">营运管理</a>
+                <a href="#">会员管理</a>
+                <a href="#">补订货管理</a>
+                <a href="#">货品管理</a>
+                <a href="#">财务辅助</a>
+                <a href="#">基础数据</a>
+            </div>
+        </div>
+	</div>
+</div>
+<div id="left" data-options="region:'west',split:true,title:'主菜单',minWidth:180,maxWidth:180,minSplit:true">
+    <div id="leftMenu" data-options="split:true,border:false"  style="border:none;" >
+    </div>
+</div>
+<div id="main" data-options="region:'center'">
+    <div id="mainTabs" class="easyui-tabs" data-options="fit:true,border:false" tools="#tab-tools">
+        <div title="系统桌面"  data-options="icon:'icon-home'">
+            <div class="pd10">
+                优购桌面，可以放置快捷操作视图
+            </div>
+        </div>
+    </div>
+</div>
+<div data-options="region:'south'" style="line-height:30px;text-align:center;background-color:#EEE;">这里显示底部版权等信息</div>
+<div id="tab-tools" style="display:none;border-left:none;border-top:none;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" plain="true" id="tabToolsFullScreen" iconCls="icon-window-max">全屏</a>
+</div>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>文章划列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid=null;
+var myform=null;
+function parsePage(){
+
+$('#toolbar').toolbar({
+	items: [{
+				text : '新增',
+				iconCls : 'icon-add',
+				handler : function() {
+					add();
+				}
+			}, '-', {
+				text : '删除',
+				iconCls:'icon-del',
+				handler : function() {
+					var node = tbgrid.datagrid('getSelections');
+					var ids=[];
+					$.each(node,function(index,val){
+						ids.push(val.id);
+					});
+					del(ids);
+				}
+			}] 
+});
+
+
+
+tbgrid = $('#tbList').datagrid({
+			data:{"total":1,"rows":[{'id':1,'col1':'网站公告','col2':'125','col3':'88'}]},
+			singleSelect:false,
+			frozenColumns : [[{
+				title : 'id',
+				field:'id',
+				checkbox : true
+			}]],
+		    columns:[[
+					{
+					title:'类别名称',
+					field:'col1',
+					width:250,
+					align:'left',
+					sortable:true
+				    },
+					{
+					title:'类别编码',
+					field:'col2',
+					width:250
+					},
+					{
+					title:'文章数量',
+					field:'col3',
+					width:250
+					},{
+					title:'操作',
+					field:'opt',
+					width:200,
+					formatter:function(value,rec,index){
+						var str='<a href="javascript:;" class="jsEdit" >编辑</a> | <a data-id='+rec.id+' href="javascript:;" class="jsDel">删除</a>';
+						return str;
+					}
+					}
+		]],
+		onLoadSuccess:function(){
+			//编辑
+			$('.jsEdit').click(function(){
+				var _this=$(this);
+				var _idx=$('.jsEdit').index(this);
+				tbgrid.datagrid('selectRow',_idx);
+				var rows = tbgrid.datagrid('getSelected');
+				edit(rows);
+				return false;
+			});
+			
+			//删除
+			$('.jsDel').click(function(){
+				var id=$(this).attr('data-id');
+				del(id);
+				return false;
+			});
+		
+		}
+
+	});
+
+}
+
+
+function add(){
+	myform=$('#myForm');
+	myform.form("clear"); //清空表单
+	ygDialog({
+		title:'添加文章类别',
+		target:$('#myFormPanel'),
+		width:350,
+		height:180,
+		 buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog)
+			}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});
+	
+	
+	
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){					 
+				showSuc('删除成功！'+id);
+				tbgrid.datagrid('deleteRow',0);
+				$('#tbList').datagrid('reload');
+				  
+	});
+}
+
+
+function edit(rows){
+	myform=$('#myForm');
+	$('input[name=title]').val(rows.col1);
+	$('input[name=code]').val(rows.col2);
+	ygDialog({
+		title:'编辑文章类别',
+		target:$('#myFormPanel'),
+		width:350,
+		height:180,
+		 buttons:[{
+			text:'确认',
+			handler:function(dialog){
+				save(dialog);
+			}
+		},{
+				text:'取消',
+				handler:function(dialog){
+					dialog.close();
+				}
+		}]
+	});	
+}
+
+function save(dialog){
+	myform.form({
+	url:'form3_proc.php',
+	onSubmit:function(){
+		return $(this).form('validate');
+	},
+	success:function(data){
+		showSuc('操作成功！');
+		var data = myform.form("getData");
+		console.log(data);
+		dialog.close();
+	}
+	});
+	myform.submit();	
+}
+
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+
+<!--新增表单-->
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm" method="post" novalidate>
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:100px;"><em class="cred">*</em> 类别名称：</th>
+                        <td><input name="title" type="text" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'类别名称不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th><em class="cred">*</em>类别编码：</th>
+                        <td><input name="code" type="text" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'类别编码不能为空！'" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+<!--新增表单结束-->
+
+</body>
+</html>

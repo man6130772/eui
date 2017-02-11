@@ -1,0 +1,12 @@
+{"total":7,"rows":[
+	{"id":1,"catName":"韩版女装","catType":"服装","catOrder":1,"state":"closed"},
+	{"id":11,"catName":"外套","catType":"服装","catOrder":1,"_parentId":1,"iconCls":""},
+	{"id":12,"catName":"长裙","catType":"服装","catOrder":2,"_parentId":1},
+	{"id":13,"catName":"女裤","catType":"服装","catOrder":3,"_parentId":1},
+	{"id":2,"catName":"包包","catType":"箱包","catOrder":2,"state":"closed"},
+	{"id":21,"catName":"手提包","catType":"箱包","catOrder":1,"_parentId":2},
+	{"id":22,"catName":"皮夹钱包","catType":"箱包","catOrder":2,"_parentId":2},
+	{"id":3,"catName":"时尚女鞋","catType":"单鞋","catOrder":3,"state":"closed"},
+	{"id":31,"catName":"气质单鞋","catType":"单鞋","catOrder":1,"_parentId":3},
+	{"id":32,"catName":"运动休闲","catType":"单鞋","catOrder":2,"_parentId":3}
+]}

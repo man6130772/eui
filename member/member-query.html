@@ -1,0 +1,268 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>会员列表</title>
+<script type="text/javascript" src="../boot.js"></script>
+<script>
+var tbgrid;
+
+function parsePage(){
+$('#toolbar').toolbar({
+	items:[{
+		text:'添加会员',
+		iconCls:'icon-add',
+		handler:function(){
+			add();
+		}
+	}]
+});
+
+toolSearch({
+	items:[{"text":"会员名称","name":"key1"},{"text":"登录账号","name":"key2"}],
+	collapsible:false,
+	callback:function(key,name){
+			if(key==""){
+				showInfo('请输入关键字');
+				return;
+			}
+		showInfo(key);
+	}
+});	
+
+$('select').combobox({
+	width:160
+});
+
+
+
+tbgrid = $('#tbList').datagrid({
+				url: '../json/member/member.json?r='+Math.random(),
+				singleSelect:true,
+		    columns:[[
+					{
+					title:'会员名称',
+					field:'col1',
+					width:80,
+					sortable:true
+				    },
+					{
+					title:'会员等级',
+					field:'col2',
+					width:60
+					},{
+					title:'业务类型',
+					field:'col3',
+					width:150,
+					align:'left',
+					formatter:function(value,rec,index){
+						return '<span title='+value+'>'+value+'</span>';
+					}
+					},{
+					title:'登陆账号',
+					field:'col4',
+					width:80
+					},{
+					title:'是否启用',
+					field:'col5',
+					width:60
+					},{
+					title:'添加人',
+					field:'col6',
+					width:60
+					},{
+					title:'添加时间',
+					field:'col7',
+					width:100
+					},
+					{
+				title : '操作',
+				field:'opt',
+				width:200,
+				formatter:function(value,rec,index){
+						var str='<div class="opt-div"><a href="javascript:;" class="jsStop" onclick="enableChainSeller('+rec.id+',\'y\',this)">停用</a> | <a href="javascript:;" class="jsEdit">编辑</a> | <a href="javascript:;" class="jsContact">联系人</a> | <a href="javascript:;" class="jsPwd">修改密码</a><br/><a href="javascript:;" class="jsWarehouse">分配仓库</a> | <a href="javascript:;" class="jsLimit">分配权限</a> | <a href="javascript:;" class="jsAuth">商品授权</a></div>';
+						return str;
+					}
+			}
+		]],
+		frozenColumns : [[]],
+		onLoadSuccess:function(){
+			
+			//停用
+			$('.jsStop').click(function(){		
+				return false;
+			});
+			
+			//编辑
+			$('.jsEdit').click(function(){
+				parent.addBlankTab({
+					title:'会员编辑',
+					href:'member/member-edit.html',
+					refreshed:true
+				});
+				return false;
+			});
+			
+			//联系人
+			$('.jsContact').click(function(){
+				parent.addBlankTab({
+					title:'联系人列表',
+					href:'member/member-contact-query.html',
+					refreshed:true
+				});
+				return false;
+			});
+			
+			//修改密码
+			$('.jsPwd').click(function(){
+				
+				tbgrid.datagrid('unselectAll');
+				tbgrid.datagrid('selectRow',$(this).closest('tr').index());
+				var rows = tbgrid.datagrid('getSelected');
+				$('input[name=user]').val(rows.col4);
+				
+				ygDialog({
+					width:400,
+					height:200,
+					title:'修改密码',
+					target:$('#myFormPanel'),
+					buttons:[{
+						text:'确认',
+						handler:function(dialog){
+							save(dialog);
+						}
+					},{
+						text:'取消',
+						handler:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			});
+			
+			//分配仓库
+			$('.jsWarehouse').click(function(){
+				ygDialog({
+					width:800,
+					title:'分配仓库',
+					href:'member-warehouse.html',
+					buttons:[{
+						text:'确认',
+						handler:function(dialog){
+							fenpei(dialog);
+						}
+					},{
+						text:'取消',
+						handler:function(dialog){
+							dialog.close();
+						}
+					}]
+				});
+			});
+			
+			
+			$('.jsView').click(function(){
+				parent.addBlankTab({
+					title:'查看会员',
+					href:'member/member-detail.html',
+					refreshed:true
+				});
+				return false;
+			});
+		}
+
+	});
+
+}
+
+
+function del(id){
+	if(id.length<=0){
+		showError('请选择需要删除的项目！');
+		return;
+	}
+	showConfirm('确认删除吗？',function(){
+		showSuc('删除成功！'+id);
+		tbgrid('deleteRow',0);
+		tbgrid('reload');
+	});
+}
+
+
+function add(){
+	parent.addBlankTab({
+		title:'添加会员',
+		href:'member/member-edit.html'
+		});
+}
+
+function enableChainSeller(id,type,obj){
+	var _str='停用';
+	if($(obj).text()=="启用"){
+		_str='启用';
+	}
+	showConfirm('确定'+_str+'吗？',function(){
+		if(_str=="停用"){
+			_str="启用";
+		}else{
+			_str="停用";
+		}
+		$(obj).text(_str);
+		showSuc('操作成功');
+	});
+}
+
+function save(dialog){
+	var myform=$('#myForm');
+	myform.form({
+		url:'form3_proc.php',
+		onSubmit:function(){
+			return $(this).form('validate');
+		},
+		success:function(data){
+			showSuc('操作成功！');
+			dialog.close();
+		}
+	});
+	myform.submit();
+}
+
+function fenpei(dialog){
+	dialog.close();
+}
+</script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false" class="toolbar-region">
+    <div id="toolbar">
+    </div>
+</div>
+<div  data-options="region:'center',border:false">
+    <table id="tbList">
+    </table>
+</div>
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <div class="pd10">
+        <form id="myForm">
+            <table class="form-tb">
+                <tbody>
+                    <tr>
+                        <th style="width:80px;">登陆名称：</th>
+                        <td><input name="user"  type="text"  class="ipt" readonly value="klt" /></td>
+                    </tr>
+                    <tr>
+                        <th>新密码：</th>
+                        <td><input name="newPwd" type="password" class="ipt easyui-validatebox" data-options="required:true,missingMessage:'新密码不能为空！'" /></td>
+                    </tr>
+                    <tr>
+                        <th>确认密码：</th>
+                        <td><input type="password" class="ipt easyui-validatebox"  validtype="same['input[name=newPwd]']" data-options="required:true,missingMessage:'请再次输入新密码！'" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+</body>
+</html>
