@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="/boot.js"></script>
+<style>
+select{width:130px;}
+</style>
+</head>
+
+<body>
+
+<select id="test" class="easyui-combobox">
+<option value="1">下拉1</option>
+<option value="2">下拉2</option>
+</select>
+
+<script>
+$('#test').combobox({
+	onSelect:function(){
+		alert($('#test').combobox('getValue'));	
+	}
+});
+</script>
+</body>
+</html>

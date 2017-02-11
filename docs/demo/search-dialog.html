@@ -1,0 +1,113 @@
+<div class="easyui-layout" data-options="fit:true">
+	<div data-options="region:'north',border:false" class="toolbar-region">
+	    <div id="brandSearchTool"></div>	
+	</div>
+
+	<div  data-options="region:'center',border:false">
+	    <div class="easyui-layout" data-options="fit:true" id="subLayout">
+		<!--搜索start-->
+	        <div data-options="region:'north',border:false" >
+	            <div class="search-div">
+			        <form name="dialog_SarchForm" id="dialog_SarchForm" method="post">
+						<table class="form-tb">
+						   <col width="80" />
+				           <col />
+				           <col width="120" />
+				           <tbody>
+							<tr>
+							  <th>品牌编码：</th>
+							  <td><input class="ipt"  name="brandNo" id="searchBrandNo" /></td>
+							  <th>品牌中文名称：</th>
+							  <td><input class="ipt"  name="brandName" id="searchBrandName" /></td>
+							<tbody>
+						</table>	
+					</form>
+	            </div>
+	        </div>
+		  
+		  	<div data-options="region:'center',border:false">
+        	<table id="dialog_SearchDataGrid"></table>
+	 			</div>
+	    </div>
+	</div>
+
+</div>
+
+<script>
+var searchDialogTb=$('#dialog_SearchDataGrid');
+
+$(function() {
+        var $dg = $("#dialog_SearchDataGrid");
+        var editIndex = undefined;
+        var $dgExtend={
+						method:'get',
+						url:'brand.json',
+            loadMsg:'请稍等,正在加载...',
+            pageSize:"20",
+            pageList:[20,50,100,200,300,400,500],
+            checkOnSelect:false,
+                pagination:true,
+                fitColumns:false,
+                singleSelect:true,
+                  rownumbers:true,
+                  enableHeaderContextMenu:true,
+                  enableHeaderClickMenu:true,
+            emptyMsg:"暂无数据",
+            columns : [ [
+							                  {field : 'attributeNo',title : '属性编码',width : 150},
+							                  {field : 'brandNo',title : '品牌编码',width : 150},
+							                  {field : 'itemvalue',title : '编码值定义',width : 150},
+							                  {field : 'itemname',title : '编码值说明',width : 150},
+							                  {field:'creator',title:'建档人',width:100},
+				 			                  {field:'createtm',title : '建档时间',width : 125,sortable:true},
+							                  {field:'editor',title:'修改人',width:100},
+				 			                  {field:'edittm',title : '修改时间',width : 125,sortable:true},
+				 			                  {field:'remarks',title : '备注',width : 150}
+							                 ]],
+            onClickRow:function(index){
+					    if (endEditing()){
+					    } else {
+					    }
+	              }
+          };
+        
+        var opt=$.extend({},$dgExtend);
+        $dg.datagrid(opt);
+        function endEdit(){
+            var rows = $dg.datagrid('getRows');
+            for ( var i = 0; i < rows.length; i++) {
+                $dg.datagrid('endEdit', i);
+            }
+        }
+        
+        function endEditing(){
+		    if (editIndex == undefined){
+		    	return true;
+		    }
+		    if ($dg.datagrid('validateRow', editIndex)){
+		    	$dg.datagrid('endEdit', editIndex);
+			    editIndex = undefined;
+			    return true;
+		    } else {
+		    	return false;
+	    	}
+	    }
+    });
+		
+$('#brandSearchTool').toolbar({
+	items:[{
+		id:'dgSelectorSearchBtn',
+		iconCls:'icon-search',
+		text:'查询'
+	},'-',{
+		id:'dgSelectorClearBtn',
+		iconCls:'icon-remove',
+		text:'清空'
+	},'-',{
+		id:'dgSelectorConfirmBtn',
+		iconCls:'icon-ok',
+		text:'确认'
+	}]
+});
+
+</script>

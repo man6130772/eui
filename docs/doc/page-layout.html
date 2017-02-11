@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>增改布局</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h2>简单增/改布局：</h2>
+    对于一些简单的增/改表单，可以在当前页面使用dialog的方式进行布局<br/>
+    示例：<a id="addBtn" class="easyui-linkbutton" data-options="iconCls:'icon-add'">新增</a><br/>
+html：<br/>
+<textarea class="brush: html;">
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <form name="detailForm" id="detailForm" method="post" class="pd10">
+        <table class="form-tb">
+            <col width="80" />
+            <col />
+            <tbody>
+                <tr>
+                    <th><em class="cred">*</em>用户名：</th>
+                    <td><input type="text" class=" ipt "  name="userName"  data-options="validType:'rangeLength[1,10]'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em>密码：</th>
+                    <td><input type="password"  name="pwd" id="pwd" class="easyui-validatebox ipt"   data-options="validType:'rangeLength[2,2]',required:true"/></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em>确认密码：</th>
+                    <td><input type="password" name="confirmPwd" id="confirmPwd" class="easyui-validatebox ipt"  data-options="required:true,width:160"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+</textarea>
+js：<br/>
+<textarea class="brush:js;">
+<script>
+function parsePage(){
+	$('#addBtn').click(function(){
+		ygDialog({
+			title:'新增',
+			target:$('#myFormPanel'),
+			width:300,
+			height:200,
+			buttons:[{
+				text:'保存',
+				iconCls:'icon-save',
+				handler:function(dialog){
+					//
+				}
+			},{
+				text:'取消',
+				iconCls:'icon-cancel',
+				handler:function(dialog){
+					dialog.close();
+				}
+			}]
+		});
+	});
+}
+</script>
+</textarea>
+<hr/>
+   <h2>复杂增/改布局：</h2>
+    对于一些复杂的增/改表单，建议通过ajax请求新的页面来实现，新的页面不要引用js库，特殊情况可以通过$.parser.parse()方法重新渲染。<br/>
+</div>
+<div id="myFormPanel" class="easyui-dialog" data-options="closed:true">
+    <form name="detailForm" id="detailForm" method="post" class="pd10">
+        <table class="form-tb">
+            <col width="80" />
+            <col />
+            <tbody>
+                <tr>
+                    <th><em class="cred">*</em>用户名：</th>
+                    <td><input type="text" class=" ipt "  name="userName"  data-options="validType:'rangeLength[1,10]'" /></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em>密码：</th>
+                    <td><input type="password"  name="pwd" id="pwd" class="easyui-validatebox ipt"   data-options="validType:'rangeLength[2,2]',required:true"/></td>
+                </tr>
+                <tr>
+                    <th><em class="cred">*</em>确认密码：</th>
+                    <td><input type="password" name="confirmPwd" id="confirmPwd" class="easyui-validatebox ipt"  data-options="required:true,width:160"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<script>
+$('#addBtn').click(function(){
+	ygDialog({
+		title:'新增',
+		target:$('.easyui-dialog'),
+		width:300,
+		height:200,
+		buttons:[{
+			text:'保存',
+			iconCls:'icon-save',
+			handler:function(dialog){
+				//
+			}
+		},{
+			text:'取消',
+			iconCls:'icon-cancel',
+			handler:function(dialog){
+				dialog.close();
+			}
+		}]
+	});
+});
+
+</script>
+
+</body>
+</html>

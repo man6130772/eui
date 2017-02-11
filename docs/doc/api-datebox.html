@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扩展panel</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h3>jQuery Eayui datebox 功能扩展</h3>
+    <h4>用法</h4>
+    <p>
+        由my97日期插件扩展，具体用法可参考my97日期插件。<br/>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js; highlight: [2,5]" >
+        <input type="text" class="easyui-datebox" data-options="dateFmt:'yyyy-MM-dd HH:mm:ss'" />
+        //  关于更多用法，请参见下面 API。
+    </textarea>
+    </p>
+    <h4>扩展的属性</h4>
+    <p>
+        该扩展增加定义了如下属性：
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default</th>
+        </tr>
+        <tr>
+            <td>dateFmt</td>
+            <td>string</td>
+            <td>表示日期格式。yyyy-MM-dd HH:mm:ss 代表 年-月-日 时:分:秒</td>
+            <td>yyyy-MM-dd</td>
+        </tr>
+    </table>
+    <br />
+    <h4>扩展的方法</h4>
+    <p>
+        该扩展增加定义了如下方法：
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+            <th>Returns</th>
+        </tr>
+        <tr>
+            <td>setValue</td>
+            <td>param</td>
+            <td>动态赋值</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>getValue</td>
+            <td> </td>
+            <td>获取日期框值</td>
+            <td></td>
+        </tr>
+         <tr>
+            <td>clearValue</td>
+            <td></td>
+            <td>清空日期框值</td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>公共方法</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h4>公共的方法</h4>
+    <p>
+     一些公共的方法随着业务的增加而增加，公共方法放置到<strong>assets/js/modules/base.js</strong>文件
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+            <th>Returns</th>
+        </tr>
+        <tr>
+            <td>showSuc</td>
+            <td>msg</td>
+            <td>右下角滑出成功操作提示</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>showInfo</td>
+            <td>msg</td>
+            <td>弹出对话框提示</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>showWarn</td>
+            <td>msg</td>
+            <td>弹出警告提示</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>showError</td>
+            <td>msg</td>
+            <td>弹出错误提示</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>showProcess</td>
+            <td>show,msg</td>
+            <td>弹出进度条对话框，show为true时显示，为false时关闭</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>showConfirm</td>
+            <td>msg,fn</td>
+            <td>弹出确认对话框，fn为点击确认后触发的函数</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>toolSearch</td>
+            <td>opts</td>
+            <td>
+            工具栏快捷搜索功能。
+            <textarea class="brush:js;">
+              toolSearch({
+              	  appendTo:$('#toolbar'), //添加位置，默认为$('#toolbar')
+                  target:$('#subLayout'), //控制对象，默认为$('#subLayout')
+                  items:[{text:'',name:''},{text:'',name:''}], //项目下拉列表
+                  collapsible:false, //是否显示下拉箭头
+                  callback:function(){
+                  //点击搜索后触发函数
+                  }
+                  }]
+              });
+            </textarea>
+            </td>
+            <td><img src="../resources/images/03.png" /></td>
+        </tr>
+        <tr>
+            <td>$.fn.createTabs</td>
+            <td>opts</td>
+            <td>
+            动态创建多个tabs,用于创建多个iframe标签。
+            <textarea class="brush:js;">
+              $('#myTabs').createTabs({
+              	selected:0,//默认选中第0个标签
+              	tabs:[{
+                	title:'未审核',
+                  href:''
+                },{
+                	title:'已审核',
+                  href:'',
+                  lazyload:true //页面初始化时不加载iframe
+                },{
+                	title:'全部',
+                  href:'',
+                  lazyload:true //页面初始化时不加载iframe
+                }]
+              });
+            </textarea>
+            </td>
+            <td><img src="../resources/images/04.png" /></td>
+        </tr>
+        <tr>
+            <td>addBlankTab</td>
+            <td>opts</td>
+            <td>
+            主框架上打开一个新的标签。
+            <textarea class="brush:js;">
+              top.addBlankTab({
+              	title:'查看详情',
+                href:''
+              });
+            </textarea>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>dgSelector</td>
+            <td>opts</td>
+            <td>
+            打开一个单选列表选择器对话框，如果使用查询精灵<br/>弹窗目标页面toolbar工具id分别为：dgSelectorSearchBtn，dgSelectorClearBtn
+            <textarea class="brush:js;">
+             dgSelector({
+             	title:'',
+              href:'', //弹窗地址
+              queryUrl:'', //查询精灵查询地址
+              isFrame:true,//默认为true,如果使用查询精灵必须设置为false
+              tbGrid:'', //查询精灵表格对象，默认为$('#dialog_SearchDataGrid')
+              width:450,
+              height:500,
+              fn:function(data){
+              	//选中后回调
+              }
+             });
+            </textarea>
+            </td>
+            <td>
+            <a id="test1" class="easyui-linkbutton">演示dgSelector</a>
+            </td>
+        </tr>
+        <tr>
+            <td>iptSearch</td>
+            <td>opts</td>
+            <td>
+            创建一个搜索文本框
+            <textarea class="brush:js;">
+             iptSearch({
+             	width:'',
+              disabled:false, //默认为false
+              clickFn:function(){
+              	//点击搜索按钮操作
+              }
+             });
+            </textarea>
+            
+            <br/>例子：<a href="../demo/iptsearch.shtml" target="_blank" class="cblue">戳这里</a>
+            </td>
+            <td>
+            	<img src="../resources/images/05.png" />
+            </td>
+        </tr>
+    </table>
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+
+$('#test1').click(function(){
+		dgSelector({
+			title:'选择订单',
+			href:'getDistributorOrderList.shtml',
+			width:1000,
+			height:550,
+			fn:function(data){
+				if(data){
+					showInfo('onlinePayNumber：'+data.col2+'incomeAmount：'+data.col4);
+				}
+			}
+		});
+});
+</script>
+</body>
+</html>

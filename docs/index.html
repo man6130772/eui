@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Easyui API - v2</title>
+    <script src="../boot.js"></script>
+    <style type="text/css">
+        .panel-body {overflow: hidden;}
+    </style>
+</head>
+<body class="easyui-layout">
+<div id="loading"><p>加载中，请稍后...</p></div>
+<div id="left" data-options="region:'west',split:true,title:'API',minWidth:180,maxWidth:180,minSplit:true">
+    <div id="leftMenu" data-options="split:true,border:false"  style="border:none;" >
+    </div>
+</div>
+<div id="main" data-options="region:'center'">
+    <div id="mainTabs" class="easyui-tabs" data-options="fit:true,border:false" tools="#tab-tools">
+        <div title="系统桌面"  data-options="icon:'icon-home'">
+            <div class="pd10">
+                EasyUI v2.0.0 for retail API document
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="tab-tools" style="display:none;border-left:none;border-top:none;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" plain="true" id="tabToolsFullScreen" iconCls="icon-window-max">全屏</a>
+</div>
+
+<script type="text/javascript" src="./resources/js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扩展Keyboard键盘事件</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h3>Keyboard based on jQuery Eayui</h3>
+    <hr />
+    <h4>用法1：表单的快捷键操作</h4>
+    <p>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js;" >
+        <form class="easyui-keyboard" data-options="
+            type: 'form',
+            lastFn: function(){}
+        "></form>
+    </textarea>
+    </p>
+    <hr />
+    <h4>用法2：表格的快捷键操作</h4>
+    <p>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js;" >
+        <table class="easyui-datagrid" data-options="
+            keyboard: {
+                type: 'grid',
+                lastFn: function(){}
+            }
+        "></table>
+    </textarea>
+    </p>
+    <hr />
+    <h4>Keyboard属性</h4>
+    <p>
+        该组件基于jQuery插件hotkeys
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>属性名</th>
+            <th>属性类型</th>
+            <th>属性描述</th>
+            <th>默认值</th>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>String</td>
+            <td>用来区分快捷键的作用对象</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>lastFn</td>
+            <td>String</td>
+            <td>最后一个输入框的退格事件</td>
+            <td>无论是表格还是表单，当输入框到最后一个的时候按下Enter需要执行的方法。</td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script>
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="scripts/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

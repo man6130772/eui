@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>demo-parser</title>
+<script src="../../boot.js"></script>
+<script type="text/javascript">
+	$.parser.auto = false;
+</script>
+</head>
+
+<body>
+<div class="docContainer pd10">
+	<h3>1. 当你需要datagrid的数据加载后才生成datagrid表格，你可以这么做</h3>
+	<textarea class="brush: js;">
+		在页面中加入以下代码:
+		<script type="text/javascript">
+			$.parser.auto = false; //禁止页面自动渲染
+		</script>
+		数据加载完成后执行$.parser.parse();即可
+	</textarea>
+	<a href="/demo/parser.shtml" target="_blank">亲自试一试</a>
+	<hr />
+	<h3>2. 动态生成easyUI组件</h3>
+	<textarea class="brush:js">
+		var obj = "";
+			obj += '<div class="easyui-window" data-options="width:500;height:300;">';
+			obj += '</div>';
+		$("#div").append(obj);
+		$.parser.parse("#div");
+	</textarea>
+</div>
+<div id="myWindow" class="easyui-window" data-options="closed:false,title:'弹窗',maximized:false,width:500,height:400">
+	<p>
+		现在还只是一行字，2秒后自动解析window组件
+	</p>
+</div>
+
+<script>
+function parsePage(){
+	setTimeout(function(){
+		$.parser.parse();
+	}, 2000); //设置2秒后自动解析window组件
+}
+</script>
+</body>
+</html>

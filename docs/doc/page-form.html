@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>表单布局</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h2>表单布局：</h2>
+    表单布局统一使用table标签来布局：<br/>
+    <textarea class="brush: html;">
+<form id="searchForm" method="post" name="searchForm">
+  <table class="form-tb">
+    <col width="100" />
+    <col />
+    <col width="100" />
+    <col />
+    <tbody>
+      <tr>
+        <th>单据编号：</th>
+        <td><input type="text" id="billNoCondition" name="billNo"  class="ipt readonly" readonly /></td>
+        <th>审核日期：</th>
+        <td><input type="text" id="audittmStart" name="audittmStart" class="ipt easyui-datebox"  /></td>
+        <th>单据状态：</th>
+        <td>
+        	<select class="easyui-combobox">
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</textarea> <br/>
+    注：<br/>
+    1、
+    <col>
+    标签表示列宽，根据实际进行调整；<br/>
+    2、input标签加上type属性，统一使用 ipt 类。如果是easyui组件，再添加相应的组件类。
+    <hr/>
+<h2>获取表单数据：</h2>
+提交表单获取表单数据，返回json。
+<textarea class="brush: js;">
+ $('#myForm').form('getData');
+</textarea>
+<hr/>
+<h2>清空表单：</h2>
+<textarea class="brush: js;">
+ $('#myForm').form('clear');
+</textarea>
+<hr/>
+<h2>判断表单是否修改：</h2>
+<textarea class="brush: js;">
+ $('#myForm').form('isChanged');
+</textarea>
+<hr/>
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

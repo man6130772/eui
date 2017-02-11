@@ -1,0 +1,159 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>EasyUI - Keyboard</title>
+    <script src="../../boot.js"></script>
+    <style type="text/css">
+        .ipt-search-box {
+            display: inline-block;
+        }
+        .my-demo-form {
+            margin: 10px 0 0 20px;
+        }
+    </style>
+</head>
+<body class="easyui-layout" data-options="fit:true,border:false">
+<div region="north" style="height:100px;">
+    <form class="easyui-keyboard my-demo-form" method="post" action=""
+          data-options="
+			type: 'form',
+			lastFn: addNewData
+		">
+        <table class="search-tb" width="80%">
+            <tbody>
+            <tr>
+                <td width="25%">
+                    输入框1：<input class="ipt disabled" disabled="disabled">
+                </td>
+                <td width="25%">
+                    输入框2：<input id="testFocus" class="ipt easyui-validatebox" data-options="required:true" />
+                </td>
+                <td width="25%">输入框3：<input class="easyui-datebox ipt" data-options="
+						enableKeyboard:true,
+						autoUpdateOnChanged:true,
+						isShowToday:false,
+						dateFmt: 'yyyy-MM-dd',
+						isTabTrigger: true
+					" />
+                </td>
+                <td width="25%">输入框4：<input class="ipt readonly" readonly="readonly"></td>
+            </tr>
+            <tr>
+                <td>输入框5：<input type="text" class="ipt"></td>
+                <td>
+                    输入框6：
+                    <input id="testIptSearch" class="easyui-iptsearch ipt" style="width:100px;" type="text" data-options="readonly:true" />
+                </td>
+                <td>
+                    输入框7：<input type="text" class="ipt" />
+                </td>
+                <td>
+                    输入框8：
+                    <select class="easyui-combobox" style="width:120px;height:22px;">
+                        <option value="">请选择</option>
+                        <option value="1">银行汇款</option>
+                        <option value="2">网上转帐</option>
+                    </select>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+<div data-options="region:'center'">
+    <table id="pdg" class="easyui-datagrid" data-options="
+        fitColumns:true,
+        autoEdit: true,
+        emptyMsg: '',
+        toolbar: toolbar,
+        columns:[[
+            {field:'code',title:'编码',width:100, editor:{type:'combogrid',options:dg.vars.cbd}},
+            {field:'size',title:'尺码',width:100, editor:{type:'textbutton',options:{readonly:false,validatebox:{options:{required:true}},clickFn:function(){alert('good!');}}}},
+            {field:'color',title:'颜色',width:100, editor:{type:'textbutton',options:{readonly:true,disabled:true,clickFn:function(){alert('good!');}}}},
+            {field:'price',title:'上柜日期',width:100, editor:{type:'datebox',options:{isTabTrigger:true}}},
+            {field:'sale',title:'价格',width:100, editor:{type:'combobox',options:dg.vars.cbd2}},
+            {field:'new',title:'备注',width:100,align:'right',editor:'text'}
+        ]],
+        onSelect: _onSelect,
+        keyboard: {
+            type: 'grid',
+            lastFn: addNewData
+        }
+    "></table>
+</div>
+
+<script type="text/javascript">
+    var toolbar = [{
+        iconCls: 'icon-add',
+        text: '新增',
+        handler: addNewData
+    }];
+
+    var rowData = {
+        code: 'xxxx-xxxx-xxxx',
+        size: '30',
+        color: '#FFF',
+        price: '88'
+    };
+    function addNewData(){
+        var $pdg = $('#pdg');
+        $pdg.datagrid('appendRow',rowData);
+
+        var total = $pdg.datagrid("getRows").length-1;
+        $pdg.datagrid('selectRow', total);
+    }
+
+    function _onSelect(rowIndex, rowData){
+        var $pdg = $('#pdg');
+        //$pdg.datagrid('endEdit', total-1);
+        $pdg.datagrid('beginEdit', rowIndex);
+        var ed = $('#pdg').datagrid('getEditor', {index:rowIndex,field:'code'})||$();
+        setFocus($(ed.target));
+    }
+
+    var dg = {
+        vars: {},
+        data: {
+            combogrid: {
+                "total": 3,
+                "rows": [
+                    {"code":"1111-2222-3333", "size":"39", "color":"red", "price":"200", "sale":"上架", "title":"今冬新款上市"},
+                    {"code":"1232-2343-2567", "size":"40", "color":"blue", "price":"399", "sale":"上架", "title":"纯棉男士毛衣"},
+                    {"code":"4323-4561-1100", "size":"41", "color":"yellow", "price":"599", "sale":"上架", "title":"新疆羊毛厚打底裤"}
+                ]
+            },
+            combobx: [
+                {text: "Belle", value: "111"},
+                {text: "Basto", value: "222"}
+            ]
+        }
+    };
+    dg.vars.cbd = {
+        panelWidth : 370,
+        panelHeight:200,
+        idField : 'code',
+        textField : 'code',
+        columns : [ [ {
+            field : 'code',
+            title : '商品编码',
+            width : 150,
+            sortable : false
+        }, {
+            field : 'title',
+            title : '商品名称',
+            width : 200,
+            align : 'left',
+            sortable : false
+        } ] ],
+        data: dg.data.combogrid
+    };
+    dg.vars.cbd2 = {
+        valueField: 'value',
+        textField: 'text',
+        data: dg.data.combobx
+    };
+
+</script>
+
+</body>
+</html>

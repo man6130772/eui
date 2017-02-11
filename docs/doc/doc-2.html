@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自适应布局</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+<h2>body自适应布局：</h2>
+标准的自适应布局页面，在body中添加 ” <font class="cred">class="easyui-layout" </font>“
+<textarea class="brush: html;">
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="页面模块.js"></script>
+</head>
+<body class="easyui-layout">
+</body>
+</html>
+</textarea>
+<hr/>
+
+<h2>div自适应布局：</h2>
+div自适应布局，一般用在复杂的自适应布局页面。需要手动添加fit:true属性。<br/>
+<textarea class="brush: html;">
+<div class="easyui-layout" data-options="fit:true"></div>
+</textarea>
+<hr/>
+<h2>自适应布局实例：</h2>
+<div class="fl">
+<iframe src="doc-2-1.shtml" scrolling="no" frameborder="0" width="600" height="450"></iframe>
+</div>
+<div class="fl ml10">
+<textarea class="brush:html;">
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>自适应布局</title>
+<script src="../../boot.js"></script>
+</head>
+<body class="easyui-layout">
+<div data-options="region:'north',split:true" style="height:60px;">
+    north
+</div>
+<div data-options="region:'west',split:true,minSplit:true" style="width:80px;">
+    west
+</div>
+<div data-options="region:'south',split:true,minSplit:true" style="height:40px;">
+    south
+</div>
+<div data-options="region:'east',split:true" style="width:80px;">
+    east
+</div>
+<div data-options="region:'center',split:true">
+    <div id="subLayout" class="easyui-layout" data-options="fit:true,border:false">
+        <div data-options="region:'north',border:false,split:true" style="height:40px;">
+            north,我是嵌套的一个自适应布局
+        </div>
+        <div data-options="region:'center',border:false">
+            center,我是嵌套的一个自适应布局<br/>
+            <a class="easyui-linkbutton" onclick="javascript:$('#subLayout').layout('hidden','north');">隐藏north</a>
+            <a class="easyui-linkbutton" onclick="javascript:$('#subLayout').layout('show','north');">显示north</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+</textarea>
+</div>
+<p class="clear"></p>
+<hr/>
+</div>
+
+<script type="text/javascript" src="scripts/shCore.js"></script>
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="scripts/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

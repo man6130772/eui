@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>静态资源结构、引用</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+<h2>页面声明：</h2>
+统一使用html5声明，即标准的页面结构如下：<br/>
+<textarea class="brush: html;">
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="页面模块.js"></script>
+</head>
+<body>
+</body>
+</html>
+</textarea>
+<hr/>
+
+<h2>静态资源结构目录如下图：</h2>
+<img src="../resources/images/01.png" />
+<br/>
+<strong>“页面模块.js”统一放置到assets/js/modules目录。</strong>例如：assets/js/modules/bill/billSupplier.js
+<hr/>
+<h2>静态资源引用：</h2>
+页面只需要引用"boot.js"和"当前页面模块.js"，由于boot.js已经在header.ftl中引用，所以页面中只需要引用”当前页面模块.js“即可，不要引用其他样式文件和js文件（特殊插件引用除外）。<br/>
+<font class="cred">便于维护，尽量一个模块一个js，不要在页面中添加javascript。</font><br/>
+<img src="../resources/images/02.png" />
+<hr/>
+<h2>easyui属性写法：</h2>
+easyui所有属性统一写在 data-options中。<br/>
+<textarea class="brush: html;">
+<div class="easyui-panel" data-options="width:450,height:250,title:'panel标题'">
+</div>
+</textarea>
+<hr/>
+<h2>公共js：</h2>
+基本的UI公共函数在assets/js/modules/base.js中，业务上的公共函数添加到<strong>assets/js/modules/common.js</strong>中，并在讨论组中告知所有开发人员。
+<hr/>
+<h2>模块js：</h2>
+模块js统一放置到assets/js/modules目录，建议一个模块一个js，为防止变量的冲突，建议使用命名空间的写法<br/>
+<textarea class="brush: js;">
+var myMdl={};
+myMdl.init=function(){
+	// more code
+}
+myMdl.add=function(){
+ //  more code
+}
+</textarea>
+<hr/>
+<h2>关于easyui扩展库：</h2>
+easyui扩展库统一放置到assets/js/plugins中，并且以*.extend.js格式命名。插件调试完毕后使用grunt构建到<strong>assets/js/libs/ui.js</strong>文件。ui.js在发布前使用jsa压缩为<strong>ui.min.js</strong>。
+<hr/>
+</div>
+
+<script type="text/javascript" src="scripts/shCore.js"></script>
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="scripts/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

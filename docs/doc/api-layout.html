@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扩展panel</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h3>jQuery Eayui Layout 功能扩展</h3>
+    <h4>用法</h4>
+    <p>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js; highlight: [2,5]" >
+        //  隐藏显示指定region
+        $('body').layout('hidden','north');
+        
+        $('body').layout('show','north');
+
+        //  关于更多用法，请参见下面 API。
+    </textarea>
+    </p>
+    
+    <h4>扩展的方法</h4>
+    <p>
+        该扩展增加定义了如下方法：
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+            <th>Returns</th>
+        </tr>
+        <tr>
+            <td>isVisible</td>
+            <td>region</td>
+            <td>判断region是否可见。<br />
+                </td>
+            <td>如果当前region可见，则返回 true，否则返回 false。</td>
+        </tr>
+        <tr>
+            <td>hidden</td>
+            <td>region</td>
+            <td>隐藏指定布局下的region。<br />
+                </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>show</td>
+            <td>none</td>
+            <td>显示指定布局下的region。<br />
+                </td>
+            <td></td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

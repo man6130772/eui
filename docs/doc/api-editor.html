@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扩展editor</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h3>jQuery Eayui editor 功能扩展</h3>
+    <h4>用法</h4>
+    <p>
+        由kindeditor富文本编辑器扩展，具体用法可参考kindeditor插件。<br/>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js; highlight: [2,5]" >
+        <textarea  class="easyui-editor" ></ textarea>
+        //  关于更多用法，请参见下面 API。
+    </textarea>
+    </p>
+    <h4>扩展的属性</h4>
+    <table class="doc-table">
+        <tr>
+            <th>属性类型</th>
+            <th>属性值</th>
+            <th>属性用法</th>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>textbutton</td>
+            <td>
+				<textarea name="dp-syntaxhighlighter" class="brush: js;">
+				data-options = {
+					field:'name',
+					editor:{
+						type:'textbutton',
+						options:{
+							disabled:false, //是否禁用文本框(否)
+							readonly:true, //是否只读模式(是)
+							clickFn:function(){} //点击搜索图标的时候执行函数
+						}
+					}
+				}
+				</textarea>
+			</td>
+        </tr>
+		<tr>
+            <td>type</td>
+            <td>text</td>
+            <td>
+				<textarea name="dp-syntaxhighlighter" class="brush: js;">
+				data-options = {
+					field:'price',
+					editor:{
+						type:'text',
+						options:{
+							disabled:true, //是否禁用文本框(是)
+						}
+					}
+				}
+				</textarea>
+			</td>
+        </tr>
+	</table>
+    <br />
+    <h4>扩展的方法</h4>
+    <p>
+        该扩展增加定义了如下方法：
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>Name</th>
+            <th>Parameters</th>
+            <th>Description</th>
+            <th>Returns</th>
+        </tr>
+        <tr>
+            <td>setValue</td>
+            <td>param</td>
+            <td>编辑器赋值</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>getValue</td>
+            <td> </td>
+            <td>获取编辑器值</td>
+            <td></td>
+        </tr>
+         <tr>
+            <td>clearValue</td>
+            <td></td>
+            <td>清空编辑器值</td>
+            <td></td>
+        </tr>
+    </table>
+    <br/>
+    <textarea  class="easyui-editor" style="width:450px;height:200px;"></textarea>
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

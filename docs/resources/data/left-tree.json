@@ -1,0 +1,171 @@
+﻿[{
+    "menuid": "root-1",
+    "icon": "icon-doc-base",
+    "menuname": "页面规范",
+    "menus": [{
+        "text": "页面标准",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/page-html.html"
+        }
+    }, {
+        "text": "页面布局",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/page-layout.html"
+        }
+    }, {
+        "text": "表单布局",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/page-form.html"
+        }
+    }, {
+        "text": "图标库",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/page-icons.html"
+        }
+    }]
+}, {
+    "menuid": "root-2",
+    "icon": "icon-doc-base",
+    "menuname": "扩展API",
+    "menus": [{
+        "text": "base",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-base.html"
+        }
+    }, {
+        "text": "jQuery",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-jquery.html"
+        }
+    }, {
+        "text": "datagrid",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-datagrid.html"
+        }
+    }, {
+        "text": "panel",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-panel.html"
+        }
+    }, {
+        "text": "layout",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-layout.html"
+        }
+    }, {
+        "text": "tabs",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-tabs.html"
+        }
+    }, {
+        "text": "toolbar",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-toolbar.html"
+        }
+    }, {
+        "text": "dialog",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-dialog.html"
+        }
+    }, {
+        "text": "datebox",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-datebox.html"
+        }
+    }, {
+        "text": "validatebox",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-validatebox.html"
+        }
+    }, {
+        "text": "editor",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-editor.html"
+        }
+    }, {
+        "text": "inputfile",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-inputfile.html"
+        }
+    }, {
+        "text": "hotKeys",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-hotkeys.html"
+        }
+    }, {
+        "text": "Keyboard",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-keyboard.html"
+        }
+    }, {
+        "text": "fancydialog",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "doc/api-fancydialog.html"
+        }
+    }]
+}, {
+    "menuid": "root-3",
+    "icon": "icon-doc-base",
+    "menuname": "Easyui-Demo",
+    "menus": [{
+        "text": "panel",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "demo/panel.html"
+        }
+    }, {
+        "text": "parser",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "demo/parser.html"
+        }
+    }, {
+        "text": "pagination",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "demo/pagination.html"
+        }
+    }, {
+        "text": "tabs",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "demo/tabs.html"
+        }
+    }]
+}, {
+    "menuid": "root-4",
+    "icon": "icon-doc-base",
+    "menuname": "Extensions-Demo",
+    "menus": [{
+        "text": "快捷键(hotkeys)",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "demo/ext-hotkeys.html"
+        }
+    }, {
+        "text": "键盘事件(keyboard)",
+        "iconCls": "tree-file",
+        "attributes": {
+            "url": "demo/ext-keyboard.html"
+        }
+    }]
+}]

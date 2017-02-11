@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="../../boot.js"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<table id="tbList"></table>
+
+<div id="popWindow" class="easyui-window" data-options="closed:true">
+<table id="tbList2"></table>
+</div>
+
+<script>
+ var $dg = $("#tbList");
+   $(function() {
+       
+        var editIndex = undefined;
+        var $dgExtend={
+			method:'get',
+			fit:false,
+			title:'datagrid实例',
+			url:'datagrid.json',
+            loadMsg:'请稍等,正在加载...',
+            iconCls:'icon-ok',
+            pageSize:"20",
+            pageList:[20,50,100,200,300,400,500],
+            checkOnSelect:false,
+            pagination:true,
+            fitColumns:false,
+            singleSelect:false,
+			checkOnSelect:false,
+			selectOnCheck:false,
+            rownumbers:true,
+            enableHeaderContextMenu:true,
+            enableHeaderClickMenu:true,
+			singleEditing: false,
+            emptyMsg:"暂无数据",
+            columns : [ [
+			           		  {field : 'ck ',checkbox:true,notexport:true},
+			           		  {field : 'cmcdistNo',title : '商圈编号',width : 120
+
+											},
+			                  {field : 'cmcdistName',title : '商圈名称',width : 120
+												},
+			                  {field : 'mcityNo',title : '经营城市',width : 120,editor:{
+													type:'validatebox',
+													options:{
+														required:true,
+														missingMessage:'aa'
+													}
+													
+												}},
+			                  {field : 'remarks',title : '备注',width : 200},
+			               	  {field : 'creator',title : '建档人',width : 80},
+				          	  {field : 'createtm',title : '建档时间',width : 120,sortable:true
+							   },
+				          	  {field : 'editor',title : '修改人',width : 80},
+				          	  {field : 'edittm',title : '修改时间',width : 120,sortable:true}
+			                 ]],
+            toolbar:[{
+							text:'新增明细',
+							iconCls:'icon-add-dtl',
+							handler:function(){
+									$dg.datagrid('appendRow',{});
+									var tempIndex = $dg.datagrid('getRows').length - 1;
+									$dg.datagrid('beginEdit', tempIndex);
+									var sfgzEditor = $dg.datagrid('getEditor', {index:tempIndex,field:'mcityNo'}).target;
+									sfgzEditor.bind('change',function () {
+										alert(sfgzEditor.val());
+									});
+							}
+						},'-',{
+							text:'删除明细',
+							iconCls:'icon-del-dtl'
+						}],
+						
+					onSelect:function(rowIndex, rowData){
+			                   selectRowDo(rowIndex)
+			           },
+						
+            onClickRow:function(index){
+					    if (endEditing()){
+					    } else {
+					    }
+	              },
+				  onDblClickRow:function(rowIndex, rowData){
+					  ygDialog({
+						 title:'弹窗',
+						 width:450,
+						 height:450,
+						 target:$('#popWindow'),
+						 buttons:[{
+							iconCls:'icon-save',
+							text:'保存',
+							handler:function(){} 
+						 },{
+							iconCls:'icon-cancel',
+							text:'关闭',
+							handler:function(dialog){
+								dialog.close();
+								} 
+						 }]
+					  });
+				  }
+          };
+        
+        var opt=$.extend({onSelect:function(rowIndex, rowData){
+		                      // 触发点击方法  调JS方法
+		                     // cmcdist.selectedCheckBox(rowIndex);
+		                   },onDblClickRow:function(rowIndex, rowData){
+		                   	//双击方法
+		                   	  //cmcdist.edit(rowData)
+		                   }},$dgExtend);
+        $dg.datagrid(opt);
+        function endEdit(){
+            var rows = $dg.datagrid('getRows');
+            for ( var i = 0; i < rows.length; i++) {
+                $dg.datagrid('endEdit', i);
+            }
+        }
+        
+        function endEditing(){
+		    if (editIndex == undefined){
+		    	return true;
+		    }
+		    if ($dg.datagrid('validateRow', editIndex)){
+		    	$dg.datagrid('endEdit', editIndex);
+			    editIndex = undefined;
+			    return true;
+		    } else {
+		    	return false;
+	    	}
+	    }
+    });
+
+var dataIndex;	
+function selectRowDo(index){
+	dataIndex = index;
+	$dg.datagrid('beginEdit', index);
+	
+	var editors = $dg.datagrid('getEditors', index);
+	var sfgzEditor=editors[0];
+	$(sfgzEditor.target).iptSearch('enable');
+	
+	$dg.datagrid('unselectAll');
+	$dg.datagrid('selectRow',index);
+	
+	/*
+	sfgzEditor.target.bind('change',function () {
+		alert(sfgzEditor.target.val());
+	});
+	*/
+	
+};
+
+
+function openSearchDialog(){
+	dgSelector({
+		title:'选择品牌',
+		width:650,
+		height:450,
+		href:'search-dialog.shtml',
+		queryUrl:'',
+		isFrame:false,
+		fn:function(rowData){
+			var brandNoCell = $dg.datagrid('getEditor', {index:dataIndex,field:'cmcdistNo'}).target;
+			brandNoCell.val(rowData.brandNo);
+		}
+	});
+}
+
+
+function getCellDom(){
+	console.log($dg.datagrid('getCellDom',{field:'cmcdistNo',index:10}));
+}
+
+
+
+
+
+function popQuery(){
+	$('#tbList2').datagrid({
+method:'get',
+fit:true,
+url:'datagrid.json',
+columns : [ [
+			           		  {field : 'ck ',checkbox:true,notexport:true},
+			           		  {field : 'cmcdistNo',title : '商圈编号',width : 120,
+												editor:{
+												type:'textbutton',
+													options:{
+													 disabled:true,
+													 clickFn:function(){
+															openSearchDialog();
+														}
+													}
+												}
+
+											},
+			                  {field : 'cmcdistName',title : '商圈名称',width : 120,
+														editor:{
+																		type:'combogrid',
+																		options:{
+																			method:'get',
+																			panelWidth:350,
+																			mode:'remote',
+																			idField:'itemname',
+																			textField:'itemname',
+																			url:'brand.json',
+																			onChange: function(newValue, oldValue){
+																				 if(newValue&&newValue.trim()!=""){
+																					 //
+																				 }
+																			},
+																			columns:[[
+																				 {field:'brandNo',title:'编码',width:100},
+	        															 {field:'itemname',title:'名称',width:100}
+																			]]
+																		}
+																	}												
+												},
+			                  {field : 'mcityNo',title : '经营城市',width : 120,editor:{
+													type:'validatebox',
+													options:{
+														required:true,
+														missingMessage:'请输入经营城市'
+													}
+													
+												}},
+			                  {field : 'remarks',title : '备注',width : 200},
+			               	  {field : 'creator',title : '建档人',width : 80},
+				          	  {field : 'createtm',title : '建档时间',width : 120,sortable:true},
+				          	  {field : 'editor',title : '修改人',width : 80},
+				          	  {field : 'edittm',title : '修改时间',width : 120,sortable:true}
+			                 ]], toolbar:[{
+							text:'新增明细',
+							iconCls:'icon-add-dtl',
+							handler:function(){
+									$('#tbList2').datagrid('appendRow',{});
+									var tempIndex = $('#tbList2').datagrid('getRows').length - 1;
+									$('#tbList2').datagrid('beginEdit', tempIndex);
+									var sfgzEditor = $('#tbList2').datagrid('getEditor', {index:tempIndex,field:'mcityNo'}).target;
+									sfgzEditor.bind('change',function () {
+										alert(sfgzEditor.val());
+									});
+							}
+						},'-',{
+							text:'删除明细',
+							iconCls:'icon-del-dtl'
+						}]
+	
+});
+}
+
+</script>
+<input type="button" value="test" onclick="getCellDom();"/>
+
+
+</body>
+</html>

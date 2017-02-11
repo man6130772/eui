@@ -1,0 +1,576 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>新增触屏版弹出窗口组件fancydialog</title>
+    <link type="text/css" rel="stylesheet" href="styles/shCore.css" />
+    <link type="text/css" rel="stylesheet" href="styles/shThemeDefault.css" />
+    <link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+    <script src="../../boot.js"></script>
+    <style type="text/css">
+        .doc-table tr :nth-child(3) {
+            max-width: 600px;
+        }
+        .doc-table tr :nth-child(4) {
+            max-width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pd10">
+        <h3>新增组件:fancydialog触屏版弹出窗口</h3>
+        <hr />
+        <h4>用法1：弹出框ajax请求的基本配置</h4>
+        <p>
+            以下为示例代码
+            <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                <div><input type="text" id="test">测试</div>
+                <script type="text/javascript">
+                    $("#text").fancydialog({
+                        width: 700,
+                        height: 420,
+                        title: '测试',
+                        blockLines: 1,
+                        blockWidth: '100%',
+                        blockHeight: 80,
+                        perRowNum: 4,
+                        url: 'data.json',
+                        columns: [
+                            [{
+                                field: 'name',
+                                title: '姓名'
+                            }, {
+                                field: 'no',
+                                title: '编号'
+                            }]
+                        ]
+                    });
+                </script>
+            </textarea>
+        </p>
+        <hr />
+        <h4>用法2：重新请求数据</h4>
+        <p>
+            以下为示例代码
+            <textarea name="dp-syntaxhighlighter" class="brush: js;">
+            <script type="text/javascript">
+                //url请求
+                $("#text").fancydialog("reload", "data.json");
+                //直接赋值
+                $("#text").fancydialog("loadData", {
+                    total: 1,
+                    rows: [{
+                        "name": "xxxxxx",
+                        "no": "000001"
+                    }]
+                });
+            </script>
+            </textarea>
+        </p>
+        <hr />
+        <h4>fancydialog属性</h4>
+        <p>
+            该组件基于fancybox插件和easyui的validatebox插件
+        </p>
+        <table class="doc-table">
+            <tr>
+                <th>属性名</th>
+                <th>属性类型</th>
+                <th>属性描述</th>
+                <th>默认值</th>
+            </tr>
+            <tr>
+                <td>require</td>
+                <td>Boolean</td>
+                <td>用来验证是否必须填项</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td>String</td>
+                <td>弹出框dialog标题</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>perRowNum</td>
+                <td>Number</td>
+                <td>每行显示block的数量</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>blockLines</td>
+                <td>Number</td>
+                <td>定义每个block展示多少个field的数据，默认field数据为前2个，展现数据包括：标题+内容</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>blockWidth</td>
+                <td>Number/Percent</td>
+                <td>定义每个block的宽度，可设置百分比宽度</td>
+                <td>120</td>
+            </tr>
+            <tr>
+                <td>blockHeight</td>
+                <td>Number</td>
+                <td>定义每个block的高度，默认自动与block宽度相同</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>headerHeight</td>
+                <td>Number</td>
+                <td>定义header头部包裹层的高度</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>footerHeight</td>
+                <td>Number</td>
+                <td>定义footer底部包裹层的高度</td>
+                <td>60</td>
+            </tr>
+            <tr>
+                <td>width</td>
+                <td>Number</td>
+                <td>定义弹出框dialog的宽度</td>
+                <td>600</td>
+            </tr>
+            <tr>
+                <td>height</td>
+                <td>Number</td>
+                <td>定义弹出框dialog的高度</td>
+                <td>400</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>"GET"/"POST"</td>
+                <td>ajax请求的方式</td>
+                <td>"GET"</td>
+            </tr>
+            <tr>
+                <td>async</td>
+                <td>Boolean</td>
+                <td>ajax同步或异步请求，默认异步请求</td>
+                <td>true</td>
+            </tr>
+            <tr>
+                <td>url</td>
+                <td>String</td>
+                <td>ajax请求的地址</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>data</td>
+                <td>Object</td>
+                <td><span>fancydialog加载的数据，当url同时存在时，此属性不生效。如果把data写成数组类型，即只取rows部分也是可以的。</span>
+                    <h4>格式说明：</h4>
+                    <p>
+                        以下为示例代码
+                        <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                        <script type="text/javascript">
+                            var data = {
+                                total: 1,
+                                rows: [{
+                                    "name": "xxxxxx",
+                                    "no": "000001",
+                                    //是否默认选中
+                                    "highlightState": "active",
+                                    //设置活动的分组ID即可显示并行活动效果
+                                    "activity": "GroupID"
+                                }]
+                            }
+                        </script>
+                        </textarea>
+                    </p>
+                </td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>queryParams</td>
+                <td>Object</td>
+                <td><span>ajax请求发送的参数</span>
+                    <h4>格式说明：</h4>
+                    <p>
+                        以下为示例代码
+                        <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                        <script type="text/javascript">
+                            var queryParams = {
+                                name: 'fancydialog',
+                                no: '20160425'
+                            }
+                        </script>
+                        </textarea>
+                    </p>
+                </td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>columns</td>
+                <td>Array</td>
+                <td><span>等同于datagrid列配置对象，但是不存在合并行列的关系，所以只需要一个数组。如果写成跟datagrid一样的格式存在多个数组，fancydialog会自动过滤。</span>
+                    <h4>格式说明：</h4>
+                    <p>
+                        以下为示例代码
+                        <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                        <script type="text/javascript">
+                            var columns = [{
+                                field: 'name',
+                                title: '姓名',
+                                //在block中展示
+                                display: true,
+                                //展示field的title
+                                showTitle: true,
+                                //该列输出至target目标输入框里
+                                input: true
+                            }, {
+                                field: 'no',
+                                title: '编号',
+                                //在block中不展示
+                                display: false,
+                                //不展示field的title
+                                showTitle: false,
+                                //该列不输出至target目标输入框里
+                                input: false
+                            }, {
+                                field: 'size',
+                                title: '尺码'
+                                //"display"为"undefined"是按顺序展示
+                                //"showTitle"为"undefined"是不展示field的title
+                                //"input"为"undefined"是默认前两列输出至target目标输入框里
+                            }]
+                        </script>
+                        </textarea>
+                    </p>
+                </td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>searchBox</td>
+                <td>Boolean</td>
+                <td>header包裹层是否加入搜索功能</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>delay</td>
+                <td>Number</td>
+                <td>搜索时输入关键词的延时搜索时间（毫秒）</td>
+                <td>1000</td>
+            </tr>
+            <tr>
+                <td>scrollTouch</td>
+                <td>Boolean</td>
+                <td>当table包裹层的blocks太多出现垂直滚动条时候，用于触摸屏上下滑动的显示。</td>
+                <td>false</td>
+            </tr>
+            <tr>
+                <td>multiSelect</td>
+                <td>Object</td>
+                <td><span>单选多选你的定义</span>
+                    <h4>格式说明：</h4>
+                    <p>
+                        以下为示例代码
+                        <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                        <script type="text/javascript">
+                            var multiSelect = {
+                                //@true: 显示复选框
+                                //@false：隐藏复选框
+                                display: true,
+                                //@"0": 复选框为单选状态
+                                //@"1"：复选框为多选状态
+                                value: 0
+                            }
+                        </script>
+                        </textarea>
+                    </p>
+                </td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>wrapCSS</td>
+                <td>String</td>
+                <td>定义fancybox组件包裹层的添加样式，能覆盖整个dialog。</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>headerCSS</td>
+                <td>String</td>
+                <td>header包裹层的添加样式</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>footerCSS</td>
+                <td>String</td>
+                <td>footer包裹层的添加样式</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>cacheArr</td>
+                <td>Array</td>
+                <td>缓存输出至target目标输入框的字符串数组</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>cacheObj</td>
+                <td>Object</td>
+                <td>缓存当前已选择的数据</td>
+                <td>null</td>
+            </tr>
+            <tr>
+                <td>footerItems</td>
+                <td>Array</td>
+                <td><span>footer包裹层包含的按钮项</span>
+                    <h4>格式说明：</h4>
+                    <p>
+                        以下为示例代码
+                        <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                            footerItems: [{
+                                text: '确认',
+                                btnCSS: 'fancydialog-btn-ok btn-warning',// 确认按钮样式系统默认
+                                handler: function(){
+                                }
+                            },{
+                                text: '取消',
+                                btnCSS: 'fancydialog-btn-cancel btn-default',// 取消按钮样式系统默认
+                                handler: function(){
+                                    var value = $(target).fancydialog('options').multiSelect.value;
+                                    alert(value);
+                                }
+                            },{
+                                text: '自定义按钮a',
+                                btnCSS: 'fancydialog-btn-a btn-warning', // fancydialog-btn-a 唯一的样式名，可用于捕捉DOM节点
+                                handler: function(){
+                                    var checkedData = $(target).fancydialog('getSelections');
+                                    console.log(checkedData);
+                                }
+                            },{
+                                text: '自定义按钮b',
+                                btnCSS: 'fancydialog-btn-b btn-default', // btn-default 为取消的样式，可以自定义
+                                handler: function(){
+                                    alert('按钮b');
+                                }
+                            }]
+                        </textarea>
+                    </p>
+                </td>
+                <td>
+                    <textarea name="dp-syntaxhighlighter" class="brush: js;">
+                        [{
+                            text: '确认',
+                            btnCSS: 'fancydialog-btn-ok btn-warning',
+                            handler: function() {}
+                        }, {
+                            text: '取消',
+                            btnCSS: 'fancydialog-btn-cancel btn-default',
+                            handler: function() {}
+                        }]
+                    </textarea>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <h4>fancydialog事件</h4>
+        <p>
+            默认存在this指向DOM节点
+        </p>
+        <table class="doc-table">
+            <tr>
+                <th>事件名</th>
+                <th>参数</th>
+                <th>描述</th>
+            </tr>
+            <tr>
+                <td>beforeTouchBlock</td>
+                <td>event, index, input</td>
+                <td>
+                    <p>block点击前事件，参数包括：</p>
+                    <p>this：指向当前点击的block。</p>
+                    <p>event：事件对象。</p>
+                    <p>index：当前点击对象的数据索引。</p>
+                    <p>input：指向触发dialog对象target。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>afterTouchBlock</td>
+                <td>event, index, data, input</td>
+                <td>
+                    <p>block点击后事件，参数包括：</p>
+                    <p>this：指向当前点击的block。</p>
+                    <p>event：事件对象。</p>
+                    <p>index：当前点击对象的数据索引。</p>
+                    <p>data：当前点击对象的数据。</p>
+                    <p>input：指向触发dialog对象target。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>beforeLoadDialog</td>
+                <td>none</td>
+                <td>
+                    <p>dialog载入前事件，参数包括：</p>
+                    <p>this：指向触发dialog对象target。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>afterShowDialog</td>
+                <td>none</td>
+                <td>
+                    <p>dialog打开后触发事件，参数包括：</p>
+                    <p>this：指向触发dialog对象target。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>beforeCloseDialog</td>
+                <td>none</td>
+                <td>
+                    <p>dialog关闭前触发事件，参数包括：</p>
+                    <p>this：指向触发dialog对象target。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>afterTouchMultiSelect</td>
+                <td>event, value, input</td>
+                <td>
+                    <p>点击单选多选复选框后触发事件，参数包括：</p>
+                    <p>this：指向复选框对象。</p>
+                    <p>event：事件对象。</p>
+                    <p>value：点击复选框前还没改变的value状态。</p>
+                    <p>input：指向触发dialog对象target。</p>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <h4>fancydialog方法</h4>
+        <p>
+            与easyui方法使用一致：$(target).fancydialog('方法名', 参数);
+        </p>
+        <table class="doc-table">
+            <tr>
+                <th>方法名</th>
+                <th>参数</th>
+                <th>描述</th>
+            </tr>
+            <tr>
+                <td>options</td>
+                <td>none</td>
+                <td>返回属性对象</td>
+            </tr>
+            <tr>
+                <td>pointer</td>
+                <td>none</td>
+                <td>返回fancybox触发器对象</td>
+            </tr>
+            <tr>
+                <td>dialog</td>
+                <td>none</td>
+                <td>返回fancydialog的弹出框对象</td>
+            </tr>
+            <tr>
+                <td>header</td>
+                <td>none</td>
+                <td>返回弹出框的header包裹层对象</td>
+            </tr>
+            <tr>
+                <td>body</td>
+                <td>none</td>
+                <td>返回弹出框的table包裹层，即表格数据渲染部分对象</td>
+            </tr>
+            <tr>
+                <td>footer</td>
+                <td>none</td>
+                <td>返回弹出框的footer包裹层对象</td>
+            </tr>
+            <tr>
+                <td>render</td>
+                <td>content</td>
+                <td>
+                    <p>强制性手动渲染，content可以选择以下字符串：</p>
+                    <p>1. 为空，渲染"header"、"body"、"footer"。</p>
+                    <p>2. "header"，渲染"header"。</p>
+                    <p>3. "body"，渲染"body"。</p>
+                    <p>4. "footer"，渲染"footer"。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>open</td>
+                <td>none</td>
+                <td>手动弹出fancydialog弹出框</td>
+            </tr>
+            <tr>
+                <td>close</td>
+                <td>none</td>
+                <td>手动关闭fancydialog弹出框</td>
+            </tr>
+            <tr>
+                <td>showFooter</td>
+                <td>boolean</td>
+                <td>
+                    <p>"footer"部分显示与否，boolean参数：</p>
+                    <p>1. true，显示"footer"。</p>
+                    <p>2. false，隐藏"footer"。</p>
+                </td>
+            </tr>
+            <tr>
+                <td>resize</td>
+                <td>none</td>
+                <td>重新计算调整dialog宽高</td>
+            </tr>
+            <tr>
+                <td>loadData</td>
+                <td>data</td>
+                <td>重新载入数据数据以Object传入，数据格式请参考上述data属性</td>
+            </tr>
+            <tr>
+                <td>reload</td>
+                <td>url, params, type, async</td>
+                <td>重新以ajax的方式请求新的数据，url为请求地址，params为请求的参数，type为请求的方式，async为同步或异步</td>
+            </tr>
+            <tr>
+                <td>getSelections</td>
+                <td>none</td>
+                <td>获取当前的缓存数据的数组</td>
+            </tr>
+            <tr>
+                <td>setValue</td>
+                <td>string</td>
+                <td>把字符串里面的内容写入触发dialog的input对象</td>
+            </tr>
+            <tr>
+                <td>getValue</td>
+                <td>none</td>
+                <td>把触发dialog的input对象内的字符串内容提取出来</td>
+            </tr>
+            <tr>
+                <td>refresh</td>
+                <td>none</td>
+                <td>缓存变动后，把新更新的数据的效果渲染到界面上</td>
+            </tr>
+            <tr>
+                <td>resetArr</td>
+                <td>array</td>
+                <td>把任意数据放进去即可清空数组内容，不改变数组的内存指针。</td>
+            </tr>
+            <tr>
+                <td>resetObj</td>
+                <td>object</td>
+                <td>把任意对象放进去即可清空对象内容，不改变对象的内存指针。</td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript" src="scripts/shCore.js"></script>
+    <script type="text/javascript" src="scripts/shBrushCSharp.js"></script>
+    <script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+    <script type="text/javascript" src="scripts/shBrushXml.js"></script>
+    <script type="text/javascript">
+    $.extend(true, SyntaxHighlighter, {
+        config: {
+            tagName: "textarea"
+        },
+        defaults: {
+            toolbar: false,
+            'html-script': true
+        }
+    });
+    SyntaxHighlighter.all();
+    </script>
+</body>
+
+</html>

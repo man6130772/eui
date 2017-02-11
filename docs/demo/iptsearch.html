@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="../../boot.js"></script>
+</head>
+
+<body class="easyui-layout">
+<div data-options="region:'north',border:false">
+    <div id="toolbar">
+    </div>
+    <div class="search-div" style="height:180px;">
+    <span class="fl">
+    <select class="easyui-combobox">
+    </select>
+    </span>
+    <span class="fl">
+        <input class="ipt" type="text" id="ipt1" /></span><br/>
+        <input type="text" class="ipt" id="ipt2" />
+    </div>
+</div>
+<script>
+function parsePage(){
+	$('#ipt1').iptSearch({
+		width:80,
+		clickFn:function(){
+			alert(1);
+			
+		}
+	});
+	
+	$('#ipt2').iptSearch({
+		clickFn:function(){
+				dgSelector({
+					title:'选择器2',
+					href:'search-dialog.shtml',
+					width:450,
+					height:480,
+					queryUrl:'aa',
+					isFrame:false,
+					fn:function(rowsData){
+						 console.log(rowsData);
+					}
+			});
+		}
+	});
+
+
+$('#toolbar').toolbar({
+	items:[{
+		text:'新增',
+		iconCls:'icon-add'
+	}]
+});
+
+
+	
+}
+
+
+</script>
+</body>
+</html>

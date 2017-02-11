@@ -1,0 +1,19 @@
+h2{padding-bottom:5px;padding-top:20px;font-size:14px;}
+#docContainer { padding-left: 10px; padding-right: 10px; font-size: 14px; font-family: Arial,Helvetica,"Nimbus Sans L",sans-serif; }
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter table, .syntaxhighlighter table td, .syntaxhighlighter table tr, .syntaxhighlighter table tbody, .syntaxhighlighter table thead, .syntaxhighlighter table caption, .syntaxhighlighter textarea
+{
+font-size: 13px !important; line-height: 16px !important;
+}
+
+h3 { margin: 12px 0px; font-size: 20px; font-weight: bold; }
+h4 { margin: 15px 0px; color: rgb(204, 0, 0); font-size: 16px; font-weight: bold; }
+h5 { margin: 5px 0px; color: rgb(153, 0, 0); font-size: 14px; font-weight: bold; }
+.doc-table { margin-left: 9px; border-collapse: collapse; border-spacing: 0; }
+.doc-table th { padding: 0.3em 0.7em; border: 1px solid rgb(140, 172, 187); font-weight: bold; min-width: 60px; }
+.doc-table td { padding: 0.3em 0.7em; border: 1px solid rgb(140, 172, 187); }
+.doc-table th { background: rgb(238, 238, 238); }
+.doc-table pre { background: rgb(250, 250, 250); padding: 5px; color: rgb(0, 102, 0); font-family: Verdana; font-size: 12px; }
+.stress { font-weight: bold; color: Red; }
+.example { color: Blue; text-decoration: none; }
+
+.docContainer a { color:red; padding-left:2em; }

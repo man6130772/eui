@@ -1,0 +1,122 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<form class="pd10" method="post" id="dataForm" name="dataForm" >
+    <table class="form-tb">
+        <colgroup>
+        <col width="110">
+        <col>
+        <col width="120">
+        <col>
+        </colgroup>
+        <tbody>
+       	 <tr>
+                <th><em class="cred">*</em> 日期：</th>
+                <td><input data-options="required:true" id="startTime" name="startTime"  class="easyui-datebox easyui-validatebox" /></td>
+                <th></th>
+                <td>
+                
+                <select class="easyui-combobox">
+                <option value="">请选择</option>
+                 <option value="111" selected>111</option>
+                 <option value="2222">222</option>
+                </select>
+                
+               <input class="easyui-combobox" id="select" />
+                <input type="radio" name="aa" />单选1<input type="radio"  name="aa"/>单选2
+                <input type="checkbox" />多选1<input type="checkbox" />多选2
+                </td> 
+            <tr>
+                <th><em class="cred">*</em> 行政省名称：</th>
+                <td><input data-options="required:true,validType:'rangeLength[1,15]'" id="provinceName" name="provinceName"  class="easyui-validatebox ipt" title=""></td>
+                <th><em class="cred">*</em> 行政省编码：</th>
+                <td><input data-options="required:true,validType:'rangeLength[1,2]'" id="provinceNo" name="provinceNo" class="easyui-validatebox ipt" ></td>
+            </tr>
+            <tr>
+                <th><em class="cred">*</em> 行政省详细名称：</th>
+                <td><input data-options="required:true,validType:'rangeLength[1,30]'" id="provinceLname" name="provinceLname" class="easyui-validatebox ipt " title=""></td>
+                <th><em class="cred">*</em> 行政省特征码：</th>
+                <td><input data-options="required:true,validType:'alphanumeric[1,2]'" id="provinceOPCode" name="provinceOPCode" class="easyui-validatebox ipt"></td>
+            </tr>
+            
+            <tr>
+                <th class="vtop">备注：</th>
+                <td colspan="3"><input type="hidden" value="aaa" /><textarea maxlength="300" id="remarks" name="remarks" style="width:432px;height:60px;" class="ipt"></textarea></td>
+            </tr>
+            <tr>
+                <th class="vtop"></th>
+                <td colspan="3">
+                	<a class="easyui-linkbutton" onclick="province.do_save();">确认提交</a>
+                  <a class="easyui-linkbutton" onclick="province.do_clear();">清空</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<form id="form2">
+	<input type="text" class="ipt" /><br/>
+  <input type="text" class="ipt" />
+</form>
+
+<script>
+var dd=[{
+	'text':'222',
+	'value':'222'
+},{
+	'text':'3333',
+	'value':'333'
+}];
+$('#select').combobox({
+	data:dd,
+	textFiled:'text',
+	valueField:'value'
+});
+
+				
+var province={};
+// 新增
+province.do_save = function() {
+	
+ if($('#dataForm').form('isChanged')){
+	  alert('表单有修改，确认退出？'); 
+ }
+};
+
+$('#provinceName').iptSearch({
+	clickFn:function(data){
+			dgSelector({
+			title:'选择品牌',
+			width:650,
+			height:450,
+			href:'search-dialog.shtml',
+			queryUrl:'',
+			isFrame:false,
+			fn:function(rowData){
+				$('#provinceName').val(rowData.brandNo);
+			}
+		});
+	}
+});
+
+
+province.do_clear=function(){
+	$('#dataForm').form('clear');
+}
+
+
+$('#provinceName').iptSearch('disable');
+$('#provinceName').iptSearch('enable');
+
+
+setTimeout(function(){
+$('#select').combobox('setValue','222');
+},200);
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>静态资源结构、引用</title>
+<link type="text/css" rel="stylesheet" href="../doc/styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="docContainer pd10">
+	<h3>pagination的用法示例</h3>
+	<textarea class="brush: js;">
+		<div id="pp" class="easyui-pagination" data-options="
+			total:280,
+			pageNumber: 1,
+			pageSize:10,
+			onSelectPage:function(pageNumber, pageSize){
+				$(this).pagination('loading');
+				alert('pageNumber:'+pageNumber+',pageSize:'+pageSize);
+				$(this).pagination('loaded');
+			}" style="background:#efefef;border:1px solid #ccc;"></div> 
+	</textarea>
+	<a href="http://try-demo.yougou.pro" target="_blank">亲自试一试</a>
+</div>
+
+
+<script type="text/javascript" src="../doc/scripts/shCore.js"></script>
+<script type="text/javascript" src="../doc/scripts/shBrushJScript.js"></script>
+<script type="text/javascript" src="../doc/scripts/shBrushXml.js"></script>
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

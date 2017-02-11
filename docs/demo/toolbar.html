@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div id="toolbar"></div>
+<br/>
+<div id="toolbar2"></div>
+ 
+<div id="dialog" class="easyui-dialog" data-options="closed:true">
+	 <input class="ipt" type="text" id="ipt1" /><br/>
+</div>
+
+<div id="mm" style="width:150px;">  
+    <div data-options="iconCls:'icon-undo'">Undo</div>  
+    <div data-options="iconCls:'icon-redo'">Redo</div>  
+    <div class="menu-sep"></div>  
+    <div>Cut</div>  
+    <div>Copy</div>  
+    <div>Paste</div>  
+    <div class="menu-sep"></div>  
+    <div data-options="iconCls:'icon-remove'">Delete</div>  
+    <div>Select All</div>  
+</div> 
+ 
+ 
+<script>
+$('#toolbar').toolbar({
+	items:[{
+		text:'新增',
+		iconCls:'icon-add',
+		handler:function(){
+			add();
+		}
+	}]
+});
+
+
+$('#toolbar2').toolbar({
+	items:[{
+		text:'操作11',
+		type:'menubutton',
+		menu:'#mm'
+	},'-',{
+		text:'操作22',
+		type:'menubutton',
+		menu:'#mm'
+	},{
+		text:'操作333',
+		iconCls:'',
+		handler:function(){
+		}
+	}]
+});
+
+function add(){
+	ygDialog({
+		title:'新增',
+		width:500,
+		height:450,
+		target:$('#dialog')
+	});
+}
+
+$('#ipt1').iptsearch({
+		width:100,
+		clickFn:function(){
+			
+			dgSelector({
+				title:'选择',
+				width:600,
+				height:450,
+				href:'search-dialog.shtml',
+				isFrame:false
+			});
+			
+		}
+	});
+	
+toolSearch();
+toolSearch({
+	appendTo:$('#toolbar2')
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扩展inputfile</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h3>jQuery Eayui inputfile 功能扩展</h3>
+    <h4>用法</h4>
+    <p>
+        文件域美化插件<br/>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js;" >
+        <input type="file" class="easyui-inputfile" />
+       
+    </textarea>
+    </p>
+    <br/>
+    <input type="file" class="easyui-inputfile" />
+</div>
+
+<div class="easyui-window" data-options="title:'inputfile',width:450,height:450">
+	<div class="pd10">
+	 <input type="file" class="easyui-inputfile" />
+    </div>
+</div>
+
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>

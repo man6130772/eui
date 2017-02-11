@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>扩展dialog</title>
+<link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css" />
+<link type="text/css" rel="stylesheet" href="../resources/css/css.css" />
+<script src="../../boot.js"></script>
+</head>
+
+<body>
+<div class="pd10">
+    <h3>hotKeys功能扩展 based on jQuery Eayui</h3>
+    <h4>用法</h4>
+    <p>
+        以下为示例代码 <textarea name="dp-syntaxhighlighter" class="brush: js;" >
+        var $obj = $("body");
+        $obj.hotKeys({
+            type: 'keydown',
+            key: 'up',
+            fn: function(){}
+        });
+
+        // 关于更多用法，请参见Extensions-Demo > 快捷键(hotkeys)。
+    </textarea>
+    </p>
+    <h4>扩展的属性</h4>
+    <p>
+        该扩展增加定义了如下属性：
+    </p>
+    <table class="doc-table">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>type</td>
+            <td>String</td>
+            <td>事件类型</td>
+            <td>keyup, keydown, keypress</td>
+        </tr>
+        <tr>
+            <td>key</td>
+            <td>String</td>
+            <td>键盘事件</td>
+            <td>支持数字，字符，组合键，方向键等。如up, down, ctrl+a, shift+s。字母不区分大小写</td>
+        </tr>
+		<tr>
+            <td>fn</td>
+            <td>String</td>
+            <td>事件回调</td>
+            <td>触发按键事件时的处理方法</td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript" src="scripts/shCore.js"></script> 
+<script type="text/javascript" src="scripts/shBrushJScript.js"></script> 
+<script type="text/javascript" src="scripts/shBrushXml.js"></script> 
+<script type="text/javascript">
+SyntaxHighlighter.config.tagName = "textarea";
+SyntaxHighlighter.all();
+</script>
+</body>
+</html>
